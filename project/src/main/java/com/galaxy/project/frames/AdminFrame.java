@@ -14,11 +14,12 @@ class AdminFrame extends AGenericUserFrame {
 	private static final long serialVersionUID = 1L;
 	
 	RegisterFrame registerFrame = null;
+	GalaxySearchFrame galaxySearchFrame = null;
 	private static String titolo = "Pannello di Amministrazione";
 	private JPanel panel = new JPanel();
 	private JButton btnRegistraNuovoUtente;
 	private JButton btnImportaFile;
-	private JButton btnRicercaOggettoPer;
+	private JButton btnRicercaOggettoPerNome;
 	private JButton btnRicercaOggettoAllinterno;
 	private JButton btnRicercaOggettoPer_1;
 	private JButton btnValoreDelleLinee;
@@ -52,9 +53,9 @@ class AdminFrame extends AGenericUserFrame {
 		btnImportaFile.setBounds(86, 49, 645, 25);
 		panel.add(btnImportaFile);
 		
-		btnRicercaOggettoPer = new JButton("Ricerca Oggetto Per Nome");
-		btnRicercaOggettoPer.setBounds(86, 86, 645, 25);
-		panel.add(btnRicercaOggettoPer);
+		btnRicercaOggettoPerNome = new JButton("Ricerca Oggetto Per Nome");
+		btnRicercaOggettoPerNome.setBounds(86, 86, 645, 25);
+		panel.add(btnRicercaOggettoPerNome);
 		
 		btnRicercaOggettoAllinterno = new JButton("Ricerca Oggetto All'Interno Di Un Raggio");
 		btnRicercaOggettoAllinterno.setBounds(86, 123, 645, 25);
@@ -100,7 +101,18 @@ class AdminFrame extends AGenericUserFrame {
 			    registerFrame.repaint();
 			}
 		});
-		
+		btnRicercaOggettoPerNome.addActionListener(new ActionListener() {
+			
+//			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				galaxySearchFrame = new GalaxySearchFrame();
+				galaxySearchFrame.setVisible(true);
+				galaxySearchFrame.toFront();
+				galaxySearchFrame.repaint();
+			}
+		});
+			
 	}
 
 	private void close(){

@@ -50,7 +50,7 @@ public class RegisterFrame extends JFrame {
 		super(titolo);
 		
 		this.setSize(800, 600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().add(panel);
 		placeComponents(panel);
 		

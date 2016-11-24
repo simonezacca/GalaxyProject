@@ -40,16 +40,16 @@ public class SpectralLine implements Serializable, IPersistente {
 	protected int atomicNumber;
 	
 	@Column(name="line_lenght", nullable=false)
-	protected int lineLength;
+	protected float lineLength;
 	
 	@OneToMany(mappedBy="spectralLine", cascade=CascadeType.ALL)
 	protected List<AFlux> fluxes;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "spectralline_galaxy", joinColumns = {
-			@JoinColumn(name = "spectral_line_id", nullable = false) },
+			@JoinColumn(name = "spectral_line_id", nullable = false, updatable = true) },
 			inverseJoinColumns = { @JoinColumn(name = "galaxy_id",
-					nullable = false) })
+					nullable = false, updatable = true) })
 	
 	protected List<Galaxy> galaxies;
 	
@@ -79,11 +79,11 @@ public class SpectralLine implements Serializable, IPersistente {
 		this.atomicNumber = atomicNumber;
 	}
 
-	public int getLineLength() {
+	public float getLineLength() {
 		return lineLength;
 	}
 
-	public void setLineLength(int lineLength) {
+	public void setLineLength(float lineLength) {
 		this.lineLength = lineLength;
 	}
 
