@@ -1,6 +1,5 @@
 package com.galaxy.project.manager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.galaxy.project.model.Galaxy;
@@ -15,11 +14,11 @@ public class GalaxiesManager {
 	protected GalaxiesManager(){
 		this.elencoGalassie = gdao.getAll();
 	}
-
+	
 	public static GalaxiesManager getInstance() {
 		if (instance==null) {
-				instance = new GalaxiesManager();
+			instance = new GalaxiesManager();
 		}
 		return instance;
-		}
+	}
 }
