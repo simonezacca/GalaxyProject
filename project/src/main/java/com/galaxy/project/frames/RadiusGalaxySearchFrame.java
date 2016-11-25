@@ -11,16 +11,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.galaxy.project.controller.GalaxySearchController;
+import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
+import com.galaxy.project.model.Position;
 	
 public class RadiusGalaxySearchFrame extends JFrame {
 	
 		private static final long serialVersionUID = 1L; 
 		
-		private GalaxySearchController controller = new GalaxySearchController(this);
+		private RadiusGalaxySearchFrameController controller = new RadiusGalaxySearchFrameController(this);
 		
 		private final static String titolo = "Ricerca Oggetto all'interno di un raggio";
 		private final JPanel panel = new JPanel();
+		private Position p = null;
 		
 		// Dichiarazione Componenti Grafici
 		private JLabel rahLabel;
@@ -38,7 +40,23 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		private JTextField fieldRDm;
 		private JTextField fieldRDs;
 		private JButton btnSearchGalaxyForRadius;
-		private String galaxyNameString;
+		private String rah;
+		private String ram;
+		private String ras;
+		private String rdsign;
+		private String rdd;
+		private String rdm;
+		private String rds;
+		
+		private int positionRAh;
+		private int positionRAm;
+		private float positionRAs;
+		private char positionRDsign;
+		private int positionRDd;
+		private int positionRDm;
+		private float positionRDs;
+		
+		
 		
 		public RadiusGalaxySearchFrame() {
 			
@@ -131,8 +149,6 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		fieldRDs.setBounds(261, 10, 324, 25);
 		panel.add(fieldRDs);
 		
-		
-		
 		// Bottone Per Ricercare
 		btnSearchGalaxyForRadius = new JButton("Ricerca");
 		btnSearchGalaxyForRadius.setBounds(615, 10, 160, 25);
@@ -147,9 +163,24 @@ public class RadiusGalaxySearchFrame extends JFrame {
 	}
 	
 	private void updateFields(){
-		galaxyNameString = fieldRAh.getText();
+		rah = fieldRAh.getText();
+		ram = fieldRAm.getText();
+		ras = fieldRAs.getText();
+		rdsign = fieldRDSign.getText();
+		rdd = fieldRDd.getText();
+		rdm = fieldRDm.getText();
+		rds = fieldRDs.getText();
 	}
 	
+	private void convertFields(){
+		positionRAh = Integer.valueOf(rah);
+		positionRAm = Integer.valueOf(ram);
+		positionRAs = Float.valueOf(ras);
+		positionRDsign = rdsign.charAt(0);
+		positionRDd = Integer.valueOf(rdd);
+		positionRDm = Integer.valueOf(rdm);
+		positionRDs = Float.valueOf(rds);
+	}
 	// Inizializzazione Listener Bottoni
 	private void addActionListener() {
 		
@@ -158,16 +189,15 @@ public class RadiusGalaxySearchFrame extends JFrame {
 //		@Override
 			public void actionPerformed(ActionEvent e) {
 				updateFields();
-				// TODO controller.doRicercaGalassieDentroRaggio(p);
+				convertFields();
+				p = new Position(positionRAh, positionRAm, positionRAs, positionRDsign, positionRDd, positionRDm, positionRDs);
+				controller.doRicercaGalassieDentroRaggio(p);
 			}
 		});
 	}
 	
 	private void close(){
-		
 		this.setVisible(false);
 	}
-	
-
 
 }
