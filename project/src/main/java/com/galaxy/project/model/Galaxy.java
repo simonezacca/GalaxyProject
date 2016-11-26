@@ -72,13 +72,12 @@ public class Galaxy implements IPersistente {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "galaxies")
 	protected List<SpectralLine> spectralLines;
 	
-	public Galaxy(Long id, String name, Long redshift, Long distance,
+	public Galaxy(String name, Long redshift, Long distance,
 			String altName, boolean limitLnev1,
 			boolean limitLnev2, boolean limitLoiv, float lnev1,
-			float lnev2, float loiv, float derMet, float errMet, Position pos,
-			SpectralClassification spectralClassification) {
+			float lnev2, float loiv, float derMet, float errMet) {
 		super();
-		this.id = id;
+		
 		this.name = name;
 		this.redshift = redshift;
 		this.distance = distance;
@@ -91,8 +90,6 @@ public class Galaxy implements IPersistente {
 		this.loiv = loiv;
 		this.derMet = derMet;
 		this.errMet = errMet;
-		this.pos = pos;
-		this.spectralClassification = spectralClassification;
 		this.spectralLines = new ArrayList<SpectralLine>();
 	}
 	public Long getId() {
@@ -176,7 +173,7 @@ public class Galaxy implements IPersistente {
 	public Position getPos() {
 		return pos;
 	}
-	public void setPos(Position pos) {
+	public void setPosition(Position pos) {
 		this.pos = pos;
 	}
 	
@@ -192,7 +189,7 @@ public class Galaxy implements IPersistente {
 		}
 	}
 	
-	public void setSc(SpectralClassification spectralClassification) {
+	public void setSpectralClassification(SpectralClassification spectralClassification) {
 		this.spectralClassification = spectralClassification;
 		spectralClassification.addGalaxy(this);
 	} 

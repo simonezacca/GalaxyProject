@@ -17,7 +17,8 @@ public abstract class ACSVLine {
 	}
 	
 	
-	public ACSVLine(String csvRawLine) {
+	public ACSVLine(String csvRawLine, int validContSplit) {
+		this.validContSplit = validContSplit;
 		String line = new String(csvRawLine);
 		rawTokens = csvRawLine.split(CSVSplitBy);
 		if(isValidLine()){

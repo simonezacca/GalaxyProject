@@ -2,15 +2,15 @@ package com.galaxy.project.parser.csvtoken;
 
 public class SpectralClassificationToken extends ACSVToken {
 
-	protected String spectralClassification;
+	protected String rawSpectralClassification;
 
 	public SpectralClassificationToken(String spectralClassification) {
 		super();
-		this.spectralClassification = spectralClassification;
+		this.rawSpectralClassification = spectralClassification;
 	}
 
-	public String getSpectralClassification() {
-		return spectralClassification;
+	public String getSpectralClassificationRawName() {
+		return rawSpectralClassification;
 	}
 	
 	

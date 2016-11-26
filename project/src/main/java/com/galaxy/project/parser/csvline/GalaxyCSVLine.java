@@ -10,7 +10,8 @@ public class GalaxyCSVLine extends ACSVLine {
 	protected PositionToken positionToken;
 	protected SpectralClassificationToken spectralClassificationToken;
 	public GalaxyCSVLine(String csvline) {
-		super(csvline);
+		super(csvline, 14);
+
 	}
 
 	@Override
@@ -44,6 +45,18 @@ public class GalaxyCSVLine extends ACSVLine {
 		String spectralClassification = spectralClassification = trimToken(rawTokens[11]);
 		
 		spectralClassificationToken = new SpectralClassificationToken(spectralClassification);
+	}
+
+	public GalaxyToken getGalaxyToken() {
+		return galaxyToken;
+	}
+
+	public PositionToken getPositionToken() {
+		return positionToken;
+	}
+
+	public SpectralClassificationToken getSpectralClassificationToken() {
+		return spectralClassificationToken;
 	}
 
 }

@@ -1,17 +1,15 @@
 package com.galaxy.project.parser.csvline;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.galaxy.project.parser.csvtoken.GenericFluxToken;
 
-public class ApertureFluxCSVLine extends ACSVLine {
+public class RowFluxCSVLine extends ACSVLine {
+
+	protected List<GenericFluxToken> listRowFluxToken;
 	
-	protected List<GenericFluxToken> listApertureFluxToken;
-	
-	public ApertureFluxCSVLine(String csvline) {
-		super(csvline,23);
-		this.listApertureFluxToken= new ArrayList<GenericFluxToken>();
+	public RowFluxCSVLine(String csvline) {
+		super(csvline, 23);
 	}
 
 	@Override
@@ -24,11 +22,9 @@ public class ApertureFluxCSVLine extends ACSVLine {
 			String errorFlux = trimToken(rawTokens[i+2]);
 			i = i+3;
 			GenericFluxToken rowFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
-			listApertureFluxToken.add(rowFluxToken);
+			listRowFluxToken.add(rowFluxToken);
 		}
-	}
-	
-	public List<GenericFluxToken> getApertureFluxTokens(){
-		return listApertureFluxToken;
+				
+		
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.galaxy.project.parser.csvfileparser.ACSVFileParser;
 import com.galaxy.project.parser.csvline.ACSVLine;
+import com.galaxy.project.parser.csvline.GalaxyCSVLine;
 
 public abstract class ACSVFile {
 
@@ -15,7 +16,7 @@ public abstract class ACSVFile {
 	protected String fileName;
 	protected String line = "";
 	// Lista di righe valide
-	private List<ACSVLine> csvLines;
+	protected List<ACSVLine> csvLines;
 
 	public ACSVFile(String fileName) {
 		this.fileName = fileName;
@@ -54,5 +55,11 @@ public abstract class ACSVFile {
 	protected abstract ACSVLine createCSVLine(String csvline);
 
 	public abstract ACSVFileParser getParser();
+
+	public List<ACSVLine> getCSVLines() {
+		return this.csvLines;
+	}
+	
+
 
 }

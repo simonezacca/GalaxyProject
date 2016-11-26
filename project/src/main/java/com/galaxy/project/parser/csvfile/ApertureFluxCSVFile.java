@@ -1,5 +1,7 @@
 package com.galaxy.project.parser.csvfile;
 
+import java.io.IOException;
+
 import com.galaxy.project.parser.csvfileparser.ACSVFileParser;
 import com.galaxy.project.parser.csvfileparser.ApertureFluxCSVFileParser;
 import com.galaxy.project.parser.csvline.ACSVLine;
@@ -20,5 +22,5 @@ public class ApertureFluxCSVFile extends ACSVFile {
 	protected ACSVLine createCSVLine(String csvline) {
 		return new ApertureFluxCSVLine(csvline);
 	}
-
+	
 }

@@ -1,6 +1,6 @@
 package com.galaxy.project.parser.csvtoken;
 
-public class PositionToken {
+public class PositionToken extends ACSVToken{
 
 	protected String rawRAh;
 	protected String rawRAm;

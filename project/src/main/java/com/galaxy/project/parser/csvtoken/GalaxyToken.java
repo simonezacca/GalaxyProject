@@ -14,6 +14,7 @@ public class GalaxyToken extends ACSVToken {
 	protected String rawLoiv;
 	protected String rawMetDer;
 	protected String rawErrMet;
+	
 	public GalaxyToken(String rawName, String rawRedshift,
 			String rawDistance, String rawLimitLnev1, String rawLnev1,
 			String rawLimitLnev2, String rawLnev2, String rawLimitLoiv,
@@ -61,6 +62,12 @@ public class GalaxyToken extends ACSVToken {
 	}
 	public String getRawLoiv() {
 		return rawLoiv;
+	}
+	public String getRawMetDer() {
+		return rawMetDer;
+	}
+	public String getRawErrMet() {
+		return rawErrMet;
 	}
 	
 	

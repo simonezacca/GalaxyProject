@@ -3,7 +3,7 @@ package com.galaxy.project.parser.csvfile;
 import com.galaxy.project.parser.csvfileparser.ACSVFileParser;
 import com.galaxy.project.parser.csvfileparser.FluxSpectralLineCSVFileParser;
 import com.galaxy.project.parser.csvline.ACSVLine;
-import com.galaxy.project.parser.csvline.FluxSpectralCSVLine;
+import com.galaxy.project.parser.csvline.RowFluxCSVLine;
 
 public class FluxSpectralLineCSVFile extends ACSVFile {
 
@@ -18,7 +18,7 @@ public class FluxSpectralLineCSVFile extends ACSVFile {
 
 	@Override
 	protected ACSVLine createCSVLine(String csvline) {
-		return new FluxSpectralCSVLine(csvline);
+		return new RowFluxCSVLine(csvline);
 	}
 
 }
