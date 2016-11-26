@@ -2,46 +2,53 @@ package com.galaxy.project.parser.csvtoken;
 
 public class PositionToken {
 
-	protected String rah;
-	protected String ram;
-	protected String ras;
-	protected String dasign;
-	protected String dad;
-	protected String dam;
-	protected String das;
-	public PositionToken(String rah, String ram, String ras, String dasign,
-			String dad, String dam, String das) {
-		super();
-		this.rah = rah;
-		this.ram = ram;
-		this.ras = ras;
-		this.dasign = dasign;
-		this.dad = dad;
-		this.dam = dam;
-		this.das = das;
-	}
-	public String getRah() {
-		return rah;
-	}
-	public String getRam() {
-		return ram;
-	}
-	public String getRas() {
-		return ras;
-	}
-	public String getDasign() {
-		return dasign;
-	}
-	public String getDad() {
-		return dad;
-	}
-	public String getDam() {
-		return dam;
-	}
-	public String getDas() {
-		return das;
-	}
+	protected String rawRAh;
+	protected String rawRAm;
+	protected String rawRAs;
+	protected String rawdasign;
+	protected String rawDAd;
+	protected String rawDAm;
+	protected String rawDAs;
 	
+	public PositionToken(String rawRAh, String rawRAm, String rawRAs,
+			String rawDAsign, String rawDAd, String rawDAm, String rawDAs) {
+		super();
+		this.rawRAh = rawRAh;
+		this.rawRAm = rawRAm;
+		this.rawRAs = rawRAs;
+		this.rawdasign = rawDAsign;
+		this.rawDAd = rawDAd;
+		this.rawDAm = rawDAm;
+		this.rawDAs = rawDAs;
+	}
 
+	public String getRawRAh() {
+		return rawRAh;
+	}
 
+	public String getRawRAm() {
+		return rawRAm;
+	}
+
+	public String getRawRAs() {
+		return rawRAs;
+	}
+
+	public String getRawdasign() {
+		return rawdasign;
+	}
+
+	public String getRawDAd() {
+		return rawDAd;
+	}
+
+	public String getRawDAm() {
+		return rawDAm;
+	}
+
+	public String getRawDAs() {
+		return rawDAs;
+	}
+
+	
 }
