@@ -2,14 +2,14 @@ package com.galaxy.project.parser.csvline;
 
 public class ContinueFluxCSVLine extends ACSVLine {
 
-	public ContinueFluxCSVLine() {
-		// TODO Auto-generated constructor stub
+	public ContinueFluxCSVLine(String csvline) {
+		super(csvline);
 	}
 
 	@Override
-	public void parse() {
+	protected void populateTokens() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

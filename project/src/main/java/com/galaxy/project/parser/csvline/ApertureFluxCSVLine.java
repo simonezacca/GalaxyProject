@@ -1,15 +1,15 @@
 package com.galaxy.project.parser.csvline;
 
+import com.galaxy.project.parser.csvtoken.GenericFluxToken;
+
 public class ApertureFluxCSVLine extends ACSVLine {
 
-	public ApertureFluxCSVLine() {
-		// TODO Auto-generated constructor stub
+	public ApertureFluxCSVLine(String csvline) {
+		super(csvline);
 	}
 
 	@Override
-	public void parse() {
-		// TODO Auto-generated method stub
-
+	protected void populateTokens() {
+		
 	}
-
 }

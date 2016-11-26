@@ -17,17 +17,25 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import com.galaxy.project.persistence.IPersistente;
 
 @Entity
 @Table(name="spectral_line")
-
+@NamedQueries({
+	   @NamedQuery(
+	        name = "getSpectralLineBySatellite", 
+	        query="FROM SpectralLine sl WHERE sl.satelliteType = :satelliteType order by sl.order")
+	})
 public class SpectralLine implements Serializable, IPersistente {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final String FIND_BY_SATELLITETYPE = "getSpectralLineBySatellite";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,6 +52,14 @@ public class SpectralLine implements Serializable, IPersistente {
 	
 	@OneToMany(mappedBy="spectralLine", cascade=CascadeType.ALL)
 	protected List<AFlux> fluxes;
+	
+	@Column(name="satellite_type", nullable=false)
+	private Integer satelliteType;
+	
+	public static final Integer HERSCHEL = 0;
+	public static final Integer SPITZER = 1; 
+	
+	protected int order = 0;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "spectralline_galaxy", joinColumns = {

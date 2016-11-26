@@ -2,14 +2,14 @@ package com.galaxy.project.parser.csvline;
 
 public class IRSFluxCSVLine extends ACSVLine {
 
-	public IRSFluxCSVLine() {
-		// TODO Auto-generated constructor stub
+	public IRSFluxCSVLine(String csvline) {
+		super(csvline);
 	}
 
 	@Override
-	public void parse() {
+	protected void populateTokens() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

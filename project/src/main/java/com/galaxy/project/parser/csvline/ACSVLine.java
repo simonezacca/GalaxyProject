@@ -1,22 +1,32 @@
 package com.galaxy.project.parser.csvline;
 
+import com.galaxy.project.parser.csvtoken.ACSVToken;
+
 public abstract class ACSVLine {
 
-	protected int ignoreFieldsIndexes[];
+	protected String CSVSplitBy = ";";
+	protected int validContSplit = 0;
+	String[] rawTokens;
 	
 	public ACSVToken nextToken(){
 		return null;
 	}
 	
 	public boolean isValidLine(){
-		return true;	
+		return validContSplit == rawTokens.length;	
 	}
 	
 	
-	public ACSVLine() {
-		// TODO Auto-generated constructor stub
+	public ACSVLine(String csvRawLine) {
+		String line = new String(csvRawLine);
+		rawTokens = csvRawLine.split(CSVSplitBy);
+		if(isValidLine()){
+			populateTokens();
+		}
 	}
 	
-	public abstract void parse();
-
+	protected abstract void populateTokens();
+	protected String trimToken(String rawString){
+		return rawString.trim();
+	}
 }

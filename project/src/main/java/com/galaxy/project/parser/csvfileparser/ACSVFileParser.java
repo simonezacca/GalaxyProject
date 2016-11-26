@@ -1,4 +1,4 @@
-package com.galaxy.project.parser.fileparser;
+package com.galaxy.project.parser.csvfileparser;
 
 import com.galaxy.project.parser.csvfile.ACSVFile;
 

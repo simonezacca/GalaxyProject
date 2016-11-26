@@ -2,14 +2,13 @@ package com.galaxy.project.parser.csvline;
 
 public class FluxSpectralCSVLine extends ACSVLine {
 
-	public FluxSpectralCSVLine() {
-		// TODO Auto-generated constructor stub
+	public FluxSpectralCSVLine(String csvline) {
+		super(csvline);
 	}
 
 	@Override
-	public void parse() {
+	protected void populateTokens() {
 		// TODO Auto-generated method stub
-
+		
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.galaxy.project.parser.filetoken;
+package com.galaxy.project.parser.csvtoken;
 
 public abstract class ACSVToken {
 
