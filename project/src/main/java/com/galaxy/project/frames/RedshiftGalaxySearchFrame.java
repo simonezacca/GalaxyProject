@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.galaxy.project.controller.GalaxySearchFrameController;
+import com.galaxy.project.controller.RedshiftGalaxySearchFrameController;
 	
 public class RedshiftGalaxySearchFrame extends JFrame {
 	
@@ -21,7 +21,7 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 	
 		private static final long serialVersionUID = 1L; 
 		
-		private GalaxySearchFrameController controller = new GalaxySearchFrameController(this);
+		private RedshiftGalaxySearchFrameController controller = new RedshiftGalaxySearchFrameController(this);
 		
 		private final static String titolo = "Ricerca Oggetto con valore maggiore/uguale o minore/uguale a redshift";
 		private final JPanel panel = new JPanel();

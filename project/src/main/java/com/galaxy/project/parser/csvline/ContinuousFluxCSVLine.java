@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.galaxy.project.parser.csvtoken.GenericFluxToken;
 
-public class ContinueFluxCSVLine extends ACSVLine {
+public class ContinuousFluxCSVLine extends ACSVLine {
 	
-	protected List<GenericFluxToken> listContinueFluxToken;
+	protected List<GenericFluxToken> listContinuousFluxToken;
 
 
-	public ContinueFluxCSVLine(String csvline) {
+	public ContinuousFluxCSVLine(String csvline) {
 		super(csvline, 22);
 	}
 
@@ -22,7 +22,7 @@ public class ContinueFluxCSVLine extends ACSVLine {
 			String valueFlux = trimToken(rawTokens[i]);
 			String errorFlux = trimToken(rawTokens[i+1]);
 			GenericFluxToken continueFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
-			listContinueFluxToken.add(continueFluxToken);		
+			listContinuousFluxToken.add(continueFluxToken);		
 			i=i+2;
 		}
 		for(int i=5;i<20;){
@@ -30,8 +30,13 @@ public class ContinueFluxCSVLine extends ACSVLine {
 			String valueFlux = trimToken(rawTokens[i+1]);
 			String errorFlux = trimToken(rawTokens[i+2]);
 			i = i+3;
-			GenericFluxToken continueFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
-			listContinueFluxToken.add(continueFluxToken);		
+			GenericFluxToken continuousFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
+			listContinuousFluxToken.add(continuousFluxToken);		
 		}
 	}
+
+	public List<GenericFluxToken> getListContinuousFluxToken() {
+		return listContinuousFluxToken;
+	}
+	
 }

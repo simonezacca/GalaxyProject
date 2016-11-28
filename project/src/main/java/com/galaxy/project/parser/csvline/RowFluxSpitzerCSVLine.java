@@ -30,5 +30,9 @@ public class RowFluxSpitzerCSVLine extends ACSVLine {
 	public boolean isValidLine(){
 		return (validContSplit <= rawTokens.length);	
 	}
+	
+	public List<GenericFluxToken> getListRowFluxSpitzerToken() {
+		return listRowFluxSpitzerToken;
+	}
 
 }

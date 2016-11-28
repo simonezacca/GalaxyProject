@@ -10,7 +10,7 @@ public class ApertureFluxCSVLine extends ACSVLine {
 	protected List<GenericFluxToken> listApertureFluxToken;
 	
 	public ApertureFluxCSVLine(String csvline) {
-		super(csvline,23);
+		super(csvline, 23);
 		this.listApertureFluxToken= new ArrayList<GenericFluxToken>();
 	}
 

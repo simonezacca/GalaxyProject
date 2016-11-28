@@ -6,34 +6,32 @@ import com.galaxy.project.model.RowFlux;
 import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.parser.csvfile.ACSVFile;
 import com.galaxy.project.parser.csvline.ACSVLine;
-import com.galaxy.project.parser.csvline.ApertureFluxCSVLine;
+import com.galaxy.project.parser.csvline.RowFluxCSVLine;
 import com.galaxy.project.parser.csvtoken.GenericFluxToken;
 
-public class ApertureFluxCSVFileParser extends ACSVFileParser<RowFlux> {
+public class RowFluxLineCSVFileParser extends ACSVFileParser<RowFlux> {
 
-	public ApertureFluxCSVFileParser(ACSVFile fileToParse) {
+	public RowFluxLineCSVFileParser(ACSVFile fileToParse) {
 		super(fileToParse);
-		// TODO capire come implementare multimap per file Aperture
-	};
+	}
 
-	// TODO Mentre implementavo gli altri Parser ho notato che anche questo analizza riga per riga
+	
 	@Override
 	public void parse() {
 		List<ACSVLine> lines = this.fileToParse.getCSVLines(); 
-		for(ACSVLine aLine: lines){
-			ApertureFluxCSVLine apertureLine = (ApertureFluxCSVLine) aLine;
-			List<GenericFluxToken> listApertureFluxToken = apertureLine.getApertureFluxTokens();
+		for(ACSVLine aLine: lines){														// Scansiono linea per linea il CSV
+			RowFluxCSVLine rowFluxLine = (RowFluxCSVLine) aLine;						// Scansiono la singola riga che mi restituisce una lista di oggetti rowFluxToken
+			List<GenericFluxToken> rowFluxToken = rowFluxLine.getListRowFluxToken();	// Assegno la lista precedentemente scansionata dalla singola riga al rowFluxToken di questo scope 
 			
-			for(GenericFluxToken rowFluxToken: listApertureFluxToken){
+			for(GenericFluxToken rft: rowFluxToken){									// Scorro la lista dei Token inerenti ad una linea del CSV
 				
-				RowFlux rowFluxModel = createRowFluxFromToken(rowFluxToken);
-				String keyMap = rowFluxToken.getGalaxyName();	
-				this.modelsMap.put(keyMap, rowFluxModel);
+				RowFlux rowFluxModel = createRowFluxFromToken(rft);						// Mi creo il rowFluxModel, per ogni token.
+				String keyMap = rft.getGalaxyName();									// Prendo come chiave di riferimento il nome della Galassia	
+				this.modelsMap.put(keyMap, rowFluxModel);								
 			}
-		}
-			
+			}
 	}
-
+	
 	private RowFlux createRowFluxFromToken(GenericFluxToken rowFluxToken) {
 		
 		boolean limitFlag = fromTokenToBoolean(rowFluxToken.getLimit());
@@ -45,10 +43,12 @@ public class ApertureFluxCSVFileParser extends ACSVFileParser<RowFlux> {
 		return rowFluxModel;
 		
 	}
-	
+
+
 	@Override
 	public void convert() {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

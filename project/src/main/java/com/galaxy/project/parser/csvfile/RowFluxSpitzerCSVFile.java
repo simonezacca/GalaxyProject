@@ -1,7 +1,7 @@
 package com.galaxy.project.parser.csvfile;
 
 import com.galaxy.project.parser.csvfileparser.ACSVFileParser;
-import com.galaxy.project.parser.csvfileparser.IRSFluxCSVFileParser;
+import com.galaxy.project.parser.csvfileparser.RowFluxSpitzerCSVFileParser;
 import com.galaxy.project.parser.csvline.ACSVLine;
 import com.galaxy.project.parser.csvline.RowFluxSpitzerCSVLine;
 
@@ -13,7 +13,7 @@ public class RowFluxSpitzerCSVFile extends ACSVFile {
 
 	@Override
 	public ACSVFileParser getParser() {
-		return new IRSFluxCSVFileParser(this);
+		return new RowFluxSpitzerCSVFileParser(this);
 	}
 
 	@Override

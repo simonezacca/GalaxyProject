@@ -1,5 +1,6 @@
 package com.galaxy.project.parser.csvline;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.galaxy.project.parser.csvtoken.GenericFluxToken;
@@ -10,6 +11,7 @@ public class RowFluxCSVLine extends ACSVLine {
 	
 	public RowFluxCSVLine(String csvline) {
 		super(csvline, 23);
+		this.listRowFluxToken= new ArrayList<GenericFluxToken>();
 	}
 
 	@Override
@@ -27,4 +29,9 @@ public class RowFluxCSVLine extends ACSVLine {
 				
 		
 	}
+
+	public List<GenericFluxToken> getListRowFluxToken() {
+		return listRowFluxToken;
+	}
+	
 }

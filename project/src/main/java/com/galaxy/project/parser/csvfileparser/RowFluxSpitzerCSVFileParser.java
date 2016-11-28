@@ -6,33 +6,30 @@ import com.galaxy.project.model.RowFlux;
 import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.parser.csvfile.ACSVFile;
 import com.galaxy.project.parser.csvline.ACSVLine;
-import com.galaxy.project.parser.csvline.ApertureFluxCSVLine;
+import com.galaxy.project.parser.csvline.RowFluxSpitzerCSVLine;
 import com.galaxy.project.parser.csvtoken.GenericFluxToken;
 
-public class ApertureFluxCSVFileParser extends ACSVFileParser<RowFlux> {
+public class RowFluxSpitzerCSVFileParser extends ACSVFileParser<RowFlux> {
 
-	public ApertureFluxCSVFileParser(ACSVFile fileToParse) {
+	public RowFluxSpitzerCSVFileParser(ACSVFile fileToParse) {
 		super(fileToParse);
-		// TODO capire come implementare multimap per file Aperture
-	};
+	}
 
-	// TODO Mentre implementavo gli altri Parser ho notato che anche questo analizza riga per riga
 	@Override
 	public void parse() {
 		List<ACSVLine> lines = this.fileToParse.getCSVLines(); 
-		for(ACSVLine aLine: lines){
-			ApertureFluxCSVLine apertureLine = (ApertureFluxCSVLine) aLine;
-			List<GenericFluxToken> listApertureFluxToken = apertureLine.getApertureFluxTokens();
+		for(ACSVLine aLine: lines){																			
+			RowFluxSpitzerCSVLine RowFluxSpitzerFluxLine = (RowFluxSpitzerCSVLine) aLine;						
+			List<GenericFluxToken> rowFluxSpitzerToken = RowFluxSpitzerFluxLine.getListRowFluxSpitzerToken();	 
 			
-			for(GenericFluxToken rowFluxToken: listApertureFluxToken){
+			for(GenericFluxToken rfst: rowFluxSpitzerToken){													
 				
-				RowFlux rowFluxModel = createRowFluxFromToken(rowFluxToken);
-				String keyMap = rowFluxToken.getGalaxyName();	
-				this.modelsMap.put(keyMap, rowFluxModel);
+				RowFlux rowFluxSpitzerModel = createRowFluxFromToken(rfst);									
+				String keyMap = rfst.getGalaxyName();															
+				this.modelsMap.put(keyMap, rowFluxSpitzerModel);								
 			}
 		}
-			
-	}
+}
 
 	private RowFlux createRowFluxFromToken(GenericFluxToken rowFluxToken) {
 		
@@ -49,6 +46,5 @@ public class ApertureFluxCSVFileParser extends ACSVFileParser<RowFlux> {
 	@Override
 	public void convert() {
 		// TODO Auto-generated method stub
-		
 	}
 }

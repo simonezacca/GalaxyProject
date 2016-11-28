@@ -1,6 +1,5 @@
 package com.galaxy.project.frames;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -216,11 +215,12 @@ public class GalaxySearchFrame extends JFrame {
 		// labelPositionValue.setText(g.getPos());
 		labelDistanceValue.setText(g.getDistance().toString());
 		labelRedshiftValue.setText(g.getRedshift().toString());
-		labelLnev1Value.setText(g.getLnev1());
-		labelLnev2Value.setText(g.getLnev2());
-		labelLoivValue.setText(g.getLoiv());
-		labelMetValue.setText(g.getDerMet());
-		labelErrMetValue.setText(g.getErrMet());
+		// TODO Qual è il problema di queste label? 
+//		labelLnev1Value.setText(g.getLnev1());
+//		labelLnev2Value.setText(g.getLnev2());
+//		labelLoivValue.setText(g.getLoiv());
+//		labelMetValue.setText(g.getDerMet());
+//		labelErrMetValue.setText(g.getErrMet());
 	}
 	
 

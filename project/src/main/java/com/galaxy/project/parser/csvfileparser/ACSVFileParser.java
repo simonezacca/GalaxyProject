@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.galaxy.project.model.RowFlux;
+import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.parser.csvfile.ACSVFile;
 import com.galaxy.project.parser.csvtoken.ACSVToken;
+import com.galaxy.project.parser.csvtoken.GenericFluxToken;
 
 public abstract class ACSVFileParser<E> {
 	
@@ -37,4 +40,6 @@ public abstract class ACSVFileParser<E> {
 		}
 		
 	}
+	
+
 }
