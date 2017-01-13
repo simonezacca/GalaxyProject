@@ -21,7 +21,11 @@ public class ContinuousFluxCSVLine extends ACSVLine {
 			String limitFlux = "";
 			String valueFlux = trimToken(rawTokens[i]);
 			String errorFlux = trimToken(rawTokens[i+1]);
-			GenericFluxToken continueFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
+			GenericFluxToken continueFluxToken = new GenericFluxToken(galaxyName, 
+																	  limitFlux, 
+																	  valueFlux, 
+																	  errorFlux, 
+																	  apertureFlux);
 			listContinuousFluxToken.add(continueFluxToken);		
 			i=i+2;
 		}
@@ -30,7 +34,11 @@ public class ContinuousFluxCSVLine extends ACSVLine {
 			String valueFlux = trimToken(rawTokens[i+1]);
 			String errorFlux = trimToken(rawTokens[i+2]);
 			i = i+3;
-			GenericFluxToken continuousFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
+			GenericFluxToken continuousFluxToken = new GenericFluxToken(galaxyName, 
+																		limitFlux, 
+																		valueFlux, 
+																		errorFlux, 
+																		apertureFlux);
 			listContinuousFluxToken.add(continuousFluxToken);		
 		}
 	}

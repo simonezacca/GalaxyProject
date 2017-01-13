@@ -30,7 +30,18 @@ public class GalaxyCSVLine extends ACSVLine {
 		String errMet = trimToken(rawTokens[23]);
 		String altGName = trimToken(rawTokens[25]);
 		
-		galaxyToken = new GalaxyToken(gName, redshift, distance, limitLnev1, Lnev1, limitLnev2, Lnev2, limitLoiv, Loiv, metDer, errMet, altGName);
+		galaxyToken = new GalaxyToken(gName, 
+									redshift, 
+									distance, 
+									limitLnev1, 
+									Lnev1, 
+									limitLnev2, 
+									Lnev2, 
+									limitLoiv, 
+									Loiv, 
+									metDer, 
+									errMet, 
+									altGName);
 		
 		String rah = trimToken(rawTokens[1]);
 		String ram = trimToken(rawTokens[2]);
@@ -40,9 +51,15 @@ public class GalaxyCSVLine extends ACSVLine {
 		String dam = trimToken(rawTokens[6]);
 		String das = trimToken(rawTokens[7]);
 		
-		positionToken = new PositionToken(rah, ram, ras, dasign, dad, dam, das);
+		positionToken = new PositionToken(rah, 
+											ram, 
+											ras, 
+											dasign,
+											dad, 
+											dam, 
+											das);
 		
-		String spectralClassification = spectralClassification = trimToken(rawTokens[11]);
+		String spectralClassification = trimToken(rawTokens[11]);
 		
 		spectralClassificationToken = new SpectralClassificationToken(spectralClassification);
 	}

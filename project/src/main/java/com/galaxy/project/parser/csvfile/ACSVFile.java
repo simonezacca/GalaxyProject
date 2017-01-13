@@ -52,7 +52,7 @@ public abstract class ACSVFile {
 		}
 	}
 
-	protected abstract ACSVLine createCSVLine(String csvline);
+	protected abstract ACSVLine createCSVLine(String csvline); // Pattern "Template Method" in base all'implementazione ognuna si crea il suo tipo di riga.
 
 	public abstract ACSVFileParser getParser();
 

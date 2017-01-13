@@ -27,7 +27,7 @@ public class ApertureFluxCSVFileParser extends ACSVFileParser<RowFlux> {
 			for(GenericFluxToken rowFluxToken: listApertureFluxToken){
 				
 				RowFlux rowFluxModel = createRowFluxFromToken(rowFluxToken);
-				String keyMap = rowFluxToken.getGalaxyName();	
+				String keyMap = rowFluxToken.getGalaxyName() + "_" + rowFluxToken.getAperture();	
 				this.modelsMap.put(keyMap, rowFluxModel);
 			}
 		}

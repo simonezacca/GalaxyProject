@@ -21,7 +21,11 @@ public class RowFluxSpitzerCSVLine extends ACSVLine {
 			String valueFlux = trimToken(rawTokens[i+1]);
 			String errorFlux = trimToken(rawTokens[i+2]);
 			i = i+3;
-			GenericFluxToken rowFluxSpitzerToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
+			GenericFluxToken rowFluxSpitzerToken = new GenericFluxToken(galaxyName, 
+																		limitFlux, 
+																		valueFlux, 
+																		errorFlux, 
+																		apertureFlux);
 			listRowFluxSpitzerToken.add(rowFluxSpitzerToken);
 		}
 	}

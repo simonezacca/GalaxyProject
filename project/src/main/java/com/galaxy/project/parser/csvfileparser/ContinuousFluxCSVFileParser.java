@@ -9,7 +9,7 @@ import com.galaxy.project.parser.csvline.ACSVLine;
 import com.galaxy.project.parser.csvline.ContinuousFluxCSVLine;
 import com.galaxy.project.parser.csvtoken.GenericFluxToken;
 
-public class ContinuousFluxCSVFileParser extends ACSVFileParser {
+public class ContinuousFluxCSVFileParser extends ACSVFileParser<ContinuousFlux> {
 
 	public ContinuousFluxCSVFileParser(ACSVFile fileToParse) {
 		super(fileToParse);

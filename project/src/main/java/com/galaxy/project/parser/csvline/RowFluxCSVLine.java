@@ -11,7 +11,7 @@ public class RowFluxCSVLine extends ACSVLine {
 	
 	public RowFluxCSVLine(String csvline) {
 		super(csvline, 23);
-		this.listRowFluxToken= new ArrayList<GenericFluxToken>();
+		this.listRowFluxToken = new ArrayList<GenericFluxToken>();
 	}
 
 	@Override
@@ -23,7 +23,11 @@ public class RowFluxCSVLine extends ACSVLine {
 			String valueFlux = trimToken(rawTokens[i+1]);
 			String errorFlux = trimToken(rawTokens[i+2]);
 			i = i+3;
-			GenericFluxToken rowFluxToken = new GenericFluxToken(galaxyName, limitFlux, valueFlux, errorFlux, apertureFlux);
+			GenericFluxToken rowFluxToken = new GenericFluxToken(galaxyName, 
+																limitFlux, 
+																valueFlux, 
+																errorFlux, 
+																apertureFlux);
 			listRowFluxToken.add(rowFluxToken);
 		}
 				
