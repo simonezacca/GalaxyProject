@@ -8,5 +8,4 @@ public class Start {
 		@SuppressWarnings("unused")
 		LoginFrame Windows = new LoginFrame();
 	}
-
 }

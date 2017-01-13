@@ -77,58 +77,58 @@ public class GalaxySearchFrame extends JFrame {
 
 		// Etichetta Inserisci Galassia
 		labelSearchGalaxy = new JLabel("Inserisci il nome della Galassia: ");
-		labelSearchGalaxy.setBounds(10, 10, 253, 25);
+		labelSearchGalaxy.setBounds(10, 10, 233, 25);
 		panel.add(labelSearchGalaxy);
 
 		// Etichetta Posizione
 		labelPosition = new JLabel("Posizione: ");
-		labelPosition.setBounds(10, 10, 253, 25);
+		labelPosition.setBounds(10, 73, 83, 25);
 		panel.add(labelPosition);
 		
 		// Etichetta Distanza
 		labelDistance = new JLabel("Distanza: ");
-		labelDistance.setBounds(10, 10, 253, 25);
+		labelDistance.setBounds(221, 73, 83, 25);
 		panel.add(labelDistance);
 
 		// Etichetta Redshift
 		labelRedshift = new JLabel("Redshift: ");
-		labelRedshift.setBounds(10, 10, 253, 25);
+		labelRedshift.setBounds(418, 73, 83, 25);
 		panel.add(labelRedshift);
 		
 		// Etichetta Lnev1
 		labelLnev1 = new JLabel("Lnev 1: ");
-		labelLnev1.setBounds(10, 10, 253, 25);
+		labelLnev1.setBounds(10, 110, 54, 25);
 		panel.add(labelLnev1);
 		
 		// Etichetta Lnev2
 		labelLnev2 = new JLabel("Lnev 2: ");
-		labelLnev2.setBounds(10, 10, 253, 25);
+		labelLnev2.setBounds(221, 110, 54, 25);
 		panel.add(labelLnev2);
 
 		// Etichetta Loiv
-		labelLoiv = new JLabel("Lnev 2: ");
-		labelLoiv.setBounds(10, 10, 253, 25);
+		labelLoiv = new JLabel("Loiv :");
+		labelLoiv.setBounds(10, 147, 54, 25);
 		panel.add(labelLoiv);
 		
 		// Etichetta Errore Luminosità
 		labelErrLum = new JLabel("Errore Luminosità: ");
-		labelErrLum.setBounds(10, 10, 253, 25);
+		labelErrLum.setBounds(221, 147, 253, 25);
 		panel.add(labelErrLum);
 				
 		// Etichetta Metallicità
 		labelMet = new JLabel("Metallicità: ");
-		labelMet.setBounds(10, 10, 253, 25);
+		labelMet.setBounds(10, 184, 83, 25);
 		panel.add(labelMet);
 		
 		// Etichetta Errore Metallicità
 		labelErrMet = new JLabel("Errore Metallicità: ");
-		labelErrMet.setBounds(10, 10, 253, 25);
+		labelErrMet.setBounds(221, 184, 131, 25);
 		panel.add(labelErrMet);
 				
 		
 		// Campo Galassia
 		fieldGalaxy = new JTextField(20);
-		fieldGalaxy.setBounds(261, 10, 324, 25);
+		fieldGalaxy.setBounds(246, 10, 357, 25);
 		panel.add(fieldGalaxy);
 		
 		// Bottone Per Registrarsi
@@ -137,48 +137,48 @@ public class GalaxySearchFrame extends JFrame {
 		panel.add(btnSearchGalaxy);
 
 		// Etichetta Valore Posizione
-		labelPositionValue = new JLabel("");
-		labelPositionValue.setBounds(10, 10, 253, 25);
+		labelPositionValue = new JLabel("PosValue");
+		labelPositionValue.setBounds(87, 73, 122, 25);
 		panel.add(labelPositionValue);
 		
 		// Etichetta Valore Distanza
-		labelDistanceValue = new JLabel("");
-		labelDistanceValue.setBounds(10, 10, 253, 25);
+		labelDistanceValue = new JLabel("DisValue");
+		labelDistanceValue.setBounds(293, 73, 113, 25);
 		panel.add(labelDistanceValue);
 
 		// Etichetta Valore Redshift
-		labelRedshiftValue = new JLabel("");
-		labelRedshiftValue.setBounds(10, 10, 253, 25);
+		labelRedshiftValue = new JLabel("RedValue");
+		labelRedshiftValue.setBounds(491, 73, 112, 25);
 		panel.add(labelRedshiftValue);
 		
 		// Etichetta Valore Lnev1
-		labelLnev1Value = new JLabel("");
-		labelLnev1Value.setBounds(10, 10, 253, 25);
+		labelLnev1Value = new JLabel("LNev1Value");
+		labelLnev1Value.setBounds(63, 110, 122, 25);
 		panel.add(labelLnev1Value);
 		
 		// Etichetta Valore Lnev2
-		labelLnev2Value = new JLabel("");
-		labelLnev2Value.setBounds(10, 10, 253, 25);
+		labelLnev2Value = new JLabel("LNev2Value");
+		labelLnev2Value.setBounds(274, 110, 253, 25);
 		panel.add(labelLnev2Value);
 		
 		// Etichetta Valore Loiv
-		labelLoivValue = new JLabel("");
-		labelLoivValue.setBounds(10, 10, 253, 25);
+		labelLoivValue = new JLabel("LoivValue");
+		labelLoivValue.setBounds(51, 147, 122, 25);
 		panel.add(labelLoivValue);
 		
 		// Etichetta Valore Luminosità
-		labelErrLumValue = new JLabel("");
-		labelErrLumValue.setBounds(10, 10, 253, 25);
+		labelErrLumValue = new JLabel("ErrLumValue");
+		labelErrLumValue.setBounds(363, 147, 253, 25);
 		panel.add(labelErrLumValue);
 				
 		// Etichetta Valore Metallicità
-		labelMetValue = new JLabel("");
-		labelMetValue.setBounds(10, 10, 253, 25);
+		labelMetValue = new JLabel("MetValue");
+		labelMetValue.setBounds(99, 184, 253, 25);
 		panel.add(labelMetValue);
 		
 		// Etichetta Valore Metallicità
-		labelErrMetValue = new JLabel("");
-		labelErrMetValue.setBounds(10, 10, 253, 25);
+		labelErrMetValue = new JLabel("ErrMetValue");
+		labelErrMetValue.setBounds(364, 184, 253, 25);
 		panel.add(labelErrMetValue);
 
 		

@@ -15,13 +15,17 @@ class AdminFrame extends AGenericUserFrame {
 	
 	RegisterFrame registerFrame = null;
 	GalaxySearchFrame galaxySearchFrame = null;
+	ImportaFileFrame importaFileFrame = null;
+	RadiusGalaxySearchFrame radiusGalaxySearchFrame = null;
+	RedshiftGalaxySearchFrame redshiftGalaxySearchFrame = null;
+	
 	private static String titolo = "Pannello di Amministrazione";
 	private JPanel panel = new JPanel();
 	private JButton btnRegistraNuovoUtente;
 	private JButton btnImportaFile;
 	private JButton btnRicercaOggettoPerNome;
-	private JButton btnRicercaOggettoAllinterno;
-	private JButton btnRicercaOggettoPer_1;
+	private JButton btnRicercaRadius;
+	private JButton btnRicercaPerRedshift;
 	private JButton btnValoreDelleLinee;
 	private JButton btnValoreDeiRapporti;
 	private JButton btnValoreDeiRapporti_1;
@@ -46,10 +50,6 @@ class AdminFrame extends AGenericUserFrame {
 		panel.add(btnRegistraNuovoUtente);
 		
 		btnImportaFile = new JButton("Importa File");
-		btnImportaFile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnImportaFile.setBounds(86, 49, 645, 25);
 		panel.add(btnImportaFile);
 		
@@ -57,13 +57,13 @@ class AdminFrame extends AGenericUserFrame {
 		btnRicercaOggettoPerNome.setBounds(86, 86, 645, 25);
 		panel.add(btnRicercaOggettoPerNome);
 		
-		btnRicercaOggettoAllinterno = new JButton("Ricerca Oggetto All'Interno Di Un Raggio");
-		btnRicercaOggettoAllinterno.setBounds(86, 123, 645, 25);
-		panel.add(btnRicercaOggettoAllinterno);
+		btnRicercaRadius = new JButton("Ricerca Oggetto All'Interno Di Un Raggio");
+		btnRicercaRadius.setBounds(86, 123, 645, 25);
+		panel.add(btnRicercaRadius);
 		
-		btnRicercaOggettoPer_1 = new JButton("Ricerca Oggetto Per Caratteristiche Fisiche");
-		btnRicercaOggettoPer_1.setBounds(86, 158, 645, 25);
-		panel.add(btnRicercaOggettoPer_1);
+		btnRicercaPerRedshift = new JButton("Ricerca Oggetto Per Caratteristiche Fisiche");
+		btnRicercaPerRedshift.setBounds(86, 158, 645, 25);
+		panel.add(btnRicercaPerRedshift);
 		
 		btnValoreDelleLinee = new JButton("Valore Delle Linee Spettrali");
 		btnValoreDelleLinee.addActionListener(new ActionListener() {
@@ -89,7 +89,9 @@ class AdminFrame extends AGenericUserFrame {
 	}
 
 	// Inizializzazione Listener Bottoni
+	
 	private void addActionListener() {
+		
 		btnRegistraNuovoUtente.addActionListener(new ActionListener() {
 			
 //			@Override
@@ -101,6 +103,18 @@ class AdminFrame extends AGenericUserFrame {
 			    registerFrame.repaint();
 			}
 		});
+		
+		btnImportaFile.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				importaFileFrame = new ImportaFileFrame();
+				importaFileFrame.setVisible(true);
+				importaFileFrame.toFront();
+				importaFileFrame.repaint();
+			}
+		});
+		
 		btnRicercaOggettoPerNome.addActionListener(new ActionListener() {
 			
 //			@Override
@@ -112,8 +126,33 @@ class AdminFrame extends AGenericUserFrame {
 				galaxySearchFrame.repaint();
 			}
 		});
-			
+
+	btnRicercaRadius.addActionListener(new ActionListener() {
+				
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					radiusGalaxySearchFrame = new RadiusGalaxySearchFrame();
+					radiusGalaxySearchFrame.setVisible(true);
+					radiusGalaxySearchFrame.toFront();
+					radiusGalaxySearchFrame.repaint();
+				}
+			});
+
+	btnRicercaPerRedshift.addActionListener(new ActionListener() {
+		
+		//			@Override
+					public void actionPerformed(ActionEvent e) {
+		
+						redshiftGalaxySearchFrame = new RedshiftGalaxySearchFrame();
+						redshiftGalaxySearchFrame.setVisible(true);
+						redshiftGalaxySearchFrame.toFront();
+						redshiftGalaxySearchFrame.repaint();
+					}
+				});
 	}
+	
+//	
 
 	private void close(){
 		

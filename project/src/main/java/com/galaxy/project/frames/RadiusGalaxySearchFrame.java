@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
 import com.galaxy.project.model.Position;
+import javax.swing.JTable;
 	
 public class RadiusGalaxySearchFrame extends JFrame {
 	
@@ -55,7 +56,7 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		private int positionRDd;
 		private int positionRDm;
 		private float positionRDs;
-		
+		private JLabel lblInserisciDati = new JLabel("Inserisci tutti i dati relativi alla posizione:");
 		
 		
 		public RadiusGalaxySearchFrame() {
@@ -87,73 +88,78 @@ public class RadiusGalaxySearchFrame extends JFrame {
 //			2MASS Right Declination 2000 minutes
 //			2MASS Right Declination 2000 seconds
 		
+		// Etichetta inserimento dati
+		lblInserisciDati.setBounds(10, 12, 352, 15);
+		panel.add(lblInserisciDati);
+		
 		// Etichetta Inserisci RAh
-		rahLabel = new JLabel("Inserisci RAh: ");
-		rahLabel.setBounds(10, 10, 253, 25);
+		rahLabel = new JLabel("RAh: ");
+		rahLabel.setBounds(10, 47, 45, 25);
 		panel.add(rahLabel);
 
 		// Etichetta Inserisci RAm
-		ramLabel = new JLabel("Inserisci RAm: ");
-		ramLabel.setBounds(10, 10, 253, 25);
+		ramLabel = new JLabel("RAm: ");
+		ramLabel.setBounds(161, 47, 45, 25);
 		panel.add(ramLabel);
 		
 		// Etichetta Inserisci RAs
-		rasLabel = new JLabel("Inserisci RAs: ");
-		rasLabel.setBounds(10, 10, 253, 25);
+		rasLabel = new JLabel("RAs: ");
+		rasLabel.setBounds(319, 47, 45, 25);
 		panel.add(rasLabel);
 		
 		// Etichetta Inserisci RDsign
-		rdsignLabel = new JLabel("Inserisci RDsign: ");
-		rdsignLabel.setBounds(10, 10, 253, 25);
+		rdsignLabel = new JLabel("RDsign: ");
+		rdsignLabel.setBounds(454, 47, 58, 25);
 		panel.add(rdsignLabel);
 		
 		// Etichetta Inserisci RDd
-		rddLabel = new JLabel("Inserisci RDd: ");
-		rddLabel.setBounds(10, 10, 253, 25);
+		rddLabel = new JLabel("RDd: ");
+		rddLabel.setBounds(10, 102, 37, 25);
 		panel.add(rddLabel);
 		// Etichetta Inserisci RDm
-		rdmLabel = new JLabel("Inserisci RDm: ");
-		rdmLabel.setBounds(10, 10, 253, 25);
+		rdmLabel = new JLabel("RDm: ");
+		rdmLabel.setBounds(161, 102, 45, 25);
 		panel.add(rdmLabel);
 		// Etichetta Inserisci RDs
-		rdsLabel = new JLabel("Inserisci RDs: ");
-		rdsLabel.setBounds(10, 10, 253, 25);
+		rdsLabel = new JLabel("RDs: ");
+		rdsLabel.setBounds(319, 102, 37, 25);
 		panel.add(rdsLabel);
 	
 		// Campo RAh
 		fieldRAh = new JTextField(20);
-		fieldRAh.setBounds(261, 10, 324, 25);
+		fieldRAh.setBounds(52, 47, 68, 25);
 		panel.add(fieldRAh);
 		// Campo RAm
 		fieldRAm = new JTextField(20);
-		fieldRAm.setBounds(261, 10, 324, 25);
+		fieldRAm.setBounds(206, 47, 68, 25);
 		panel.add(fieldRAm);
 		// Campo RAs
 		fieldRAs = new JTextField(20);
-		fieldRAs.setBounds(261, 10, 324, 25);
+		fieldRAs.setBounds(361, 47, 68, 25);
 		panel.add(fieldRAs);
 		// Campo RDsign
 		fieldRDSign = new JTextField(20);
-		fieldRDSign.setBounds(261, 10, 324, 25);
+		fieldRDSign.setBounds(517, 47, 68, 25);
 		panel.add(fieldRDSign);
 		// Campo RDd
 		fieldRDd = new JTextField(20);
-		fieldRDd.setBounds(261, 10, 324, 25);
+		fieldRDd.setBounds(52, 102, 68, 25);
 		panel.add(fieldRDd);
 		// Campo RDm
 		fieldRDm = new JTextField(20);
-		fieldRDm.setBounds(261, 10, 324, 25);
+		fieldRDm.setBounds(206, 102, 68, 25);
 		panel.add(fieldRDm);
 		// Campo RDs
 		fieldRDs = new JTextField(20);
-		fieldRDs.setBounds(261, 10, 324, 25);
+		fieldRDs.setBounds(361, 102, 68, 25);
 		panel.add(fieldRDs);
 		
 		// Bottone Per Ricercare
 		btnSearchGalaxyForRadius = new JButton("Ricerca");
-		btnSearchGalaxyForRadius.setBounds(615, 10, 160, 25);
+		btnSearchGalaxyForRadius.setBounds(454, 102, 131, 25);
 		panel.add(btnSearchGalaxyForRadius);
 		
+		// TODO Tabella Nome Galassia | Distanza
 		
 	}
 	
@@ -199,5 +205,4 @@ public class RadiusGalaxySearchFrame extends JFrame {
 	private void close(){
 		this.setVisible(false);
 	}
-
 }
