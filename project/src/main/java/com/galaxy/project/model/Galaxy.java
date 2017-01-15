@@ -29,6 +29,14 @@ import com.galaxy.project.persistence.IPersistente;
 
 public class Galaxy implements IPersistente {
 	
+	@Override
+	public String toString() {
+		return "Galaxy [id=" + id + ", name=" + name + ", redshift=" + redshift + ", distance=" + distance
+				+ ", altName=" + altName + ", limitLnev1=" + limitLnev1 + ", limitLnev2=" + limitLnev2 + ", limitLoiv="
+				+ limitLoiv + ", lnev1=" + lnev1 + ", lnev2=" + lnev2 + ", loiv=" + loiv + ", derMet=" + derMet
+				+ ", errMet=" + errMet + ", pos=" + pos + ", spectralClassification=" + spectralClassification + "]";
+	}
+
 	/**
 	 * 
 	 */
@@ -42,10 +50,10 @@ public class Galaxy implements IPersistente {
 	protected String name;
 	
 	@Column()
-	protected Long redshift;
+	protected Float redshift;
 	
 	@Column(name="distance", nullable=true)
-	protected Long distance;
+	protected Float distance;
 	
 	@Column(name="alt_name",length=255, nullable=true)
 	protected String altName;
@@ -72,15 +80,15 @@ public class Galaxy implements IPersistente {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "galaxies")
 	protected List<SpectralLine> spectralLines;
 	
-	public Galaxy(String name, Long redshift, Long distance,
+	public Galaxy(String name, Float redshift2, Float distance2,
 			String altName, boolean limitLnev1,
 			boolean limitLnev2, boolean limitLoiv, float lnev1,
 			float lnev2, float loiv, float derMet, float errMet) {
 		super();
 		
 		this.name = name;
-		this.redshift = redshift;
-		this.distance = distance;
+		this.redshift = redshift2;
+		this.distance = distance2;
 		this.altName = altName;
 		this.limitLnev1 = limitLnev1;
 		this.limitLnev2 = limitLnev2;
@@ -104,16 +112,16 @@ public class Galaxy implements IPersistente {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getRedshift() {
+	public Float getRedshift() {
 		return redshift;
 	}
-	public void setRedshift(Long redshift) {
+	public void setRedshift(Float redshift) {
 		this.redshift = redshift;
 	}
-	public Long getDistance() {
+	public Float getDistance() {
 		return distance;
 	}
-	public void setDistance(Long distance) {
+	public void setDistance(Float distance) {
 		this.distance = distance;
 	}
 	public String getAltName() {
@@ -192,7 +200,11 @@ public class Galaxy implements IPersistente {
 	public void setSpectralClassification(SpectralClassification spectralClassification) {
 		this.spectralClassification = spectralClassification;
 		spectralClassification.addGalaxy(this);
-	} 
+	}
+	
+	public List<SpectralLine> getSpectralLines() {
+		return spectralLines;
+	}
 	 
 
 	

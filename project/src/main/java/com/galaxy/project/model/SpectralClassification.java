@@ -21,6 +21,11 @@ import com.galaxy.project.persistence.IPersistente;
 
 public class SpectralClassification implements IPersistente {
 	
+	@Override
+	public String toString() {
+		return "SpectralClassification [name=" + name + "]";
+	}
+
 	/**
 	 * 
 	 */

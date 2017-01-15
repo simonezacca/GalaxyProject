@@ -23,4 +23,11 @@ public class SpectralLineManager {
 		}
 		return instance;
 	}
+	
+	public List<SpectralLine> getSpectralLines(int type) {
+		if (type == SpectralLine.HERSCHEL) {
+			return elencoHerschelSpectralLines;
+		} else 
+			return elencoSpitzerSpectralLines;
+	}
 }
