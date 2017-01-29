@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RedshiftGalaxySearchFrameController;
@@ -34,6 +36,10 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		private JTextField lowerRedshiftField;
 		private JButton btnSearchGalaxyForGreaterRedshift;
 		private JButton btnSearchGalaxyForLowerRedshift;
+		private JTable tableGalassiaRedshift = new JTable();
+		private String[] columns = { "Galassia", "Redshift" };
+		private String[][] data = {{"NomeGalassia1", "Redshift1"},
+								   {"NomeGalassia2", "Redshift2"}};
 		
 		public RedshiftGalaxySearchFrame() {
 			
@@ -42,6 +48,15 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().add(panel);
 		placeComponents(panel);
+		
+		tableGalassiaRedshift = new JTable(data, columns);
+		tableGalassiaRedshift.setBounds(52, 159, 533, 350);
+		tableGalassiaRedshift.setPreferredScrollableViewportSize(new Dimension(450,63));
+		tableGalassiaRedshift.setFillsViewportHeight(true);
+		
+		JScrollPane scrollPane = new JScrollPane(tableGalassiaRedshift);
+		scrollPane.setBounds(10, 123, 672, 386);
+		panel.add(scrollPane);
 		
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)

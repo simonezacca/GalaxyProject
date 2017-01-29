@@ -1,0 +1,35 @@
+package com.galaxy.project.parser2.csvheader;
+
+public enum ContinousRowFluxCSVHeader {
+	GALAXY_NAME,
+	
+	O3_52_VALUE,
+	O3_52_ERROR,
+	
+	N3_57_VALUE,
+	N3_57_ERROR,
+	
+	O1_63_LIMIT,
+	O1_63_VALUE,
+	O1_63_ERROR,
+	
+	O3_88_LIMIT,
+	O3_88_VALUE,
+	O3_88_ERROR,
+	
+	N2_122_LIMIT,
+	N2_122_VALUE,
+	N2_122_ERROR,
+	
+	O1_145_LIMIT,
+	O1_145_VALUE,
+	O1_145_ERROR,
+	
+	C2_158_LIMIT,
+	C2_158_VALUE,
+	C2_158_ERROR,
+	
+	REFERENCE,
+	
+	APERTURE
+}

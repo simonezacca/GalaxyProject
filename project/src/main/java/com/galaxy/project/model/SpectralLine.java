@@ -16,9 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.galaxy.project.persistence.IPersistente;
 
@@ -27,7 +26,8 @@ import com.galaxy.project.persistence.IPersistente;
 @NamedQueries({
 	   @NamedQuery(
 	        name = "getSpectralLineBySatellite", 
-	        query="FROM SpectralLine sl WHERE sl.satelliteType = :satelliteType order by sl.order")
+	        query="FROM SpectralLine sl WHERE sl.satelliteType = :satelliteType order by sl.order asc")
+	   
 	})
 public class SpectralLine implements Serializable, IPersistente {
 	
@@ -37,6 +37,10 @@ public class SpectralLine implements Serializable, IPersistente {
 	private static final long serialVersionUID = 1L;
 	public static final String FIND_BY_SATELLITETYPE = "getSpectralLineBySatellite";
 
+	protected SpectralLine() {
+
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id = null;
@@ -47,10 +51,10 @@ public class SpectralLine implements Serializable, IPersistente {
 	@Column(name="atomic_number", nullable=false)
 	protected int atomicNumber;
 	
-	@Column(name="line_lenght", nullable=false)
+	@Column(name="line_length", nullable=false)
 	protected float lineLength;
 	
-	@OneToMany(mappedBy="spectralLine", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="spectralLine", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	protected List<AFlux> fluxes;
 	
 	@Column(name="satellite_type", nullable=false)
@@ -59,7 +63,8 @@ public class SpectralLine implements Serializable, IPersistente {
 	public static final Integer HERSCHEL = 0;
 	public static final Integer SPITZER = 1; 
 	
-	protected int order = 0;
+	@Column(name="spectral_line_order", nullable=false)
+	protected int order;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "spectralline_galaxy", joinColumns = {
@@ -70,13 +75,19 @@ public class SpectralLine implements Serializable, IPersistente {
 	protected List<Galaxy> galaxies;
 	
 	
-	public SpectralLine(String atom, int atomicNumber, int lineLength) {
+	@Override
+	public String toString() {
+		return "[" + atom + atomicNumber + "]" + lineLength;
+	}
+
+	public SpectralLine(String atom, int atomicNumber, float lineLength, int satType) {
 		super();
 		this.atom = atom;
 		this.atomicNumber = atomicNumber;
 		this.lineLength = lineLength;
 		this.fluxes = new ArrayList<AFlux>();
-		this.galaxies = new ArrayList<Galaxy>();		
+		this.galaxies = new ArrayList<Galaxy>();
+		this.satelliteType = satType;
 	}
 	
 	public String getAtom() {
@@ -140,4 +151,7 @@ public class SpectralLine implements Serializable, IPersistente {
 		return this.id;
 	}
 	
+	public List<AFlux> getFluxes() {
+		return fluxes;
+	}
 }

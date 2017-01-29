@@ -20,6 +20,12 @@ import com.galaxy.project.persistence.IPersistente;
 
 public abstract class AFlux implements IPersistente{
 	
+	@Override
+	public String toString() {
+		return "AFlux [limitFlag=" + limitFlag + ", fluxValue=" + fluxValue + ", fluxError=" + fluxError
+				+ ", fluxAperture=" + fluxAperture + ", spectralLine=" + spectralLine + "]";
+	}
+
 	/**
 	 * 
 	 */
@@ -52,7 +58,7 @@ public abstract class AFlux implements IPersistente{
 		this.fluxValue = fluxValue;
 		this.fluxError = fluxError;
 		this.fluxAperture = fluxAperture;
-		this.spectralLine = spectralLine;
+		spectralLine.addFlux(this);
 	}
 
 	public boolean isLimitFlag() {
@@ -97,6 +103,11 @@ public abstract class AFlux implements IPersistente{
 
 	public Long getId() {
 		return id;
+	}
+	
+	public boolean isNotZeroValue() {
+		// torna true solo se il valore del flusso è diverso da zero
+		return fluxValue != 0;
 	}
 	
 	

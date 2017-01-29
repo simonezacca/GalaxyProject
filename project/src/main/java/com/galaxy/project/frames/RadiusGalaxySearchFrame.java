@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
 import com.galaxy.project.model.Position;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 	
 public class RadiusGalaxySearchFrame extends JFrame {
 	
@@ -57,6 +59,10 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		private int positionRDm;
 		private float positionRDs;
 		private JLabel lblInserisciDati = new JLabel("Inserisci tutti i dati relativi alla posizione:");
+		private JTable tableGalassiaDistanza;
+		private String[] columns = { "Galassia", "Distanza" };
+		private String[][] data = {{"NomeGalassia1", "Distanza1"},
+								   {"NomeGalassia2", "Distanza2"}};
 		
 		
 		public RadiusGalaxySearchFrame() {
@@ -67,13 +73,23 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		getContentPane().add(panel);
 		placeComponents(panel);
 		
+		
+		tableGalassiaDistanza = new JTable(data, columns);
+		tableGalassiaDistanza.setBounds(52, 159, 533, 350);
+		tableGalassiaDistanza.setPreferredScrollableViewportSize(new Dimension(450,63));
+		tableGalassiaDistanza.setFillsViewportHeight(true);
+		
+		JScrollPane scrollPane = new JScrollPane(tableGalassiaDistanza);
+		scrollPane.setBounds(52, 159, 533, 350);
+		panel.add(scrollPane);
+		
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
 		
 		this.setVisible(true);
 
 	}
-
+	
 	// Posizionamento Componenti Grafici
 	private void placeComponents(JPanel panel) {
 

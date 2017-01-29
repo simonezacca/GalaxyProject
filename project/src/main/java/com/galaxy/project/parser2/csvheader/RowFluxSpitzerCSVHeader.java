@@ -1,0 +1,46 @@
+package com.galaxy.project.parser2.csvheader;
+
+public enum RowFluxSpitzerCSVHeader {
+	GALAXY_NAME,
+	
+	S4_10_5_LIMIT,
+	S4_10_5_VALUE,
+	S4_10_5_ERROR,
+	
+	NE2_12_8_LIMIT,
+	NE2_12_8_VALUE,
+	NE2_12_8_ERROR,
+	
+	NE5_14_3_LIMIT,
+	NE5_14_3_VALUE,
+	NE5_14_3_ERROR,
+	
+	NE3_15_6_LIMIT,
+	NE3_15_6_VALUE,
+	NE3_15_6_ERROR,
+	
+	S3_18_7_LIMIT,
+	S3_18_7_VALUE,
+	S3_18_7_ERROR,
+	
+	NE5_24_3_LIMIT,
+	NE5_24_3_VALUE,
+	NE5_24_3_ERROR,
+	
+	O4_25_9_LIMIT,
+	O4_25_9_VALUE,
+	O4_25_9_ERROR,
+	
+	S3_33_5_LIMIT,
+	S3_33_5_VALUE,
+	S3_33_5_ERROR,
+	
+	SI2_34_8_LIMIT,
+	SI2_34_8_VALUE,
+	SI2_34_8_ERROR,
+	
+	IRS_MODE,
+	
+	REF
+	
+}

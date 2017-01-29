@@ -47,7 +47,8 @@ public abstract class AGenericDAO<T> {
 		session.getTransaction().commit();
 		session.close();
 		System.out.println("Oggetto creato " + o.toString());
-		return ((IPersistente) o).getId();
+		//return ((IPersistente) o).getId();
+		return (long) 0;
     }
 
 

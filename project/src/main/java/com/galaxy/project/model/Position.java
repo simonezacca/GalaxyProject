@@ -5,6 +5,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Position {
 	
+	@Override
+	public String toString() {
+		return "Position [rah=" + rah + ", ram=" + ram + ", ras=" + ras + ", dasign=" + dasign + ", dad=" + dad
+				+ ", dam=" + dam + ", das=" + das + "]";
+	}
+
 	protected int rah;
 	protected int ram;
 	protected float ras;
@@ -12,6 +18,10 @@ public class Position {
 	protected int dad;
 	protected int dam;
 	protected float das;
+	
+	protected Position() {
+		
+	}
 	
 	public Position(int rah, int ram, float ras, char dasign, int dad, int dam,
 			float das) {

@@ -12,29 +12,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.galaxy.project.persistence.IPersistente;
 
-@Entity
-@Table(name="spectral_classification")
-
-
+@Embeddable
 public class SpectralClassification implements IPersistente {
 	
+	@Override
+	public String toString() {
+		return "SpectralClassification [name=" + name + "]";
+	}
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id = null;
-
-	@Column(name="name", length=10, nullable=false)
+	@Column(name="spectralname", length=10, nullable=false)
 	protected String name;
 	
-	@OneToMany(mappedBy="spectralClassification")
+	//@OneToMany(mappedBy="spectralClassification")
+	@Transient
 	protected List<Galaxy> galaxies;
+
+	protected SpectralClassification() {
+		
+	}
 	
 	public SpectralClassification(String name) {
 		super();
@@ -72,7 +76,4 @@ public class SpectralClassification implements IPersistente {
 		throw new NoSuchElementException("Nome galassia non trovato per questa classificazione spettrale");
 	}
 
-	public Long getId() {
-		return id;
-	}
 }
