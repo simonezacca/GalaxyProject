@@ -40,7 +40,7 @@ public class RowFluxCSVParser extends ACSVParser<RowFlux> {
 				// instanzio una lista di model di tipo RowFlux
 				List<RowFlux> fluxes = createListOfRowFluxFromRecord(record);
 				for (RowFlux rf : fluxes) {
-					if(rf.isNotZeroValue()) {
+					if(rf.isNotZeroValue()){
 						// inserisco nella multimappa solo i flussi con un valore diverso da zero
 						insertIntoMultiMap(nomeGalassia, rf);
 					}
@@ -70,26 +70,26 @@ public class RowFluxCSVParser extends ACSVParser<RowFlux> {
 	
 	private List<SpectralLine> getSpectralLineList() {
 
-//		List<SpectralLine> line = new ArrayList<>();
-//		
-//		SpectralLine sl1 = new SpectralLine("O", 3, 52,SpectralLine.HERSCHEL);
-//		SpectralLine sl2 = new SpectralLine("N", 3, 57,SpectralLine.HERSCHEL);
-//		SpectralLine sl3 = new SpectralLine("O", 1, 63,SpectralLine.HERSCHEL);
-//		SpectralLine sl4 = new SpectralLine("O", 3, 88,SpectralLine.HERSCHEL);
-//		SpectralLine sl5 = new SpectralLine("N", 2, 122,SpectralLine.HERSCHEL);
-//		SpectralLine sl6 = new SpectralLine("O", 1, 145,SpectralLine.HERSCHEL);
-//		SpectralLine sl7 = new SpectralLine("C", 2, 158,SpectralLine.HERSCHEL);
-//		
-//		line.add(sl1);
-//		line.add(sl2);
-//		line.add(sl3);
-//		line.add(sl4);
-//		line.add(sl5);
-//		line.add(sl6);
-//		line.add(sl7);
+		List<SpectralLine> line = new ArrayList<>();
 		
-		SpectralLineDAO sdao = new SpectralLineDAO();
-		List<SpectralLine> line = sdao.getSpectralLinesBySatelliteType(SpectralLine.HERSCHEL);
+		SpectralLine sl1 = new SpectralLine("O", 3, 52,SpectralLine.HERSCHEL);
+		SpectralLine sl2 = new SpectralLine("N", 3, 57,SpectralLine.HERSCHEL);
+		SpectralLine sl3 = new SpectralLine("O", 1, 63,SpectralLine.HERSCHEL);
+		SpectralLine sl4 = new SpectralLine("O", 3, 88,SpectralLine.HERSCHEL);
+		SpectralLine sl5 = new SpectralLine("N", 2, 122,SpectralLine.HERSCHEL);
+		SpectralLine sl6 = new SpectralLine("O", 1, 145,SpectralLine.HERSCHEL);
+		SpectralLine sl7 = new SpectralLine("C", 2, 158,SpectralLine.HERSCHEL);
+		
+		line.add(sl1);
+		line.add(sl2);
+		line.add(sl3);
+		line.add(sl4);
+		line.add(sl5);
+		line.add(sl6);
+		line.add(sl7);
+		
+//		SpectralLineDAO sdao = new SpectralLineDAO();
+//		List<SpectralLine> line = sdao.getSpectralLinesBySatelliteType(SpectralLine.HERSCHEL);
 		
 		return line;
 	}

@@ -3,6 +3,7 @@ package com.galaxy.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,7 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import com.galaxy.project.persistence.IPersistente;
 
@@ -73,9 +77,9 @@ public class Galaxy implements IPersistente {
 	
 	@Embedded
 	protected SpectralClassification spectralClassification;
-	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "galaxies")
-	protected List<SpectralLine> spectralLines;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "galaxy", cascade=CascadeType.ALL)
+	protected List<AFlux> fluxes;
 	
 	public Galaxy(String name, Float redshift2, Float distance2,
 			String altName, boolean limitLnev1,
@@ -95,7 +99,7 @@ public class Galaxy implements IPersistente {
 		this.loiv = loiv;
 		this.derMet = derMet;
 		this.errMet = errMet;
-		this.spectralLines = new ArrayList<SpectralLine>();
+		this.fluxes = new ArrayList<AFlux>();
 	}
 
 	public String getName() {
@@ -176,27 +180,32 @@ public class Galaxy implements IPersistente {
 	public void setPosition(Position pos) {
 		this.pos = pos;
 	}
-	
-	public void addSpectralLine(SpectralLine aSpectralLine){
-		if(aSpectralLine!=null && !this.spectralLines.contains(aSpectralLine)){
-			this.spectralLines.add(aSpectralLine);
+
+	public List<AFlux> getFluxes() {
+		return fluxes;
+	}
+
+	public void addFlux(AFlux aFlux){
+		if(aFlux!=null && !this.fluxes.contains(aFlux)){
+			this.fluxes.add(aFlux);
+			aFlux.setGalaxy(this);
 		}
 	}
 
-	public void removeSpectralLine(SpectralLine aSpectralLine){
-		if(aSpectralLine!=null){
-			this.spectralLines.remove(aSpectralLine);
+	public AFlux removeFlux(AFlux aFlux){
+		if(aFlux!=null){
+			this.fluxes.remove(aFlux);
 		}
+		return aFlux;
 	}
+	
 	
 	public void setSpectralClassification(SpectralClassification spectralClassification) {
 		this.spectralClassification = spectralClassification;
 		spectralClassification.addGalaxy(this);
 	}
 	
-	public List<SpectralLine> getSpectralLines() {
-		return spectralLines;
-	}
+
 	 
 
 	

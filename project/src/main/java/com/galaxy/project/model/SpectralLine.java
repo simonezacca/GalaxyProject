@@ -66,14 +66,13 @@ public class SpectralLine implements Serializable, IPersistente {
 	@Column(name="spectral_line_order", nullable=false)
 	protected int order;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "spectralline_galaxy", joinColumns = {
-			@JoinColumn(name = "spectral_line_id", nullable = false, updatable = true) },
-			inverseJoinColumns = { @JoinColumn(name = "galaxy_id",
-					nullable = false, updatable = true) })
-	
-	protected List<Galaxy> galaxies;
-	
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinTable(name = "spectralline_galaxy", joinColumns = {
+//			@JoinColumn(name = "spectral_line_id", nullable = false, updatable = true) },
+//			inverseJoinColumns = { @JoinColumn(name = "galaxy_id",
+//					nullable = false, updatable = true) })
+//	
+//	protected List<Galaxy> galaxies;	
 	
 	@Override
 	public String toString() {
@@ -86,7 +85,6 @@ public class SpectralLine implements Serializable, IPersistente {
 		this.atomicNumber = atomicNumber;
 		this.lineLength = lineLength;
 		this.fluxes = new ArrayList<AFlux>();
-		this.galaxies = new ArrayList<Galaxy>();
 		this.satelliteType = satType;
 	}
 	
@@ -112,25 +110,6 @@ public class SpectralLine implements Serializable, IPersistente {
 
 	public void setLineLength(float lineLength) {
 		this.lineLength = lineLength;
-	}
-
-	public List<Galaxy> getGalaxies() {
-		return galaxies;
-	}
-
-	public void addGalaxy(Galaxy aGalaxy){
-		if(aGalaxy!=null && !this.galaxies.contains(aGalaxy)){
-			this.galaxies.add(aGalaxy);
-			aGalaxy.addSpectralLine(this);
-		}
-	}
-	
-	public Galaxy removeGalaxy(Galaxy aGalaxy){
-		if(aGalaxy!=null){
-			this.galaxies.remove(aGalaxy);
-			aGalaxy.removeSpectralLine(this);
-		}
-		return aGalaxy;
 	}
 	
 	public void addFlux(AFlux aFlux){

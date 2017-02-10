@@ -11,5 +11,8 @@ public class ContinuousFlux extends AFlux {
 		// TODO Auto-generated constructor stub
 	}
 
+	protected ContinuousFlux(){
+		
+	}
 
 }

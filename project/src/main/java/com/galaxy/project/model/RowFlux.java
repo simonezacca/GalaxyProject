@@ -10,6 +10,8 @@ public class RowFlux extends AFlux {
 		super(limitFlag, fluxValue, fluxError, fluxAperture, spectralLine);
 		// TODO Auto-generated constructor stub
 	}
-
 	
+	protected RowFlux(){
+		
+	}
 }

@@ -1,0 +1,16 @@
+INSERT INTO spectral_line VALUES (1, 'O', 3, 52, 1, 0);
+INSERT INTO spectral_line VALUES (3, 'N', 3, 57, 2, 0);
+INSERT INTO spectral_line VALUES (4, 'O', 1, 63, 3, 0);
+INSERT INTO spectral_line VALUES (5, 'O', 3, 88, 4, 0);
+INSERT INTO spectral_line VALUES (6, 'N', 2, 122, 5, 0);
+INSERT INTO spectral_line VALUES (7, 'O', 1, 145, 6, 0);
+INSERT INTO spectral_line VALUES (8, 'C', 2, 158, 7, 0);
+INSERT INTO spectral_line VALUES (9, 'S', 4, 10.5, 1, 1);
+INSERT INTO spectral_line VALUES (10, 'Ne', 2, 12.8000002, 2, 1);
+INSERT INTO spectral_line VALUES (11, 'Ne', 5, 14.3000002, 3, 1);
+INSERT INTO spectral_line VALUES (12, 'Ne', 3, 15.6000004, 4, 1);
+INSERT INTO spectral_line VALUES (13, 'S', 3, 18.7000008, 5, 1);
+INSERT INTO spectral_line VALUES (14, 'Ne', 5, 24.2999992, 6, 1);
+INSERT INTO spectral_line VALUES (15, 'O', 4, 25.8999996, 7, 1);
+INSERT INTO spectral_line VALUES (19, 'S', 3, 33.5, 8, 1);
+INSERT INTO spectral_line VALUES (20, 'Si', 2, 34.7999992, 9, 1);

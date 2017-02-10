@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.galaxy.project.model.AFlux;
+import com.galaxy.project.model.ContinuousFlux;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.RowFlux;
 import com.galaxy.project.model.SpectralLine;
@@ -64,7 +65,7 @@ public class CSVParsingController {
 		// istanzio le mappe su cui effettuare le ricerche
 		Map<String, List<RowFlux>> rowFluxMap = null;
 		Map<String, List<RowFlux>> fluxSpitzerMap = null;
-		Map<String, List<RowFlux>> continousFluxMap = null;
+		Map<String, List<ContinuousFlux>> continousFluxMap = null;
 		Map<String, List<RowFlux>> apertureFluxMap = null;
 		
 		// RowFlux
@@ -77,10 +78,10 @@ public class CSVParsingController {
 			fluxSpitzerMap = spitzerParser.getParsedMap();
 			linkGalaxyWithRowFluxesByMultiMap(galaxy, fluxSpitzerMap);
 		}
-		// ContinousRowFluxamazon 
+		// ContinousRowFlux 
 		if (continousParser!=null) {
 			continousFluxMap = continousParser.getParsedMap();
-			linkGalaxyWithRowFluxesByMultiMap(galaxy, continousFluxMap);
+			linkGalaxyWithContinuousFluxesByMultiMap(galaxy, continousFluxMap);
 		}
 		// Aperture
 		if (apertureParser!=null) {
@@ -92,16 +93,27 @@ public class CSVParsingController {
 
 	private void linkGalaxyWithRowFluxesByMultiMap(Galaxy galaxy, Map<String, List<RowFlux>> rowFluxMap) {
 		// verifico l'esistenza della chiave nella mappa
-		String galaxyKey = galaxy.getName().toUpperCase();
+		String galaxyKey = galaxy.getName();//.toUpperCase();
 		if (rowFluxMap.containsKey(galaxyKey)) {
 			// la galassia esiste nella mappa
 			List<RowFlux> fluxes = rowFluxMap.get(galaxyKey);
 			for (RowFlux rowFlux : fluxes) {
-				// recupero la SpectralLine per effettuare il collegamento con
-				// galassia
-				SpectralLine specLine = rowFlux.getSpectralLine();
-				// collego la galassia alla riga spettrale
-				galaxy.addSpectralLine(specLine);
+				// collego la galassia al flusso
+				galaxy.addFlux(rowFlux);
+			}
+		}
+
+	}
+	
+	private void linkGalaxyWithContinuousFluxesByMultiMap(Galaxy galaxy, Map<String, List<ContinuousFlux>> continuousFluxMap) {
+		// verifico l'esistenza della chiave nella mappa
+		String galaxyKey = galaxy.getName();//.toUpperCase();
+		if (continuousFluxMap.containsKey(galaxyKey)) {
+			// la galassia esiste nella mappa
+			List<ContinuousFlux> fluxes = continuousFluxMap.get(galaxyKey);
+			for (ContinuousFlux continuousFlux : fluxes) {
+				// collego la galassia al flusso
+				galaxy.addFlux(continuousFlux);
 			}
 		}
 
@@ -201,12 +213,12 @@ public class CSVParsingController {
 		Galaxy galaxyModel = entry.getValue();
 		System.out.println("KEY: "+galaxyKey+"\t\t MODEL: "+galaxyModel);
 		
-		List<SpectralLine> specLines = galaxyModel.getSpectralLines();
-		for (SpectralLine line : specLines) {
-			System.out.println("GALAXY NAME: "+galaxyModel.getName()+"\t\t"+line);
-		}
-		
-		List<AFlux> rowFluxes = galaxyModel.getSpectralLines().get(0).getFluxes();
+//		List<SpectralLine> specLines = galaxyModel.getSpectralLines();
+//		for (SpectralLine line : specLines) {
+//			System.out.println("GALAXY NAME: "+galaxyModel.getName()+"\t\t"+line);
+//		}
+//		
+		List<AFlux> rowFluxes = galaxyModel.getFluxes();
 		for (AFlux flux : rowFluxes) {
 			System.out.println(flux);
 		}

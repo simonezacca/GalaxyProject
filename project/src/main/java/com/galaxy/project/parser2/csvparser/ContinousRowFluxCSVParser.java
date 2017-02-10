@@ -7,13 +7,14 @@ import java.util.Map;
 
 import org.apache.commons.csv.CSVRecord;
 
-import com.galaxy.project.model.RowFlux;
+import com.galaxy.project.model.AFlux;
+import com.galaxy.project.model.ContinuousFlux;
 import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.parser2.csvheader.ContinousRowFluxCSVHeader;
 import com.galaxy.project.parser2.csvheader.GalaxyCSVHeader;
 import com.galaxy.project.persistence.SpectralLineDAO;
 
-public class ContinousRowFluxCSVParser extends ACSVParser<RowFlux> {
+public class ContinousRowFluxCSVParser extends ACSVParser<ContinuousFlux> {
 
 	private List<SpectralLine> spectralLines;
 	
@@ -38,11 +39,11 @@ public class ContinousRowFluxCSVParser extends ACSVParser<RowFlux> {
 				String nomeGalassia = record.get(GalaxyCSVHeader.GALAXY_NAME);
 				
 				// instanzio una lista di model di tipo RowFlux
-				List<RowFlux> fluxes = createListOfRowFluxFromRecord(record);
-				for (RowFlux rf : fluxes) {
-					if(rf.isNotZeroValue()) {
+				List<ContinuousFlux> fluxes = createListOfFluxFromRecord(record);
+				for (ContinuousFlux cf : fluxes) {
+					if(cf.isNotZeroValue()) {
 						// inserisco nella multimappa solo i flussi con valore diverso da zero
-						insertIntoMultiMap(nomeGalassia, rf);
+						insertIntoMultiMap(nomeGalassia, cf);
 					}
 				}
 			}
@@ -50,8 +51,8 @@ public class ContinousRowFluxCSVParser extends ACSVParser<RowFlux> {
 		
 	}
 	
-	private List<RowFlux> createListOfRowFluxFromRecord(CSVRecord r) {
-		List<RowFlux> list = new ArrayList<>();
+	private List<ContinuousFlux> createListOfFluxFromRecord(CSVRecord r) {
+		List<ContinuousFlux> list = new ArrayList<>();
 		int i = 1;
 		for (SpectralLine spectralLine : spectralLines) {
 			float fluxValue;
@@ -72,8 +73,8 @@ public class ContinousRowFluxCSVParser extends ACSVParser<RowFlux> {
 				i += 3;
 			}
 			
-			RowFlux rf = new RowFlux(limitFlag, fluxValue, fluxError, fluxAperture, spectralLine);		
-			list.add(rf);
+			ContinuousFlux cf = new ContinuousFlux(limitFlag, fluxValue, fluxError, fluxAperture, spectralLine);		
+			list.add(cf);
 			
 		}
 		
@@ -116,8 +117,8 @@ public class ContinousRowFluxCSVParser extends ACSVParser<RowFlux> {
 			e.printStackTrace();
 		}
 		
-		Map<String, List<RowFlux>> map = parser.getParsedMap();
-		for (Map.Entry<String, List<RowFlux>> entry : map.entrySet()) {
+		Map<String, List<ContinuousFlux>> map = parser.getParsedMap();
+		for (Map.Entry<String, List<ContinuousFlux>> entry : map.entrySet()) {
 			System.out.println("KEY: "+entry.getKey()+"\t\t VALUE: "+entry.getValue());
 		}
 		
