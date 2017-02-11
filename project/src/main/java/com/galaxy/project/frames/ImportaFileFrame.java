@@ -1,10 +1,16 @@
 package com.galaxy.project.frames;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -12,6 +18,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.galaxy.project.model.AFlux;
+import com.galaxy.project.model.Galaxy;
+import com.galaxy.project.parser2.CSVParsingController;
+import com.galaxy.project.parser2.csvparser.ApertureFluxCSVParser;
+import com.galaxy.project.parser2.csvparser.ContinousRowFluxCSVParser;
+import com.galaxy.project.parser2.csvparser.GalaxyCSVParser;
+import com.galaxy.project.parser2.csvparser.RowFluxCSVParser;
+import com.galaxy.project.parser2.csvparser.RowFluxSpitzerCSVParser;
+import com.galaxy.project.persistence.GalaxyDAO;
 
 public class ImportaFileFrame extends JFrame {
 
@@ -35,6 +51,7 @@ public class ImportaFileFrame extends JFrame {
 	private final JLabel labelFlussoContinuoHerschel = new JLabel("Inserire CSV del flusso continuo di Herschel/PACS");
 	private final JLabel labelFlussoRigheSpitzer = new JLabel("Inserire CSV dei flussi delle righe di Spitzer");
 	private final JLabel labelFlussoRigheApertureHerschel = new JLabel("Inserire CSV dei flussi delle righe di Herschel/PACS per tutte le Aperture");
+	private final JLabel labelErroreGalassia = new JLabel("");
 	
 	public ImportaFileFrame() {
 		super(titolo);	
@@ -42,6 +59,7 @@ public class ImportaFileFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().add(panel);
 		placeComponents(panel);
+		
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
 		this.setVisible(true);
@@ -89,6 +107,9 @@ public class ImportaFileFrame extends JFrame {
 		labelFlussoRigheApertureHerschel.setBounds(12, 274, 526, 15);
 		panel.add(labelFlussoRigheApertureHerschel);
 
+		labelErroreGalassia.setBounds(12, 354, 514, 15);
+		panel.add(labelErroreGalassia);
+		
 		fieldPathGalassia.setBounds(137, 44, 509, 19);
 		panel.add(fieldPathGalassia);
 		fieldPathGalassia.setColumns(10);
@@ -128,7 +149,7 @@ public class ImportaFileFrame extends JFrame {
 		        int returnValue = fileChooser.showOpenDialog(null);
 		        if (returnValue == JFileChooser.APPROVE_OPTION) {
 	          File selectedFile = fileChooser.getSelectedFile();
-	          System.out.println(selectedFile.getName());
+	          System.out.println(selectedFile.getAbsolutePath());
 	          fieldPathGalassia.setText(selectedFile.getAbsolutePath());
 		        }
 			}
@@ -185,7 +206,69 @@ public class ImportaFileFrame extends JFrame {
 		btnImportaFile.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO DA IMPLEMENTARE
+				String galaxyCSVFile = fieldPathGalassia.getText();
+				String rowFluxCSVFile = fieldPathRigheHerschel.getText();
+				String rowFluxSpitzerCSVFile = fieldPathRigheSpitzer.getText();
+				String continousRowFluxCSVFile = fieldPathContinuoHerschel.getText();
+				String apertureRowFluxCSVFile = fieldPathRighePerAperture.getText();
+				
+				GalaxyCSVParser galaxyParser = null;
+				RowFluxCSVParser rowFluxParser = null;
+				RowFluxSpitzerCSVParser spitzerParser = null;
+				ContinousRowFluxCSVParser continousParser = null;
+				ApertureFluxCSVParser apertureParser = null;
+				
+				CSVParsingController controller = new CSVParsingController();
+				
+				if(galaxyCSVFile.length()>0) {
+					galaxyParser = new GalaxyCSVParser(galaxyCSVFile);
+				}
+				else {
+					labelErroreGalassia.setForeground(Color.red);;
+					labelErroreGalassia.setText("Inserire il file relativo alle galassie");
+				}
+				// instazione i vari parser dei CSV fornendo il percorso di ogni file
+				
+				if(rowFluxCSVFile.length()>0) {
+					rowFluxParser = new RowFluxCSVParser(rowFluxCSVFile);
+				}
+				if(rowFluxSpitzerCSVFile.length()>0) {
+					spitzerParser = new RowFluxSpitzerCSVParser(rowFluxSpitzerCSVFile);
+				}
+				if(continousRowFluxCSVFile.length()>0) {
+					continousParser = new ContinousRowFluxCSVParser(continousRowFluxCSVFile);
+				}
+				if(apertureRowFluxCSVFile.length()>0) {
+					apertureParser = new ApertureFluxCSVParser(apertureRowFluxCSVFile);
+				} 
+
+				// associo i vari parser creati al controller
+				controller.setGalaxyParser(galaxyParser);
+				controller.setRowFluxParser(rowFluxParser);
+				controller.setSpitzerParser(spitzerParser);
+				controller.setContinousParser(continousParser);
+				controller.setApertureParser(apertureParser);
+				
+				Map<String, Galaxy> map = null;
+				try {
+					map = controller.parseAndLink();
+				} catch (IllegalStateException | IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				// TEST PERSISTENZA
+				
+				System.out.println("TEST PERSISTENZA");
+				
+				GalaxyDAO gdao = new GalaxyDAO();
+				for (Iterator<Entry<String, Galaxy>> iter = map.entrySet().iterator(); iter.hasNext();) {
+					Entry<String,Galaxy> entry = iter.next();
+					
+					String gKey = entry.getKey();
+					Galaxy gModel = entry.getValue();
+					gdao.saveOrUpdate(gModel);
+				}
+				
 			}
 		});
 			

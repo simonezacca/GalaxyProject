@@ -2,6 +2,7 @@ package com.galaxy.project.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -11,8 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.galaxy.project.persistence.IPersistente;
 
@@ -54,7 +58,9 @@ public abstract class AFlux implements IPersistente{
 	@ManyToOne(fetch = FetchType.LAZY)
 	protected Galaxy galaxy;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+//	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
+//	@PrimaryKeyJoinColumn
+	@Transient
 	protected SpectralLine spectralLine;
 	
 	public AFlux(boolean limitFlag, float fluxValue, float fluxError,
@@ -64,7 +70,8 @@ public abstract class AFlux implements IPersistente{
 		this.fluxValue = fluxValue;
 		this.fluxError = fluxError;
 		this.fluxAperture = fluxAperture;
-		spectralLine.addFlux(this);
+//		spectralLine.addFlux(this);
+		this.spectralLine = spectralLine;
 	}
 	
 	public AFlux() {

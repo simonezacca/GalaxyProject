@@ -1,23 +1,15 @@
 package com.galaxy.project.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import com.galaxy.project.persistence.IPersistente;
 
@@ -54,8 +46,9 @@ public class SpectralLine implements Serializable, IPersistente {
 	@Column(name="line_length", nullable=false)
 	protected float lineLength;
 	
-	@OneToMany(mappedBy="spectralLine", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	protected List<AFlux> fluxes;
+//	//@OneToMany(fetch=FetchType.EAGER)
+//	@Transient
+//	protected List<AFlux> fluxes;
 	
 	@Column(name="satellite_type", nullable=false)
 	private Integer satelliteType;
@@ -84,7 +77,7 @@ public class SpectralLine implements Serializable, IPersistente {
 		this.atom = atom;
 		this.atomicNumber = atomicNumber;
 		this.lineLength = lineLength;
-		this.fluxes = new ArrayList<AFlux>();
+//		this.fluxes = new ArrayList<AFlux>();
 		this.satelliteType = satType;
 	}
 	
@@ -112,25 +105,25 @@ public class SpectralLine implements Serializable, IPersistente {
 		this.lineLength = lineLength;
 	}
 	
-	public void addFlux(AFlux aFlux){
-		if(aFlux!=null && !this.fluxes.contains(aFlux)){
-			this.fluxes.add(aFlux);
-			aFlux.setSpectralLine(this);
-		}
-	}
-	
-	public AFlux removeFlux(AFlux aFlux){
-		if(aFlux!=null){
-			this.fluxes.remove(aFlux);
-		}
-		return aFlux;
-	}
+//	public void addFlux(AFlux aFlux){
+//		if(aFlux!=null && !this.fluxes.contains(aFlux)){
+//			this.fluxes.add(aFlux);
+//			aFlux.setSpectralLine(this);
+//		}
+//	}
+//	
+//	public AFlux removeFlux(AFlux aFlux){
+//		if(aFlux!=null){
+//			this.fluxes.remove(aFlux);
+//		}
+//		return aFlux;
+//	}
 
 	public Long getId() {
 		return this.id;
 	}
 	
-	public List<AFlux> getFluxes() {
-		return fluxes;
-	}
+//	public List<AFlux> getFluxes() {
+//		return fluxes;
+//	}
 }
