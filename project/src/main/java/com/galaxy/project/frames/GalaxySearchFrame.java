@@ -206,8 +206,7 @@ public class GalaxySearchFrame extends JFrame {
 		});
 	}
 	
-	private void close(){
-		
+	private void close(){	
 		this.setVisible(false);
 	}
 	

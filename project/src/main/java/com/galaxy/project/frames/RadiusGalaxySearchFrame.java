@@ -9,13 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
 import com.galaxy.project.model.Position;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
 	
 public class RadiusGalaxySearchFrame extends JFrame {
 	

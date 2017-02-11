@@ -14,8 +14,8 @@ class AdminFrame extends AGenericUserFrame {
 	private static final long serialVersionUID = 1L;
 	
 	RegisterFrame registerFrame = null;
-	GalaxySearchFrame galaxySearchFrame = null;
 	ImportaFileFrame importaFileFrame = null;
+	GalaxySearchFrame galaxySearchFrame = null;
 	RadiusGalaxySearchFrame radiusGalaxySearchFrame = null;
 	RedshiftGalaxySearchFrame redshiftGalaxySearchFrame = null;
 	
@@ -66,10 +66,6 @@ class AdminFrame extends AGenericUserFrame {
 		panel.add(btnRicercaPerRedshift);
 		
 		btnValoreDelleLinee = new JButton("Valore Delle Linee Spettrali");
-		btnValoreDelleLinee.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnValoreDelleLinee.setBounds(86, 192, 645, 25);
 		panel.add(btnValoreDelleLinee);
 		

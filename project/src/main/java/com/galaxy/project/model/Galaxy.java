@@ -101,6 +101,10 @@ public class Galaxy implements IPersistente {
 		this.errMet = errMet;
 		this.fluxes = new ArrayList<AFlux>();
 	}
+	
+	public Galaxy() {
+		
+	}
 
 	public String getName() {
 		return name;
