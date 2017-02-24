@@ -1,8 +1,5 @@
 package com.galaxy.project.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -14,9 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.galaxy.project.persistence.IPersistente;
 
@@ -27,6 +22,50 @@ import com.galaxy.project.persistence.IPersistente;
 
 public abstract class AFlux implements IPersistente{
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((fluxAperture == null) ? 0 : fluxAperture.hashCode());
+		result = prime * result + Float.floatToIntBits(fluxError);
+		result = prime * result + Float.floatToIntBits(fluxValue);
+		result = prime * result + (limitFlag ? 1231 : 1237);
+		result = prime * result
+				+ ((spectralLine == null) ? 0 : spectralLine.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AFlux other = (AFlux) obj;
+		if (fluxAperture == null) {
+			if (other.fluxAperture != null)
+				return false;
+		} else if (!fluxAperture.equals(other.fluxAperture))
+			return false;
+		if (Float.floatToIntBits(fluxError) != Float
+				.floatToIntBits(other.fluxError))
+			return false;
+		if (Float.floatToIntBits(fluxValue) != Float
+				.floatToIntBits(other.fluxValue))
+			return false;
+		if (limitFlag != other.limitFlag)
+			return false;
+		if (spectralLine == null) {
+			if (other.spectralLine != null)
+				return false;
+		} else if (!spectralLine.equals(other.spectralLine))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "AFlux [limitFlag=" + limitFlag + ", fluxValue=" + fluxValue + ", fluxError=" + fluxError
@@ -58,9 +97,8 @@ public abstract class AFlux implements IPersistente{
 	@ManyToOne(fetch = FetchType.LAZY)
 	protected Galaxy galaxy;
 	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
-//	@PrimaryKeyJoinColumn
-	@Transient
+	@ManyToOne(fetch = FetchType.EAGER, optional=false)
+	@JoinColumn(name = "spectral_line_id")
 	protected SpectralLine spectralLine;
 	
 	public AFlux(boolean limitFlag, float fluxValue, float fluxError,

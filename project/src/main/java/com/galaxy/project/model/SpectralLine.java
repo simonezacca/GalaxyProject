@@ -122,6 +122,48 @@ public class SpectralLine implements Serializable, IPersistente {
 	public Long getId() {
 		return this.id;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((atom == null) ? 0 : atom.hashCode());
+		result = prime * result + atomicNumber;
+		result = prime * result + Float.floatToIntBits(lineLength);
+		result = prime * result + order;
+		result = prime * result
+				+ ((satelliteType == null) ? 0 : satelliteType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SpectralLine other = (SpectralLine) obj;
+		if (atom == null) {
+			if (other.atom != null)
+				return false;
+		} else if (!atom.equals(other.atom))
+			return false;
+		if (atomicNumber != other.atomicNumber)
+			return false;
+		if (Float.floatToIntBits(lineLength) != Float
+				.floatToIntBits(other.lineLength))
+			return false;
+		if (order != other.order)
+			return false;
+		if (satelliteType == null) {
+			if (other.satelliteType != null)
+				return false;
+		} else if (!satelliteType.equals(other.satelliteType))
+			return false;
+		return true;
+	}
 	
 //	public List<AFlux> getFluxes() {
 //		return fluxes;
