@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -54,7 +53,6 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		private String rdm;
 		private String rds;
 		private String radius;
-		
 		private int positionRAh;
 		private int positionRAm;
 		private float positionRAs;

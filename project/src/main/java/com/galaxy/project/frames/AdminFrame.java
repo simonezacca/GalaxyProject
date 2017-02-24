@@ -1,5 +1,7 @@
 package com.galaxy.project.frames;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -18,6 +20,11 @@ class AdminFrame extends AGenericUserFrame {
 	GalaxySearchFrame galaxySearchFrame = null;
 	RadiusGalaxySearchFrame radiusGalaxySearchFrame = null;
 	RedshiftGalaxySearchFrame redshiftGalaxySearchFrame = null;
+	ValuesSpectralLineFrame valuesSpectralLineFrame = null; 
+	DivisionRowFrame divisionRowFrame = null;
+	DivisionRowForSpectralLineFrame divisionRowForSpectralLineFrame = null;
+	DivisionRowForSpectralLineApertureFrame divisionRowForSpectralLineApertureFrame = null;
+	DivisionRowContinuousFluxFrame divisionRowContinuousFluxFrame = null;
 	
 	private static String titolo = "Pannello di Amministrazione";
 	private JPanel panel = new JPanel();
@@ -27,8 +34,9 @@ class AdminFrame extends AGenericUserFrame {
 	private JButton btnRicercaRadius;
 	private JButton btnRicercaPerRedshift;
 	private JButton btnValoreDelleLinee;
-	private JButton btnValoreDeiRapporti;
-	private JButton btnValoreDeiRapporti_1;
+	private JButton btnValoreDeiRapportiDelleRighe;
+	private JButton btnValoreDeiRapportiPerGruppo;
+	private JButton btnValoreDeiRapportiPerAperture;
 	private JButton btnRapportoTraFlusso;
 	
 	public AdminFrame() {
@@ -38,11 +46,17 @@ class AdminFrame extends AGenericUserFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.getContentPane().add(panel);
 		placeComponents(panel);
+		centerFrame();
 		close();
 		addActionListener();
 		this.setVisible(true);
 	}
 	
+	private void centerFrame() {
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2-this.getHeight()/2);
+	}
+
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
 		btnRegistraNuovoUtente = new JButton("Registra Nuovo Utente");
@@ -69,16 +83,20 @@ class AdminFrame extends AGenericUserFrame {
 		btnValoreDelleLinee.setBounds(86, 192, 645, 25);
 		panel.add(btnValoreDelleLinee);
 		
-		btnValoreDeiRapporti = new JButton("Valore Dei Rapporti Delle Righe");
-		btnValoreDeiRapporti.setBounds(86, 225, 645, 25);
-		panel.add(btnValoreDeiRapporti);
+		btnValoreDeiRapportiDelleRighe = new JButton("Valore Dei Rapporti Delle Righe");
+		btnValoreDeiRapportiDelleRighe.setBounds(86, 228, 645, 25);
+		panel.add(btnValoreDeiRapportiDelleRighe);
 		
-		btnValoreDeiRapporti_1 = new JButton("Valore Dei Rapporti Delle Righe Per Gruppo Spettrale");
-		btnValoreDeiRapporti_1.setBounds(86, 259, 645, 25);
-		panel.add(btnValoreDeiRapporti_1);
+		btnValoreDeiRapportiPerGruppo = new JButton("Valore Dei Rapporti Delle Righe per Gruppo Spettrale");
+		btnValoreDeiRapportiPerGruppo.setBounds(86, 264, 645, 25);
+		panel.add(btnValoreDeiRapportiPerGruppo);
+		
+		btnValoreDeiRapportiPerAperture = new JButton("Valore Dei Rapporti Delle Righe Per Gruppo Spettrale Per Una Determinata Aperture");
+		btnValoreDeiRapportiPerAperture.setBounds(86, 300, 645, 25);
+		panel.add(btnValoreDeiRapportiPerAperture);
 		
 		btnRapportoTraFlusso = new JButton("Rapporto Tra Flusso e Continuo");
-		btnRapportoTraFlusso.setBounds(86, 296, 645, 25);
+		btnRapportoTraFlusso.setBounds(86, 337, 645, 25);
 		panel.add(btnRapportoTraFlusso);
 
 
@@ -146,8 +164,67 @@ class AdminFrame extends AGenericUserFrame {
 						redshiftGalaxySearchFrame.repaint();
 					}
 				});
-	}
 	
+	btnValoreDelleLinee.addActionListener(new ActionListener() {
+		
+		//			@Override
+					public void actionPerformed(ActionEvent e) {
+		
+						valuesSpectralLineFrame = new ValuesSpectralLineFrame();
+						valuesSpectralLineFrame.setVisible(true);
+						valuesSpectralLineFrame.toFront();
+						valuesSpectralLineFrame.repaint();
+					}
+				});
+	
+	btnValoreDeiRapportiDelleRighe.addActionListener(new ActionListener() {
+		
+		//			@Override
+					public void actionPerformed(ActionEvent e) {
+		
+						divisionRowFrame = new DivisionRowFrame();
+						divisionRowFrame.setVisible(true);
+						divisionRowFrame.toFront();
+						divisionRowFrame.repaint();
+					}
+				});
+	
+	btnValoreDeiRapportiPerGruppo.addActionListener(new ActionListener() {
+		
+		//			@Override
+					public void actionPerformed(ActionEvent e) {
+		
+						divisionRowForSpectralLineFrame = new DivisionRowForSpectralLineFrame();
+						divisionRowForSpectralLineFrame.setVisible(true);
+						divisionRowForSpectralLineFrame.toFront();
+						divisionRowForSpectralLineFrame.repaint();
+					}
+				});
+	
+	btnValoreDeiRapportiPerAperture.addActionListener(new ActionListener() {
+		
+		//			@Override
+					public void actionPerformed(ActionEvent e) {
+		
+						divisionRowForSpectralLineApertureFrame = new DivisionRowForSpectralLineApertureFrame();
+						divisionRowForSpectralLineApertureFrame.setVisible(true);
+						divisionRowForSpectralLineApertureFrame.toFront();
+						divisionRowForSpectralLineApertureFrame.repaint();
+					}
+				});
+	
+	btnRapportoTraFlusso.addActionListener(new ActionListener() {
+		
+		//			@Override
+					public void actionPerformed(ActionEvent e) {
+		
+						divisionRowContinuousFluxFrame = new DivisionRowContinuousFluxFrame();
+						divisionRowContinuousFluxFrame.setVisible(true);
+						divisionRowContinuousFluxFrame.toFront();
+						divisionRowContinuousFluxFrame.repaint();
+					}
+				});
+	}
 //	
 
 	private void close(){

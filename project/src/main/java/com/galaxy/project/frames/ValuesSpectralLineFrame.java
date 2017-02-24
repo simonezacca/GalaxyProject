@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,8 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
+
 import com.galaxy.project.controller.ValuesSpectralLineFrameController;
+import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
+import com.galaxy.project.persistence.GalaxyDAO;
+import com.galaxy.project.tools.PositionHelper;
 	
 public class ValuesSpectralLineFrame extends JFrame {
 	
@@ -29,6 +35,7 @@ public class ValuesSpectralLineFrame extends JFrame {
 		// Dichiarazione Componenti Grafici
 		private JTable tableRigheSpettrali;
 		private JTable tableFlussi;
+		
 		private String[] columnsRigheSpettrali = { "Riga Spettrale"};
 		private String[] columnsFlussi = { "Limit" , "Valore", "Errore"};
 		private String[] dataRigheSpettrali = {"RigaSpettrale1",
@@ -47,10 +54,14 @@ public class ValuesSpectralLineFrame extends JFrame {
 		placeComponents(panel);
 		
 		
-		tableFlussi = new JTable(dataFlussi, columnsFlussi);
+		tableFlussi = new JTable(null);
 		tableFlussi.setBounds(52, 159, 533, 350);
 		tableFlussi.setPreferredScrollableViewportSize(new Dimension(450,63));
 		tableFlussi.setFillsViewportHeight(true);
+		//TODO
+//		List<AFlux> fluxes = controller.doValuesSpectralLine();
+//		ValuesSpectralLineTableModel jmodel = new RadiusGalaxyTableModel(galaxyOnRadius);
+//		tableFlussi.setModel(jmodel);
 		
 		JScrollPane spFlussi = new JScrollPane(tableFlussi);
 		spFlussi.setBounds(272, 33, 419, 350);
@@ -61,13 +72,19 @@ public class ValuesSpectralLineFrame extends JFrame {
 		tableRigheSpettrali.setPreferredScrollableViewportSize(new Dimension(450,63));
 		tableRigheSpettrali.setFillsViewportHeight(true);
 		
+		
 		JScrollPane spRigheSpettrali = new JScrollPane(tableRigheSpettrali);
 		spRigheSpettrali.setBounds(10, 68, 242, 193);
 		panel.add(spRigheSpettrali);
 		
-        String[] options = { "Galassia 1", "Galassia 2", "Galassia 3", "Galassia 4"};
+		GalaxyDAO gdao = new GalaxyDAO();
+		List<Galaxy> galaxies = gdao.getAll();
 
-		JComboBox cbGalaxies = new JComboBox(options); //new JComboBox(lista Galassie)
+		JComboBox<String> cbGalaxies = new JComboBox<String>(); //new JComboBox(lista Galassie)
+		for (Galaxy g : galaxies) {
+				cbGalaxies.addItem(g.getName());
+		}
+				
 		cbGalaxies.setForeground(new Color(0, 0, 0));
 		cbGalaxies.setBounds(10, 37, 242, 20);
 		cbGalaxies.setToolTipText("");

@@ -1,5 +1,7 @@
 package com.galaxy.project.controller;
 
+import java.util.List;
+
 import com.galaxy.project.frames.GalaxySearchFrame;
 import com.galaxy.project.frames.RadiusGalaxySearchFrame;
 import com.galaxy.project.frames.RedshiftGalaxySearchFrame;
@@ -13,16 +15,18 @@ public class RedshiftGalaxySearchFrameController {
 	GalaxiesFinder galaxyFinder = new GalaxiesFinder();
 	
 	public RedshiftGalaxySearchFrameController(RedshiftGalaxySearchFrame parent){
-		this.redshiftGalaxySearchFrame = parent; 							//gli passo il GalaxySearchFrame
+		this.redshiftGalaxySearchFrame = parent; 
 		}
 
-	public void doRicercaGalassiePerRedshiftMaggiore(Long redshift) {
-		galaxyFinder.ricercaGalassiePerRedshiftMaggiore(redshift);
-		
+	public List<Galaxy> doRicercaGalassiePerRedshiftMaggiore(Float redshift) {
+		List<Galaxy> galaxies = galaxyFinder.ricercaGalassiePerRedshiftMaggiore(redshift);
+		//TODO galaxies.sort(c); //implementare un COMPARATOR
+		return galaxies;	
 	}
 	
-	public void doRicercaGalassiePerRedshiftMinore(Long redshift) {
-		galaxyFinder.ricercaGalassiePerRedshiftMinore(redshift);
-		
+	public List<Galaxy> doRicercaGalassiePerRedshiftMinore(Float redshift) {
+		List<Galaxy> galaxies = galaxyFinder.ricercaGalassiePerRedshiftMinore(redshift);
+		//TODO galaxies.sort(c); //implementare un COMPARATOR
+		return galaxies;	
 	}
 }

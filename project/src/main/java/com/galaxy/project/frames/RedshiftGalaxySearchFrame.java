@@ -1,10 +1,10 @@
 package com.galaxy.project.frames;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RedshiftGalaxySearchFrameController;
+import com.galaxy.project.frames.tablemodel.RedshiftGalaxyTableModel;
+import com.galaxy.project.model.Galaxy;
 	
 public class RedshiftGalaxySearchFrame extends JFrame {
 	
@@ -40,7 +42,9 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		private String[] columns = { "Galassia", "Redshift" };
 		private String[][] data = {{"NomeGalassia1", "Redshift1"},
 								   {"NomeGalassia2", "Redshift2"}};
-		
+
+		private String greaterRedshift,lowerRedshift;
+		private float gRedshift,lRedshift;
 		public RedshiftGalaxySearchFrame() {
 			
 		super(titolo);
@@ -49,7 +53,7 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		getContentPane().add(panel);
 		placeComponents(panel);
 		
-		tableGalassiaRedshift = new JTable(data, columns);
+		tableGalassiaRedshift = new JTable(null);
 		tableGalassiaRedshift.setBounds(52, 159, 533, 350);
 		tableGalassiaRedshift.setPreferredScrollableViewportSize(new Dimension(450,63));
 		tableGalassiaRedshift.setFillsViewportHeight(true);
@@ -109,7 +113,17 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 	}
 	
 	private void updateFields(){
-		String galaxyNameString = greaterRedshiftField.getText();
+		greaterRedshift = greaterRedshiftField.getText();
+		lowerRedshift = lowerRedshiftField.getText();
+	}
+	
+	private void convertGRedshiftFields(){
+		gRedshift = Float.valueOf(greaterRedshift);
+		
+	}
+	
+	private void convertLRedshiftFields(){
+		lRedshift = Float.valueOf(lowerRedshift);
 	}
 	
 	// Inizializzazione Listener Bottoni
@@ -120,7 +134,10 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 //		@Override
 			public void actionPerformed(ActionEvent e) {
 				updateFields();
-			// TODO	controller.doRicercaGalassieDentroRaggio(p);
+				convertGRedshiftFields();
+				List<Galaxy> galaxyGreaterRedshift = controller.doRicercaGalassiePerRedshiftMaggiore(gRedshift);
+				RedshiftGalaxyTableModel jmodel = new RedshiftGalaxyTableModel(galaxyGreaterRedshift);
+				tableGalassiaRedshift.setModel(jmodel);
 			}
 		});
 		
@@ -129,13 +146,15 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 //			@Override
 				public void actionPerformed(ActionEvent e) {
 					updateFields();
-				// TODO	controller.doRicercaGalassieDentroRaggio(p);
+					convertLRedshiftFields();
+					List<Galaxy> galaxyLowerRedshift = controller.doRicercaGalassiePerRedshiftMinore(lRedshift);
+					RedshiftGalaxyTableModel jmodel = new RedshiftGalaxyTableModel(galaxyLowerRedshift);
+					tableGalassiaRedshift.setModel(jmodel);
 				}
 			});
 	}
 	
 	private void close(){
-		
 		this.setVisible(false);
 	}
 	
