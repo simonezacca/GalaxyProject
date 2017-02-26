@@ -52,27 +52,27 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		placeComponents(panel);
 		
 		cbGalassia = new JComboBox();
-		cbGalassia.setBounds(10, 35, 113, 20);
+		cbGalassia.setBounds(10, 35, 154, 20);
 		panel.add(cbGalassia);
 		
 		cbRigaSpettrale = new JComboBox();
-		cbRigaSpettrale.setBounds(156, 35, 113, 20);
+		cbRigaSpettrale.setBounds(191, 35, 150, 20);
 		panel.add(cbRigaSpettrale);
 		
 		cbFlussoContinuo = new JComboBox();
-		cbFlussoContinuo.setBounds(156, 97, 113, 20);
+		cbFlussoContinuo.setBounds(191, 97, 150, 20);
 		panel.add(cbFlussoContinuo);
 		
 		lblValoreFlussoRiga = new JLabel("Valore Flusso Riga: ");
-		lblValoreFlussoRiga.setBounds(10, 66, 113, 25);
+		lblValoreFlussoRiga.setBounds(10, 66, 154, 25);
 		panel.add(lblValoreFlussoRiga);
 		
 		cbFlussoRiga = new JComboBox();
-		cbFlussoRiga.setBounds(10, 97, 113, 20);
+		cbFlussoRiga.setBounds(10, 97, 154, 20);
 		panel.add(cbFlussoRiga);
 		
 		JLabel lblDivisionvalue = new JLabel("DivisionValue");
-		lblDivisionvalue.setBounds(289, 133, 95, 14);
+		lblDivisionvalue.setBounds(373, 133, 95, 14);
 		panel.add(lblDivisionvalue);
 		
 		centerFrame();
@@ -100,26 +100,26 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		
 		// Etichetta Inserisci RAh
 		lblSelezionaGalassia = new JLabel("Seleziona Galassia:");
-		lblSelezionaGalassia.setBounds(10, 11, 113, 25);
+		lblSelezionaGalassia.setBounds(10, 11, 154, 25);
 		panel.add(lblSelezionaGalassia);
 		
 		// Etichetta Inserisci RAs
 		lblRigaSpettrale = new JLabel("Seleziona Riga Spettrale");
-		lblRigaSpettrale.setBounds(156, 11, 128, 25);
+		lblRigaSpettrale.setBounds(191, 11, 150, 25);
 		panel.add(lblRigaSpettrale);
 		
 		// Etichetta Inserisci RDsign
 		lblValoreDelRapporto = new JLabel("Valore Del Rapporto ( Flusso Riga / Flusso Continuo): ");
-		lblValoreDelRapporto.setBounds(10, 128, 257, 25);
+		lblValoreDelRapporto.setBounds(10, 128, 331, 25);
 		panel.add(lblValoreDelRapporto);
 		// Etichetta Inserisci RDs
 		lblValoreFlussoContinuo = new JLabel("Valore Flusso Continuo:");
-		lblValoreFlussoContinuo.setBounds(156, 66, 113, 25);
+		lblValoreFlussoContinuo.setBounds(191, 66, 150, 25);
 		panel.add(lblValoreFlussoContinuo);
 		
 		// Bottone Per Ricercare
 		btnValueDivision = new JButton("Calcola");
-		btnValueDivision.setBounds(279, 95, 70, 25);
+		btnValueDivision.setBounds(373, 95, 95, 25);
 		panel.add(btnValueDivision);
 		
 		// TODO Tabella Nome Galassia | Distanza

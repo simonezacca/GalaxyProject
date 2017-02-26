@@ -111,7 +111,7 @@ public class DivisionRowFrame extends JFrame {
 		panel.add(lblInserisciDati);
 		
 		lblSelezionaGalassia1 = new JLabel("Seleziona Galassia (Numeratore)");
-		lblSelezionaGalassia1.setBounds(10, 47, 180, 25);
+		lblSelezionaGalassia1.setBounds(10, 47, 279, 25);
 		panel.add(lblSelezionaGalassia1);
 		
 		lblFlusso1 = new JLabel("Flusso:");
@@ -123,7 +123,7 @@ public class DivisionRowFrame extends JFrame {
 		panel.add(lblLimitValue);
 		
 		lblSelezionaGalassia2 = new JLabel("Seleziona Galassia 2 (Denominatore)");
-		lblSelezionaGalassia2.setBounds(10, 112, 180, 25);
+		lblSelezionaGalassia2.setBounds(10, 112, 279, 25);
 		panel.add(lblSelezionaGalassia2);
 
 		lblFlusso2 = new JLabel("Flusso:");
