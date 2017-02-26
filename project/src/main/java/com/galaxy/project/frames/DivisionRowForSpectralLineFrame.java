@@ -26,7 +26,7 @@ public class DivisionRowForSpectralLineFrame extends JFrame {
 	
 	private DivisionRowForSpectralLineController controller = new DivisionRowForSpectralLineController(this);
 	
-	private final static String titolo = "Ricerca Oggetto all'interno di un raggio";
+	private final static String titolo = "Valore dei rapporti delle righe per gruppo spettrale";
 	private final JPanel panel = new JPanel();
 	
 	// Dichiarazione Componenti Grafici
@@ -58,43 +58,43 @@ public class DivisionRowForSpectralLineFrame extends JFrame {
 	placeComponents(panel);
 	
 	lblDeviazioneStandard = new JLabel("Deviazione Standard:");
-	lblDeviazioneStandard.setBounds(10, 229, 113, 25);
+	lblDeviazioneStandard.setBounds(10, 229, 166, 25);
 	panel.add(lblDeviazioneStandard);
 	
 	lblMediana = new JLabel("Mediana:");
-	lblMediana.setBounds(10, 262, 70, 25);
+	lblMediana.setBounds(10, 262, 166, 25);
 	panel.add(lblMediana);
 	
 	lblDeviazioneMediaAssoluta = new JLabel("Deviazione Media Assoluta:");
-	lblDeviazioneMediaAssoluta.setBounds(10, 298, 136, 25);
+	lblDeviazioneMediaAssoluta.setBounds(10, 298, 166, 25);
 	panel.add(lblDeviazioneMediaAssoluta);
 	
 	lblValmedio = new JLabel("ValMedio");
-	lblValmedio.setBounds(156, 193, 70, 25);
+	lblValmedio.setBounds(227, 193, 70, 25);
 	panel.add(lblValmedio);
 	
 	lblValdev = new JLabel("ValDev");
-	lblValdev.setBounds(156, 229, 70, 25);
+	lblValdev.setBounds(227, 229, 70, 25);
 	panel.add(lblValdev);
 	
 	lblValmediana = new JLabel("ValMediana");
-	lblValmediana.setBounds(156, 262, 70, 25);
+	lblValmediana.setBounds(227, 262, 70, 25);
 	panel.add(lblValmediana);
 	
 	lblValdevabs = new JLabel("ValDevAbs");
-	lblValdevabs.setBounds(156, 298, 70, 25);
+	lblValdevabs.setBounds(227, 298, 70, 25);
 	panel.add(lblValdevabs);
 	
 	cbRigaSpettrale = new JComboBox();
-	cbRigaSpettrale.setBounds(10, 35, 113, 20);
+	cbRigaSpettrale.setBounds(10, 35, 136, 20);
 	panel.add(cbRigaSpettrale);
 	
 	cbFlusso1 = new JComboBox();
-	cbFlusso1.setBounds(156, 35, 70, 20);
+	cbFlusso1.setBounds(227, 35, 116, 20);
 	panel.add(cbFlusso1);
 	
 	cbFlusso2 = new JComboBox();
-	cbFlusso2.setBounds(156, 97, 70, 20);
+	cbFlusso2.setBounds(227, 97, 116, 20);
 	panel.add(cbFlusso2);
 	
 	addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
@@ -126,21 +126,21 @@ private void placeComponents(JPanel panel) {
 	
 	// Etichetta Inserisci RAs
 	lblFlusso1 = new JLabel("Flusso 1:");
-	lblFlusso1.setBounds(156, 11, 70, 25);
+	lblFlusso1.setBounds(227, 11, 116, 25);
 	panel.add(lblFlusso1);
 	
 	// Etichetta Inserisci RDsign
 	lblValoreMedio = new JLabel("Valore Medio: ");
-	lblValoreMedio.setBounds(10, 193, 70, 25);
+	lblValoreMedio.setBounds(10, 193, 166, 25);
 	panel.add(lblValoreMedio);
 	// Etichetta Inserisci RDs
 	lblFlusso2 = new JLabel("Flusso 2:");
-	lblFlusso2.setBounds(156, 66, 70, 25);
+	lblFlusso2.setBounds(227, 66, 116, 25);
 	panel.add(lblFlusso2);
 	
 	// Bottone Per Ricercare
 	btnValueDivision = new JButton("Calcola");
-	btnValueDivision.setBounds(156, 145, 70, 25);
+	btnValueDivision.setBounds(227, 146, 116, 25);
 	panel.add(btnValueDivision);
 	
 	// TODO Tabella Nome Galassia | Distanza

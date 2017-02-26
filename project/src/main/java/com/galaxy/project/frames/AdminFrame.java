@@ -155,76 +155,76 @@ class AdminFrame extends AGenericUserFrame {
 
 	btnRicercaPerRedshift.addActionListener(new ActionListener() {
 		
-		//			@Override
-					public void actionPerformed(ActionEvent e) {
-		
-						redshiftGalaxySearchFrame = new RedshiftGalaxySearchFrame();
-						redshiftGalaxySearchFrame.setVisible(true);
-						redshiftGalaxySearchFrame.toFront();
-						redshiftGalaxySearchFrame.repaint();
-					}
-				});
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					redshiftGalaxySearchFrame = new RedshiftGalaxySearchFrame();
+					redshiftGalaxySearchFrame.setVisible(true);
+					redshiftGalaxySearchFrame.toFront();
+					redshiftGalaxySearchFrame.repaint();
+				}
+			});
 	
 	btnValoreDelleLinee.addActionListener(new ActionListener() {
 		
-		//			@Override
-					public void actionPerformed(ActionEvent e) {
-		
-						valuesSpectralLineFrame = new ValuesSpectralLineFrame();
-						valuesSpectralLineFrame.setVisible(true);
-						valuesSpectralLineFrame.toFront();
-						valuesSpectralLineFrame.repaint();
-					}
-				});
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					valuesSpectralLineFrame = new ValuesSpectralLineFrame();
+					valuesSpectralLineFrame.setVisible(true);
+					valuesSpectralLineFrame.toFront();
+					valuesSpectralLineFrame.repaint();
+				}
+			});
 	
 	btnValoreDeiRapportiDelleRighe.addActionListener(new ActionListener() {
 		
-		//			@Override
-					public void actionPerformed(ActionEvent e) {
-		
-						divisionRowFrame = new DivisionRowFrame();
-						divisionRowFrame.setVisible(true);
-						divisionRowFrame.toFront();
-						divisionRowFrame.repaint();
-					}
-				});
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowFrame = new DivisionRowFrame();
+					divisionRowFrame.setVisible(true);
+					divisionRowFrame.toFront();
+					divisionRowFrame.repaint();
+				}
+			});
 	
 	btnValoreDeiRapportiPerGruppo.addActionListener(new ActionListener() {
 		
-		//			@Override
-					public void actionPerformed(ActionEvent e) {
-		
-						divisionRowForSpectralLineFrame = new DivisionRowForSpectralLineFrame();
-						divisionRowForSpectralLineFrame.setVisible(true);
-						divisionRowForSpectralLineFrame.toFront();
-						divisionRowForSpectralLineFrame.repaint();
-					}
-				});
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowForSpectralLineFrame = new DivisionRowForSpectralLineFrame();
+					divisionRowForSpectralLineFrame.setVisible(true);
+					divisionRowForSpectralLineFrame.toFront();
+					divisionRowForSpectralLineFrame.repaint();
+				}
+			});
 	
 	btnValoreDeiRapportiPerAperture.addActionListener(new ActionListener() {
 		
-		//			@Override
-					public void actionPerformed(ActionEvent e) {
-		
-						divisionRowForSpectralLineApertureFrame = new DivisionRowForSpectralLineApertureFrame();
-						divisionRowForSpectralLineApertureFrame.setVisible(true);
-						divisionRowForSpectralLineApertureFrame.toFront();
-						divisionRowForSpectralLineApertureFrame.repaint();
-					}
-				});
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowForSpectralLineApertureFrame = new DivisionRowForSpectralLineApertureFrame();
+					divisionRowForSpectralLineApertureFrame.setVisible(true);
+					divisionRowForSpectralLineApertureFrame.toFront();
+					divisionRowForSpectralLineApertureFrame.repaint();
+				}
+			});
 	
 	btnRapportoTraFlusso.addActionListener(new ActionListener() {
 		
-		//			@Override
-					public void actionPerformed(ActionEvent e) {
-		
-						divisionRowContinuousFluxFrame = new DivisionRowContinuousFluxFrame();
-						divisionRowContinuousFluxFrame.setVisible(true);
-						divisionRowContinuousFluxFrame.toFront();
-						divisionRowContinuousFluxFrame.repaint();
-					}
-				});
-	}
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowContinuousFluxFrame = new DivisionRowContinuousFluxFrame();
+					divisionRowContinuousFluxFrame.setVisible(true);
+					divisionRowContinuousFluxFrame.toFront();
+					divisionRowContinuousFluxFrame.repaint();
+				}
+			});
+}
 //	
 
 	private void close(){

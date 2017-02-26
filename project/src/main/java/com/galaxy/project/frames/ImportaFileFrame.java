@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -19,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.galaxy.project.model.AFlux;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.parser2.CSVParsingController;
 import com.galaxy.project.parser2.csvparser.ApertureFluxCSVParser;
@@ -71,11 +69,8 @@ public class ImportaFileFrame extends JFrame {
 
 		panel.setLayout(null);
 		
-		// Bottone Importa
 		btnImportaFile.setBounds(544, 349, 102, 25);
 		panel.add(btnImportaFile);
-		
-		// Bottoni Inserisci
 		
 		btnFileGalassia.setBounds(12, 41, 113, 25);
 		panel.add(btnFileGalassia);
@@ -136,9 +131,6 @@ public class ImportaFileFrame extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2-this.getHeight()/2);
 	}
-	
-//	private void updateFields(){
-//	}
 	
 	// Inizializzazione Listener Bottoni
 	private void addActionListener() {
@@ -227,7 +219,6 @@ public class ImportaFileFrame extends JFrame {
 					labelErroreGalassia.setForeground(Color.red);;
 					labelErroreGalassia.setText("Inserire il file relativo alle galassie");
 				}
-				// instazione i vari parser dei CSV fornendo il percorso di ogni file
 				
 				if(rowFluxCSVFile.length()>0) {
 					rowFluxParser = new RowFluxCSVParser(rowFluxCSVFile);

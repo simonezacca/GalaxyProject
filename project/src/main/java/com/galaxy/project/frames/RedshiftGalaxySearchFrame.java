@@ -20,9 +20,6 @@ import com.galaxy.project.model.Galaxy;
 	
 public class RedshiftGalaxySearchFrame extends JFrame {
 	
-		//TODO Si può ricercare sia per redshift con valore maggiore uguale oppure con valore minore o uguale. 
-		// Pensare ad una soluzione
-	
 		private static final long serialVersionUID = 1L; 
 		
 		private RedshiftGalaxySearchFrameController controller = new RedshiftGalaxySearchFrameController(this);
@@ -39,9 +36,6 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		private JButton btnSearchGalaxyForGreaterRedshift;
 		private JButton btnSearchGalaxyForLowerRedshift;
 		private JTable tableGalassiaRedshift = new JTable();
-		private String[] columns = { "Galassia", "Redshift" };
-		private String[][] data = {{"NomeGalassia1", "Redshift1"},
-								   {"NomeGalassia2", "Redshift2"}};
 
 		private String greaterRedshift,lowerRedshift;
 		private float gRedshift,lRedshift;
@@ -63,7 +57,7 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		panel.add(scrollPane);
 		
 		centerFrame();
-		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
+		addActionListener(); 
 		
 		this.setVisible(true);
 
@@ -74,37 +68,30 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 
 		panel.setLayout(null);
 
-		// Etichetta Inserisci Galassia
 		searchForGreaterRedshiftLabel = new JLabel("Ricerca per valori maggiori/uguali di redshift:");
 		searchForGreaterRedshiftLabel.setBounds(10, 10, 324, 25);
 		panel.add(searchForGreaterRedshiftLabel);
 
-		// Etichetta Inserisci Galassia
 		searchForLowerRedshiftLabel = new JLabel("Ricerca per valori minori/uguali di redshift:");
 		searchForLowerRedshiftLabel.setBounds(10, 63, 324, 25);
 		panel.add(searchForLowerRedshiftLabel);
 		
-		// Campo Valore Redshift Maggiore/Uguale
 		greaterRedshiftField = new JTextField(20);
 		greaterRedshiftField.setBounds(340, 10, 160, 25);
 		panel.add(greaterRedshiftField);
 
-		// Campo Valore Redshift Maggiore/Uguale
 		lowerRedshiftField = new JTextField(20);
 		lowerRedshiftField.setBounds(340, 63, 160, 25);
 		panel.add(lowerRedshiftField);
 		
-		// Bottone Per Ricercare
 		btnSearchGalaxyForGreaterRedshift = new JButton("Ricerca");
 		btnSearchGalaxyForGreaterRedshift.setBounds(522, 10, 160, 25);
 		panel.add(btnSearchGalaxyForGreaterRedshift);
 		
-		// Bottone Per Ricercare
 		btnSearchGalaxyForLowerRedshift = new JButton("Ricerca");
 		btnSearchGalaxyForLowerRedshift.setBounds(522, 63, 160, 25);
 		panel.add(btnSearchGalaxyForLowerRedshift);
 		
-		// TODO Fare Tabella Galassia | Redshift
 	}
 	
 	private void centerFrame() {

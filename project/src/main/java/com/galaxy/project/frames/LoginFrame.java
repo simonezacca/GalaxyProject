@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,7 +29,6 @@ public class LoginFrame extends JFrame {
 	private JTextField userText;
 	private JLabel passwordLabel;
 	private JPasswordField passwordText;
-	private JButton btnRegister;
 	private JButton btnLogin;
 	private String userIDString;
 	private String passwordString;
@@ -40,7 +38,7 @@ public class LoginFrame extends JFrame {
 		
 		this.setSize(300, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.add(panel);
+		getContentPane().add(panel);
 		placeComponents(panel);
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
@@ -72,15 +70,10 @@ public class LoginFrame extends JFrame {
 		passwordText = new JPasswordField(20);
 		passwordText.setBounds(100, 40, 160, 25);
 		panel.add(passwordText);
-
-		// Bottone Per Registrarsi
-		btnRegister = new JButton("Registra");
-		btnRegister.setBounds(180, 80, 80, 25);
-		panel.add(btnRegister);
 		
 		// Bottone Per Il Login
 		btnLogin = new JButton("Login");
-		btnLogin.setBounds(10, 80, 80, 25);
+		btnLogin.setBounds(10, 76, 250, 25);
 //		btnLogin.addActionListener(new LoginListener(this,userText,passwordText));
 		panel.add(btnLogin);
 		

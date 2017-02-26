@@ -59,14 +59,6 @@ public class SpectralLine implements Serializable, IPersistente {
 	@Column(name="spectral_line_order", nullable=false)
 	protected int order;
 	
-//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinTable(name = "spectralline_galaxy", joinColumns = {
-//			@JoinColumn(name = "spectral_line_id", nullable = false, updatable = true) },
-//			inverseJoinColumns = { @JoinColumn(name = "galaxy_id",
-//					nullable = false, updatable = true) })
-//	
-//	protected List<Galaxy> galaxies;	
-	
 	@Override
 	public String toString() {
 		return "[" + atom + atomicNumber + "]" + lineLength;

@@ -2,11 +2,8 @@ package com.galaxy.project.controller;
 
 import java.util.List;
 
-import com.galaxy.project.frames.GalaxySearchFrame;
-import com.galaxy.project.frames.RadiusGalaxySearchFrame;
 import com.galaxy.project.frames.RedshiftGalaxySearchFrame;
 import com.galaxy.project.model.Galaxy;
-import com.galaxy.project.model.Position;
 import com.galaxy.project.tools.GalaxiesFinder;
 
 public class RedshiftGalaxySearchFrameController {

@@ -18,7 +18,6 @@ public class RedshiftGalaxyTableModel extends AbstractTableModel {
 	String[] headerTable = {"Galassia", "Redshift"};
 
 	public RedshiftGalaxyTableModel(List<Galaxy> newGalaxiesList) {
-		// Richiama il costruttore della superclasse
 		super();
 		galaxies = newGalaxiesList;
 	}

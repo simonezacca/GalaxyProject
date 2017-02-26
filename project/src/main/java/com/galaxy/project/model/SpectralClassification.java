@@ -6,12 +6,6 @@ import java.util.NoSuchElementException;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.galaxy.project.persistence.IPersistente;
@@ -68,7 +62,7 @@ public class SpectralClassification implements IPersistente {
 	}
 	
 	public Galaxy getGalaxyByName(String name){
-		for(Galaxy aGalaxy: this.galaxies){				// for aGalaxy in this.galaxies
+		for(Galaxy aGalaxy: this.galaxies){				
 			if(aGalaxy.getName().equals(name)){
 				return aGalaxy;
 			}

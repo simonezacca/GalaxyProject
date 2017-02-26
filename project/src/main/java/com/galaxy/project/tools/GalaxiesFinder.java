@@ -73,20 +73,18 @@ public class GalaxiesFinder {
 		List<Galaxy> provaGalassietwo = gFinder.ricercaGalassieDentroRaggio(p,radiustwo);
 		List<Galaxy> provaGalassiethree = gFinder.ricercaGalassieDentroRaggio(p,radiusthree);
 		
-//		System.out.println(provaGalassie.size());
-//		for (Galaxy g : provaGalassie) {
-//			System.out.println(g);
-//		}
-//		
-//		System.out.println(provaGalassietwo.size());
-//		for (Galaxy g : provaGalassietwo) {
-//			System.out.println(g);
-//		}
-//		System.out.println(provaGalassiethree.size());
-//		for (Galaxy g : provaGalassiethree) {
-//			System.out.println(g);
-//		}
+		System.out.println(provaGalassie.size());
+		for (Galaxy g : provaGalassie) {
+			System.out.println(g);
+		}
 		
-		List<Galaxy> provaGalassieRedshift = gFinder.ricercaGalassiePerRedshiftMaggiore(redshift);
+		System.out.println(provaGalassietwo.size());
+		for (Galaxy g : provaGalassietwo) {
+			System.out.println(g);
+		}
+		System.out.println(provaGalassiethree.size());
+		for (Galaxy g : provaGalassiethree) {
+			System.out.println(g);
+		}
 	}
 }
