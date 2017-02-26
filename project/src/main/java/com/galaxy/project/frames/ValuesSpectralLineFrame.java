@@ -1,29 +1,28 @@
 package com.galaxy.project.frames;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListCellRenderer;
 
 import com.galaxy.project.controller.ValuesSpectralLineFrameController;
-import com.galaxy.project.frames.tablemodel.RedshiftGalaxyTableModel;
+import com.galaxy.project.frames.tablemodel.RadiusGalaxyTableModel;
 import com.galaxy.project.frames.tablemodel.RigheSpettraliTableModel;
+import com.galaxy.project.frames.tablemodel.ValuesSpectralLineTableModel;
+import com.galaxy.project.model.AFlux;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
 import com.galaxy.project.model.SpectralLine;
-import com.galaxy.project.persistence.GalaxyDAO;
-import com.galaxy.project.tools.PositionHelper;
 	
 public class ValuesSpectralLineFrame extends JFrame {
 	
@@ -38,7 +37,8 @@ public class ValuesSpectralLineFrame extends JFrame {
 		// Dichiarazione Componenti Grafici
 		private JTable tableRigheSpettrali = new JTable();
 		private JTable tableFlussi = new JTable();
-		
+		private JButton btnSelezionaGalassia = new JButton("Seleziona");
+		private JComboBox<Galaxy> cbGalaxies;
 		public ValuesSpectralLineFrame() {
 			
 		super(titolo);
@@ -52,34 +52,16 @@ public class ValuesSpectralLineFrame extends JFrame {
 		tableFlussi.setBounds(52, 159, 533, 350);
 		tableFlussi.setPreferredScrollableViewportSize(new Dimension(450,63));
 		tableFlussi.setFillsViewportHeight(true);
-		//TODO
-//		List<AFlux> fluxes = controller.doValuesSpectralLine();
-//		ValuesSpectralLineTableModel jmodel = new RadiusGalaxyTableModel(galaxyOnRadius);
-//		tableFlussi.setModel(jmodel);
 		
 		JScrollPane spFlussi = new JScrollPane(tableFlussi);
 		spFlussi.setBounds(272, 33, 419, 350);
 		panel.add(spFlussi);
 		
-		tableRigheSpettrali = new JTable(null);
-		tableRigheSpettrali.setBounds(52, 159, 533, 350);
-		tableRigheSpettrali.setPreferredScrollableViewportSize(new Dimension(450,63));
-		tableRigheSpettrali.setFillsViewportHeight(true);
-		List<SpectralLine> spectralLines = controller.getRigheSpettrali();
-		RigheSpettraliTableModel jmodel = new RigheSpettraliTableModel(spectralLines);
-		tableRigheSpettrali.setModel(jmodel);
-
-		
-		
-		JScrollPane spRigheSpettrali = new JScrollPane(tableRigheSpettrali);
-		spRigheSpettrali.setBounds(10, 68, 242, 193);
-		panel.add(spRigheSpettrali);
-		
 		List<Galaxy> galaxies = controller.getListaGalassie();
 
-		JComboBox<String> cbGalaxies = new JComboBox<String>(); //new JComboBox(lista Galassie)
+		cbGalaxies = new JComboBox<Galaxy>(); //new JComboBox(lista Galassie)
 		for (Galaxy g : galaxies) {
-				cbGalaxies.addItem(g.getName());
+				cbGalaxies.addItem(g);
 		}
 				
 		cbGalaxies.setForeground(new Color(0, 0, 0));
@@ -90,6 +72,9 @@ public class ValuesSpectralLineFrame extends JFrame {
 		JLabel lblSelezionaGalassia = new JLabel("Seleziona Galassia:");
 		lblSelezionaGalassia.setBounds(10, 18, 100, 14);
 		panel.add(lblSelezionaGalassia);
+		
+		btnSelezionaGalassia.setBounds(10, 68, 242, 23);
+		panel.add(btnSelezionaGalassia);
 
 		
 		centerFrame();
@@ -114,10 +99,20 @@ public class ValuesSpectralLineFrame extends JFrame {
 	// Inizializzazione Listener Bottoni
 	private void addActionListener() {
 		
+		btnSelezionaGalassia.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Galaxy g = (Galaxy) cbGalaxies.getSelectedItem();
+				List<AFlux> fluxes = g.getFluxes();
+				ValuesSpectralLineTableModel jmodel = new ValuesSpectralLineTableModel(fluxes);
+				tableFlussi.setModel(jmodel);
+			}
+		} );
+
 	}
 	
 	private void close(){
 		this.setVisible(false);
 	}
-	
 }

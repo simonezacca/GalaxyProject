@@ -16,7 +16,7 @@ public class ValuesSpectralLineTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	List<AFlux> fluxes = new ArrayList<AFlux>();
-	String[] headerTable = {"Limite", "Valore","Errore"};
+	String[] headerTable = {"Limite", "Valore","Errore", "Spectral Line"};
 
 	public ValuesSpectralLineTableModel(List<AFlux> newFluxesList) {
 		// Richiama il costruttore della superclasse
@@ -25,7 +25,7 @@ public class ValuesSpectralLineTableModel extends AbstractTableModel {
 	}
 
 	public int getColumnCount() {
-		return 3;
+		return 4;
 	}
 
 	public int getRowCount() {
@@ -55,6 +55,8 @@ public class ValuesSpectralLineTableModel extends AbstractTableModel {
 				return ((AFlux) (fluxes.get(row))).getFluxValue(); 
 			} else if (col==2) {
 				return ((AFlux) (fluxes.get(row))).getFluxError();
+			} else if (col==3) {
+				return ((AFlux) (fluxes.get(row))).getSpectralLine();
 			}
 		}
 		return "";
