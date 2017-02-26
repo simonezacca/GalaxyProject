@@ -27,13 +27,13 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		
 		private DivisionRowContinuousFluxController controller = new DivisionRowContinuousFluxController(this);
 		
-		private final static String titolo = "Ricerca Oggetto all'interno di un raggio";
+		private final static String titolo = "Rapporto tra flusso e continuo";
 		private final JPanel panel = new JPanel();
 		
 		// Dichiarazione Componenti Grafici
 		private JLabel lblSelezionaGalassia;
 		private JLabel lblRigaSpettrale;
-		private JLabel lblValoreRapporto;
+		private JLabel lblValoreDelRapporto;
 		private JLabel lblValoreFlussoContinuo;
 		private JButton btnValueDivision;
 		private JComboBox cbGalassia;
@@ -71,6 +71,10 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		cbFlussoRiga.setBounds(10, 97, 113, 20);
 		panel.add(cbFlussoRiga);
 		
+		JLabel lblDivisionvalue = new JLabel("DivisionValue");
+		lblDivisionvalue.setBounds(289, 133, 95, 14);
+		panel.add(lblDivisionvalue);
+		
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
 		
@@ -105,9 +109,9 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		panel.add(lblRigaSpettrale);
 		
 		// Etichetta Inserisci RDsign
-		lblValoreRapporto = new JLabel("Valore Del Rapporto");
-		lblValoreRapporto.setBounds(152, 173, 113, 25);
-		panel.add(lblValoreRapporto);
+		lblValoreDelRapporto = new JLabel("Valore Del Rapporto ( Flusso Riga / Flusso Continuo): ");
+		lblValoreDelRapporto.setBounds(10, 128, 257, 25);
+		panel.add(lblValoreDelRapporto);
 		// Etichetta Inserisci RDs
 		lblValoreFlussoContinuo = new JLabel("Valore Flusso Continuo:");
 		lblValoreFlussoContinuo.setBounds(156, 66, 113, 25);
@@ -115,7 +119,7 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		
 		// Bottone Per Ricercare
 		btnValueDivision = new JButton("Calcola");
-		btnValueDivision.setBounds(199, 137, 70, 25);
+		btnValueDivision.setBounds(279, 95, 70, 25);
 		panel.add(btnValueDivision);
 		
 		// TODO Tabella Nome Galassia | Distanza

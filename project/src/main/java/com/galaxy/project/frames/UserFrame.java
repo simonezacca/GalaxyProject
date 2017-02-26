@@ -1,5 +1,7 @@
 package com.galaxy.project.frames;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -12,10 +14,29 @@ import javax.swing.JPanel;
 class UserFrame extends AGenericUserFrame {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	RegisterFrame registerFrame = null;
+	ImportaFileFrame importaFileFrame = null;
+	GalaxySearchFrame galaxySearchFrame = null;
+	RadiusGalaxySearchFrame radiusGalaxySearchFrame = null;
+	RedshiftGalaxySearchFrame redshiftGalaxySearchFrame = null;
+	ValuesSpectralLineFrame valuesSpectralLineFrame = null; 
+	DivisionRowFrame divisionRowFrame = null;
+	DivisionRowForSpectralLineFrame divisionRowForSpectralLineFrame = null;
+	DivisionRowForSpectralLineApertureFrame divisionRowForSpectralLineApertureFrame = null;
+	DivisionRowContinuousFluxFrame divisionRowContinuousFluxFrame = null;
+	
 	private static String titolo = "Pannello di Amministrazione";
 	private JPanel panel = new JPanel();
-
+	private JButton btnRicercaOggettoPerNome;
+	private JButton btnRicercaRadius;
+	private JButton btnRicercaPerRedshift;
+	private JButton btnValoreDelleLinee;
+	private JButton btnValoreDeiRapportiDelleRighe;
+	private JButton btnValoreDeiRapportiPerGruppo;
+	private JButton btnValoreDeiRapportiPerAperture;
+	private JButton btnRapportoTraFlusso;
+	
 	public UserFrame() {
 
 		super(titolo);
@@ -23,67 +44,156 @@ class UserFrame extends AGenericUserFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.getContentPane().add(panel);
 		placeComponents(panel);
-		
-		JButton btnRicercaOggettoPer = new JButton("Ricerca Oggetto Per Nome");
-		btnRicercaOggettoPer.setBounds(86, 12, 645, 25);
-		panel.add(btnRicercaOggettoPer);
-		
-		JButton btnRicercaOggettoAllinterno = new JButton("Ricerca Oggetto All'Interno Di Un Raggio");
-		btnRicercaOggettoAllinterno.setBounds(86, 49, 645, 25);
-		panel.add(btnRicercaOggettoAllinterno);
-		
-		JButton btnRicercaOggettoPer_1 = new JButton("Ricerca Oggetto Per Caratteristiche Fisiche");
-		btnRicercaOggettoPer_1.setBounds(86, 84, 645, 25);
-		panel.add(btnRicercaOggettoPer_1);
-		
-		JButton btnValoreDelleLinee = new JButton("Valore Delle Linee Spettrali");
-		btnValoreDelleLinee.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnValoreDelleLinee.setBounds(86, 118, 645, 25);
-		panel.add(btnValoreDelleLinee);
-		
-		JButton btnValoreDeiRapporti = new JButton("Valore Dei Rapporti Delle Righe");
-		btnValoreDeiRapporti.setBounds(86, 151, 645, 25);
-		panel.add(btnValoreDeiRapporti);
-		
-		JButton btnValoreDeiRapporti_1 = new JButton("Valore Dei Rapporti Delle Righe Per Gruppo Spettrale");
-		btnValoreDeiRapporti_1.setBounds(86, 185, 645, 25);
-		panel.add(btnValoreDeiRapporti_1);
-		
-		JButton btnRapportoTraFlusso = new JButton("Rapporto Tra Flusso e Continuo");
-		btnRapportoTraFlusso.setBounds(86, 222, 645, 25);
-		panel.add(btnRapportoTraFlusso);
+		centerFrame();
 		close();
-
+		addActionListener();
 		this.setVisible(true);
 	}
 	
-
+	private void centerFrame() {
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getWidth()/2, dim.height/2-this.getHeight()/2);
+	}
 
 	private void placeComponents(JPanel panel) {
 		panel.setLayout(null);
+		
+		btnRicercaOggettoPerNome = new JButton("Ricerca Oggetto Per Nome");
+		btnRicercaOggettoPerNome.setBounds(86, 11, 645, 25);
+		panel.add(btnRicercaOggettoPerNome);
+		
+		btnRicercaRadius = new JButton("Ricerca Oggetto All'Interno Di Un Raggio");
+		btnRicercaRadius.setBounds(86, 48, 645, 25);
+		panel.add(btnRicercaRadius);
+		
+		btnRicercaPerRedshift = new JButton("Ricerca Oggetto Per Caratteristiche Fisiche");
+		btnRicercaPerRedshift.setBounds(86, 83, 645, 25);
+		panel.add(btnRicercaPerRedshift);
+		
+		btnValoreDelleLinee = new JButton("Valore Delle Linee Spettrali");
+		btnValoreDelleLinee.setBounds(86, 117, 645, 25);
+		panel.add(btnValoreDelleLinee);
+		
+		btnValoreDeiRapportiDelleRighe = new JButton("Valore Dei Rapporti Delle Righe");
+		btnValoreDeiRapportiDelleRighe.setBounds(86, 153, 645, 25);
+		panel.add(btnValoreDeiRapportiDelleRighe);
+		
+		btnValoreDeiRapportiPerGruppo = new JButton("Valore Dei Rapporti Delle Righe per Gruppo Spettrale");
+		btnValoreDeiRapportiPerGruppo.setBounds(86, 189, 645, 25);
+		panel.add(btnValoreDeiRapportiPerGruppo);
+		
+		btnValoreDeiRapportiPerAperture = new JButton("Valore Dei Rapporti Delle Righe Per Gruppo Spettrale Per Una Determinata Aperture");
+		btnValoreDeiRapportiPerAperture.setBounds(86, 225, 645, 25);
+		panel.add(btnValoreDeiRapportiPerAperture);
+		
+		btnRapportoTraFlusso = new JButton("Rapporto Tra Flusso e Continuo");
+		btnRapportoTraFlusso.setBounds(86, 262, 645, 25);
+		panel.add(btnRapportoTraFlusso);
+
 
 	}
 
-//	private class GestioneServiziListener implements ActionListener {
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			@SuppressWarnings("unused")
-//			ServicesFrame sf = new ServicesFrame();
-//		}
-//	}
-//
-//	private class ConsultaLogListener implements ActionListener {
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			@SuppressWarnings("unused")
-//			LogFrame lf = new LogFrame();
-//		}
-//	}
+	// Inizializzazione Listener Bottoni
+	
+	private void addActionListener() {
+		
+		btnRicercaOggettoPerNome.addActionListener(new ActionListener() {
+			
+//			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				galaxySearchFrame = new GalaxySearchFrame();
+				galaxySearchFrame.setVisible(true);
+				galaxySearchFrame.toFront();
+				galaxySearchFrame.repaint();
+			}
+		});
+
+	btnRicercaRadius.addActionListener(new ActionListener() {
+				
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					radiusGalaxySearchFrame = new RadiusGalaxySearchFrame();
+					radiusGalaxySearchFrame.setVisible(true);
+					radiusGalaxySearchFrame.toFront();
+					radiusGalaxySearchFrame.repaint();
+				}
+			});
+
+	btnRicercaPerRedshift.addActionListener(new ActionListener() {
+		
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					redshiftGalaxySearchFrame = new RedshiftGalaxySearchFrame();
+					redshiftGalaxySearchFrame.setVisible(true);
+					redshiftGalaxySearchFrame.toFront();
+					redshiftGalaxySearchFrame.repaint();
+				}
+			});
+	
+	btnValoreDelleLinee.addActionListener(new ActionListener() {
+		
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					valuesSpectralLineFrame = new ValuesSpectralLineFrame();
+					valuesSpectralLineFrame.setVisible(true);
+					valuesSpectralLineFrame.toFront();
+					valuesSpectralLineFrame.repaint();
+				}
+			});
+	
+	btnValoreDeiRapportiDelleRighe.addActionListener(new ActionListener() {
+		
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowFrame = new DivisionRowFrame();
+					divisionRowFrame.setVisible(true);
+					divisionRowFrame.toFront();
+					divisionRowFrame.repaint();
+				}
+			});
+	
+	btnValoreDeiRapportiPerGruppo.addActionListener(new ActionListener() {
+		
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowForSpectralLineFrame = new DivisionRowForSpectralLineFrame();
+					divisionRowForSpectralLineFrame.setVisible(true);
+					divisionRowForSpectralLineFrame.toFront();
+					divisionRowForSpectralLineFrame.repaint();
+				}
+			});
+	
+	btnValoreDeiRapportiPerAperture.addActionListener(new ActionListener() {
+		
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowForSpectralLineApertureFrame = new DivisionRowForSpectralLineApertureFrame();
+					divisionRowForSpectralLineApertureFrame.setVisible(true);
+					divisionRowForSpectralLineApertureFrame.toFront();
+					divisionRowForSpectralLineApertureFrame.repaint();
+				}
+			});
+	
+	btnRapportoTraFlusso.addActionListener(new ActionListener() {
+		
+	//			@Override
+				public void actionPerformed(ActionEvent e) {
+	
+					divisionRowContinuousFluxFrame = new DivisionRowContinuousFluxFrame();
+					divisionRowContinuousFluxFrame.setVisible(true);
+					divisionRowContinuousFluxFrame.toFront();
+					divisionRowContinuousFluxFrame.repaint();
+				}
+			});
+}
+//	
 
 	private void close(){
 		

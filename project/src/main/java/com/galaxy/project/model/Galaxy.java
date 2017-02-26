@@ -78,7 +78,7 @@ public class Galaxy implements IPersistente {
 	@Embedded
 	protected SpectralClassification spectralClassification;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "galaxy", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "galaxy", cascade=CascadeType.ALL)
 	protected List<AFlux> fluxes;
 	
 	public Galaxy(String name, Float redshift2, Float distance2,

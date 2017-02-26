@@ -1,6 +1,9 @@
 package com.galaxy.project.tools;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -15,7 +18,7 @@ public class GalaxiesFinder {
 	GalaxyDAO gdao = null;
 	
 	public GalaxiesFinder() {
-		// TODO Auto-generated constructor stub
+		gdao = new GalaxyDAO();
 	}
 	
 	public Galaxy ricercaGalassiaPerNome(String galaxyNameString) {		
@@ -28,19 +31,60 @@ public class GalaxiesFinder {
 				
 	}
 	
-	public void ricercaGalassieDentroRaggio(Position p) {
-		// TODO Auto-generated constructor stub
+	public List<Galaxy> ricercaGalassieDentroRaggio(Position p, float radius) {
+		List<Galaxy> resultSetGalaxies = new ArrayList<Galaxy>();
+		List<Galaxy> galaxies = gdao.getAll();
+		for (Galaxy g : galaxies) {
+			if(PositionHelper.computeDistance(p, g.getPos()) <= radius)
+				resultSetGalaxies.add(g);
+		}
+		return resultSetGalaxies;
 		
 	}
 	
-	public void ricercaGalassiePerRedshiftMaggiore(Long redshift) {
-		// TODO Auto-generated constructor stub		
-		
+	public List<Galaxy> ricercaGalassiePerRedshiftMaggiore(Float redshift) {
+		List<Galaxy> resultSetGalaxies = new ArrayList<Galaxy>();
+		List<Galaxy> galaxies = gdao.getAll();
+		for (Galaxy g : galaxies) {
+			if(g.getRedshift() >= redshift)
+				resultSetGalaxies.add(g);
+		}
+		return resultSetGalaxies;	
 	}
 	
-	public void ricercaGalassiePerRedshiftMinore(Long redshift) {
-		// TODO Auto-generated constructor stub		
-		
+	public List<Galaxy> ricercaGalassiePerRedshiftMinore(Float redshift) {
+		List<Galaxy> resultSetGalaxies2 = new ArrayList<Galaxy>();
+		List<Galaxy> galaxies2 = gdao.getAll();
+		for (Galaxy g : galaxies2) {
+			if(g.getRedshift() <= redshift)
+				resultSetGalaxies2.add(g);
+		}
+		return resultSetGalaxies2;	
 	}
-	
+
+	public static void main(String[] args) {
+		Position p = new Position(4, 33, (float)11.094, '+', 5, 21, (float)15.7104);
+		float radius = 1F;
+		float radiustwo = 0.1F;
+		float radiusthree = 0.01F;
+		float redshift = 0.1F;
+		GalaxiesFinder gFinder = new GalaxiesFinder();
+		List<Galaxy> provaGalassie = gFinder.ricercaGalassieDentroRaggio(p,radius);
+		List<Galaxy> provaGalassietwo = gFinder.ricercaGalassieDentroRaggio(p,radiustwo);
+		List<Galaxy> provaGalassiethree = gFinder.ricercaGalassieDentroRaggio(p,radiusthree);
+		
+		System.out.println(provaGalassie.size());
+		for (Galaxy g : provaGalassie) {
+			System.out.println(g);
+		}
+		
+		System.out.println(provaGalassietwo.size());
+		for (Galaxy g : provaGalassietwo) {
+			System.out.println(g);
+		}
+		System.out.println(provaGalassiethree.size());
+		for (Galaxy g : provaGalassiethree) {
+			System.out.println(g);
+		}
+	}
 }

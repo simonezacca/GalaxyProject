@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
+import com.galaxy.project.frames.tablemodel.RadiusGalaxyTableModel;
+import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
 	
 public class RadiusGalaxySearchFrame extends JFrame {
@@ -49,7 +52,7 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		private String rdd;
 		private String rdm;
 		private String rds;
-		
+		private String radius;
 		private int positionRAh;
 		private int positionRAm;
 		private float positionRAs;
@@ -57,12 +60,10 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		private int positionRDd;
 		private int positionRDm;
 		private float positionRDs;
+		private float limitRadius;
 		private JLabel lblInserisciDati = new JLabel("Inserisci tutti i dati relativi alla posizione:");
 		private JTable tableGalassiaDistanza;
-		private String[] columns = { "Galassia", "Distanza" };
-		private String[][] data = {{"NomeGalassia1", "Distanza1"},
-								   {"NomeGalassia2", "Distanza2"}};
-		
+		private JTextField fieldRadius;	
 		
 		public RadiusGalaxySearchFrame() {
 			
@@ -71,39 +72,28 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().add(panel);
 		placeComponents(panel);
-		
-		
-		tableGalassiaDistanza = new JTable(data, columns);
+		tableGalassiaDistanza = new JTable(null);	
 		tableGalassiaDistanza.setBounds(52, 159, 533, 350);
 		tableGalassiaDistanza.setPreferredScrollableViewportSize(new Dimension(450,63));
 		tableGalassiaDistanza.setFillsViewportHeight(true);
-		
 		JScrollPane scrollPane = new JScrollPane(tableGalassiaDistanza);
-		scrollPane.setBounds(52, 159, 533, 350);
-		panel.add(scrollPane);
-		
+		scrollPane.setBounds(52, 194, 533, 315);
+		panel.add(scrollPane);	
+		JLabel lblRaggio = new JLabel("Raggio:");
+		lblRaggio.setBounds(454, 107, 58, 15);
+		panel.add(lblRaggio);
+	
 		centerFrame();
-		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
+		addActionListener(); 
 		
 		this.setVisible(true);
 
 	}
 	
-	// Posizionamento Componenti Grafici
 	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
 
-//			Coordinate Spaziali:
-//			2MASS Right Ascension 2000 hours
-//			2MASS Right Ascension 2000 minutes
-//			2MASS Right Ascension 2000 seconds
-//			2MASS Right Declination 2000 sign
-//			2MASS Right Declination 2000 degrees
-//			2MASS Right Declination 2000 minutes
-//			2MASS Right Declination 2000 seconds
-		
-		// Etichetta inserimento dati
 		lblInserisciDati.setBounds(10, 12, 352, 15);
 		panel.add(lblInserisciDati);
 		
@@ -169,13 +159,14 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		fieldRDs.setBounds(361, 102, 68, 25);
 		panel.add(fieldRDs);
 		
+		fieldRadius = new JTextField(20);
+		fieldRadius.setBounds(517, 99, 68, 25);
+		panel.add(fieldRadius);
+		
 		// Bottone Per Ricercare
 		btnSearchGalaxyForRadius = new JButton("Ricerca");
-		btnSearchGalaxyForRadius.setBounds(454, 102, 131, 25);
-		panel.add(btnSearchGalaxyForRadius);
-		
-		// TODO Tabella Nome Galassia | Distanza
-		
+		btnSearchGalaxyForRadius.setBounds(52, 149, 533, 25);
+		panel.add(btnSearchGalaxyForRadius);		
 	}
 	
 	private void centerFrame() {
@@ -191,6 +182,7 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		rdd = fieldRDd.getText();
 		rdm = fieldRDm.getText();
 		rds = fieldRDs.getText();
+		radius = fieldRadius.getText();
 	}
 	
 	private void convertFields(){
@@ -201,8 +193,9 @@ public class RadiusGalaxySearchFrame extends JFrame {
 		positionRDd = Integer.valueOf(rdd);
 		positionRDm = Integer.valueOf(rdm);
 		positionRDs = Float.valueOf(rds);
+		limitRadius = Float.valueOf(radius);
 	}
-	// Inizializzazione Listener Bottoni
+
 	private void addActionListener() {
 		
 		btnSearchGalaxyForRadius.addActionListener(new ActionListener() {
@@ -212,7 +205,9 @@ public class RadiusGalaxySearchFrame extends JFrame {
 				updateFields();
 				convertFields();
 				p = new Position(positionRAh, positionRAm, positionRAs, positionRDsign, positionRDd, positionRDm, positionRDs);
-				controller.doRicercaGalassieDentroRaggio(p);
+				List<Galaxy> galaxyOnRadius = controller.doRicercaGalassieDentroRaggio(p, limitRadius);
+				RadiusGalaxyTableModel jmodel = new RadiusGalaxyTableModel(galaxyOnRadius);
+				tableGalassiaDistanza.setModel(jmodel);
 			}
 		});
 	}

@@ -23,7 +23,7 @@ public class  AuthSystem {
 		Utente u = udao.cercaUtentePerUserID(userID);
 		if (u==null) 
 			return false; // user id non esistente
-		return (u != null && u.getPassword().equals(password)); // ritorno un oggetto diverso da null e verifico password
+		return (u != null && u.getPassword().equals(password));
 	}
 
 	// Se l'user ID esiste ritorna true, altrimenti false

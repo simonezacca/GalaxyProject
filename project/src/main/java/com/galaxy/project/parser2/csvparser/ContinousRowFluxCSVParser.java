@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.apache.commons.csv.CSVRecord;
 
-import com.galaxy.project.model.AFlux;
 import com.galaxy.project.model.ContinuousFlux;
 import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.parser2.csvheader.ContinousRowFluxCSVHeader;

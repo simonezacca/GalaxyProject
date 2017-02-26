@@ -11,13 +11,11 @@ import com.galaxy.project.model.AFlux;
 import com.galaxy.project.model.ContinuousFlux;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.RowFlux;
-import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.parser2.csvparser.ApertureFluxCSVParser;
 import com.galaxy.project.parser2.csvparser.ContinousRowFluxCSVParser;
 import com.galaxy.project.parser2.csvparser.GalaxyCSVParser;
 import com.galaxy.project.parser2.csvparser.RowFluxCSVParser;
 import com.galaxy.project.parser2.csvparser.RowFluxSpitzerCSVParser;
-import com.galaxy.project.persistence.FluxDAO;
 import com.galaxy.project.persistence.GalaxyDAO;
 
 public class CSVParsingController {
@@ -231,22 +229,11 @@ public class CSVParsingController {
 		for (Iterator<Entry<String, Galaxy>> iter = map.entrySet().iterator(); iter.hasNext();) {
 			Entry<String,Galaxy> entry1 = iter.next();
 			
-			String galaxyKey1 = entry1.getKey();
+			// String galaxyKey1 = entry1.getKey();
 			Galaxy galaxyModel1 = entry1.getValue();
 			gdao.saveOrUpdate(galaxyModel1);
 		}
-		
-//		FluxDAO rfdao = new FluxDAO();
-//		Map<String, List<RowFlux>> rowFluxMap = rowFluxParser.getParsedMap();
-//		for (Map.Entry<String, List<RowFlux>> entry2 : rowFluxMap.entrySet()) {
-//			
-//			String rowFluxKey = entry2.getKey();
-//			RowFlux rowFluxModel = (RowFlux) entry2.getValue().get(0);
-//			
-//			rfdao.saveOrUpdate(rowFluxModel);
-//		}
-		
-		
+	
 	}
 
 }

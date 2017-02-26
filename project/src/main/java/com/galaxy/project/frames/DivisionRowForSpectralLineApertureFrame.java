@@ -26,7 +26,7 @@ public class DivisionRowForSpectralLineApertureFrame extends JFrame {
 		
 		private DivisionRowForSpectralLineController controller = new DivisionRowForSpectralLineController(this);
 		
-		private final static String titolo = "Ricerca Oggetto all'interno di un raggio";
+		private final static String titolo = "Valore dei rapporti delle righe per gruppo spettrale per aperture";
 		private final JPanel panel = new JPanel();
 		
 		// Dichiarazione Componenti Grafici
@@ -35,7 +35,7 @@ public class DivisionRowForSpectralLineApertureFrame extends JFrame {
 		private JLabel lblValoreMedio;
 		private JLabel lblFlusso2;
 		private JButton btnValueDivision;
-		
+		private JLabel lblAperture;
 		private JLabel lblDeviazioneStandard;
 		private JLabel lblMediana;
 		private JLabel lblDeviazioneMediaAssoluta;
@@ -47,7 +47,7 @@ public class DivisionRowForSpectralLineApertureFrame extends JFrame {
 		private JComboBox cbRigaSpettrale;
 		private JComboBox cbFlusso1;
 		private JComboBox cbFlusso2;
-		private JLabel lblAperture;
+		
 		private JComboBox cbAperture;
 		
 		
@@ -99,7 +99,7 @@ public class DivisionRowForSpectralLineApertureFrame extends JFrame {
 		cbFlusso2.setBounds(156, 97, 70, 20);
 		panel.add(cbFlusso2);
 		
-		
+		lblAperture = new JLabel("Aperture:");
 		lblAperture.setBounds(10, 66, 70, 25);
 		panel.add(lblAperture);
 		

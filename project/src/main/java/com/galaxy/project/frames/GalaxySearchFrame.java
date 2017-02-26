@@ -29,32 +29,23 @@ public class GalaxySearchFrame extends JFrame {
 		private JLabel labelDistance;
 		private JLabel labelRedshift;
 		private JLabel labelLnev1;
-		private JLabel labelErrLum;
 		private JLabel labelMet;
 		private JLabel labelErrMet;
 		private JLabel labelPositionValue;
 		private JLabel labelDistanceValue;
 		private JLabel labelRedshiftValue;
-		private JLabel labelLumValue;
 		private JLabel labelErrLumValue;
 		private JLabel labelMetValue;
 		private JLabel labelErrMetValue;
+		private JLabel labelLnev1Value;
+		private JLabel labelLoivValue;
+		private JLabel labelLnev2Value;
+		private JLabel labelLoiv;
+		private JLabel labelLnev2;
 		private JTextField fieldGalaxy;
 		private JButton btnSearchGalaxy;
 		private String galaxyNameString;
 
-		private JLabel labelLnev1Value;
-
-		private JLabel labelLoivValue;
-
-		private JLabel labelLnev2Value;
-
-		private JLabel labelLoiv;
-
-		private JLabel labelLnev2;
-
-
-	
 		public GalaxySearchFrame() {
 			
 		super(titolo);
@@ -87,42 +78,37 @@ public class GalaxySearchFrame extends JFrame {
 		
 		// Etichetta Distanza
 		labelDistance = new JLabel("Distanza: ");
-		labelDistance.setBounds(221, 73, 83, 25);
+		labelDistance.setBounds(10, 111, 65, 25);
 		panel.add(labelDistance);
 
 		// Etichetta Redshift
 		labelRedshift = new JLabel("Redshift: ");
-		labelRedshift.setBounds(418, 73, 83, 25);
+		labelRedshift.setBounds(221, 111, 65, 25);
 		panel.add(labelRedshift);
 		
 		// Etichetta Lnev1
 		labelLnev1 = new JLabel("Lnev 1: ");
-		labelLnev1.setBounds(10, 110, 54, 25);
+		labelLnev1.setBounds(10, 147, 54, 25);
 		panel.add(labelLnev1);
 		
 		// Etichetta Lnev2
 		labelLnev2 = new JLabel("Lnev 2: ");
-		labelLnev2.setBounds(221, 110, 54, 25);
+		labelLnev2.setBounds(221, 147, 54, 25);
 		panel.add(labelLnev2);
 
 		// Etichetta Loiv
 		labelLoiv = new JLabel("Loiv :");
-		labelLoiv.setBounds(10, 147, 54, 25);
+		labelLoiv.setBounds(418, 146, 54, 25);
 		panel.add(labelLoiv);
-		
-		// Etichetta Errore Luminosità
-		labelErrLum = new JLabel("Errore Luminosità: ");
-		labelErrLum.setBounds(221, 147, 253, 25);
-		panel.add(labelErrLum);
 				
 		// Etichetta Metallicità
 		labelMet = new JLabel("Metallicità: ");
-		labelMet.setBounds(10, 184, 83, 25);
+		labelMet.setBounds(10, 183, 83, 25);
 		panel.add(labelMet);
 		
 		// Etichetta Errore Metallicità
 		labelErrMet = new JLabel("Errore Metallicità: ");
-		labelErrMet.setBounds(221, 184, 131, 25);
+		labelErrMet.setBounds(221, 183, 102, 25);
 		panel.add(labelErrMet);
 				
 		
@@ -137,48 +123,48 @@ public class GalaxySearchFrame extends JFrame {
 		panel.add(btnSearchGalaxy);
 
 		// Etichetta Valore Posizione
-		labelPositionValue = new JLabel("PosValue");
-		labelPositionValue.setBounds(87, 73, 122, 25);
+		labelPositionValue = new JLabel("");
+		labelPositionValue.setBounds(87, 73, 687, 25);
 		panel.add(labelPositionValue);
 		
 		// Etichetta Valore Distanza
-		labelDistanceValue = new JLabel("DisValue");
-		labelDistanceValue.setBounds(293, 73, 113, 25);
+		labelDistanceValue = new JLabel("");
+		labelDistanceValue.setBounds(82, 111, 113, 25);
 		panel.add(labelDistanceValue);
 
 		// Etichetta Valore Redshift
-		labelRedshiftValue = new JLabel("RedValue");
-		labelRedshiftValue.setBounds(491, 73, 112, 25);
+		labelRedshiftValue = new JLabel("");
+		labelRedshiftValue.setBounds(285, 111, 112, 25);
 		panel.add(labelRedshiftValue);
 		
 		// Etichetta Valore Lnev1
-		labelLnev1Value = new JLabel("LNev1Value");
-		labelLnev1Value.setBounds(63, 110, 122, 25);
+		labelLnev1Value = new JLabel("");
+		labelLnev1Value.setBounds(89, 147, 122, 25);
 		panel.add(labelLnev1Value);
 		
 		// Etichetta Valore Lnev2
-		labelLnev2Value = new JLabel("LNev2Value");
-		labelLnev2Value.setBounds(274, 110, 253, 25);
+		labelLnev2Value = new JLabel("");
+		labelLnev2Value.setBounds(285, 147, 113, 25);
 		panel.add(labelLnev2Value);
 		
 		// Etichetta Valore Loiv
-		labelLoivValue = new JLabel("LoivValue");
-		labelLoivValue.setBounds(51, 147, 122, 25);
+		labelLoivValue = new JLabel("");
+		labelLoivValue.setBounds(471, 147, 102, 25);
 		panel.add(labelLoivValue);
 		
 		// Etichetta Valore Luminosità
-		labelErrLumValue = new JLabel("ErrLumValue");
-		labelErrLumValue.setBounds(363, 147, 253, 25);
+		labelErrLumValue = new JLabel("");
+		labelErrLumValue.setBounds(560, 183, 102, 25);
 		panel.add(labelErrLumValue);
 				
 		// Etichetta Valore Metallicità
-		labelMetValue = new JLabel("MetValue");
-		labelMetValue.setBounds(99, 184, 253, 25);
+		labelMetValue = new JLabel("");
+		labelMetValue.setBounds(87, 183, 83, 25);
 		panel.add(labelMetValue);
 		
 		// Etichetta Valore Metallicità
-		labelErrMetValue = new JLabel("ErrMetValue");
-		labelErrMetValue.setBounds(364, 184, 253, 25);
+		labelErrMetValue = new JLabel("");
+		labelErrMetValue.setBounds(333, 182, 102, 25);
 		panel.add(labelErrMetValue);
 
 		
@@ -193,6 +179,17 @@ public class GalaxySearchFrame extends JFrame {
 		galaxyNameString = fieldGalaxy.getText();
 	}
 	
+	public void setLabelsFromGalaxy(Galaxy g){
+		labelPositionValue.setText(g.getPos().toString());
+		labelDistanceValue.setText(g.getDistance().toString());
+		labelRedshiftValue.setText(g.getRedshift().toString());
+		labelLnev1Value.setText(controller.floatToString(g.getLnev1()));
+		labelLnev2Value.setText(controller.floatToString(g.getLnev2()));
+		labelLoivValue.setText(controller.floatToString(g.getLoiv()));
+		labelMetValue.setText(controller.floatToString(g.getDerMet()));
+		labelErrMetValue.setText(controller.floatToString(g.getErrMet()));
+	}
+	
 	// Inizializzazione Listener Bottoni
 	private void addActionListener() {
 		
@@ -201,7 +198,8 @@ public class GalaxySearchFrame extends JFrame {
 //		@Override
 			public void actionPerformed(ActionEvent e) {
 				updateFields();
-				controller.doRicercaGalassiaPerNome(galaxyNameString);
+				Galaxy g = controller.doRicercaGalassiaPerNome(galaxyNameString);
+				setLabelsFromGalaxy(g);
 			}
 		});
 	}
@@ -210,18 +208,4 @@ public class GalaxySearchFrame extends JFrame {
 		this.setVisible(false);
 	}
 	
-	public void setLabelsFromGalaxy(Galaxy g){
-		// labelPositionValue.setText(g.getPos());
-		labelDistanceValue.setText(g.getDistance().toString());
-		labelRedshiftValue.setText(g.getRedshift().toString());
-		// TODO Qual è il problema di queste label? 
-//		labelLnev1Value.setText(g.getLnev1());
-//		labelLnev2Value.setText(g.getLnev2());
-//		labelLoivValue.setText(g.getLoiv());
-//		labelMetValue.setText(g.getDerMet());
-//		labelErrMetValue.setText(g.getErrMet());
-	}
-	
-
-
 }

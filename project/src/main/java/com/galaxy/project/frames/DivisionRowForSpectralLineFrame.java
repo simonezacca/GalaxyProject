@@ -26,7 +26,7 @@ public class DivisionRowForSpectralLineFrame extends JFrame {
 	
 	private DivisionRowForSpectralLineController controller = new DivisionRowForSpectralLineController(this);
 	
-	private final static String titolo = "Ricerca Oggetto all'interno di un raggio";
+	private final static String titolo = "Valore dei rapporti delle righe per gruppo spettrale";
 	private final JPanel panel = new JPanel();
 	
 	// Dichiarazione Componenti Grafici
