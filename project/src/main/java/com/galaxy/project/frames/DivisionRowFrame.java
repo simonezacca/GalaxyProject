@@ -179,7 +179,7 @@ public class DivisionRowFrame extends JFrame {
 				if (flussoDenominatore.isLimitFlag() == true) {
 					lblLimitValue.setText("Lower Limit");
 				}
-				if (flussoNumeratore.isLimitFlag() == false || flussoDenominatore.isLimitFlag() == false) {
+				if (flussoNumeratore.isLimitFlag() == false && flussoDenominatore.isLimitFlag() == false) {
 					lblLimitValue.setText("Entrambi non hanno limite");
 				}
 			}

@@ -20,13 +20,11 @@ import javax.swing.SortOrder;
 import javax.swing.table.TableRowSorter;
 
 import com.galaxy.project.controller.ValuesSpectralLineFrameController;
-import com.galaxy.project.frames.tablemodel.RadiusGalaxyTableModel;
-import com.galaxy.project.frames.tablemodel.RigheSpettraliTableModel;
+import com.galaxy.project.frames.cellrenderer.GalaxyCellRenderer;
 import com.galaxy.project.frames.tablemodel.ValuesSpectralLineTableModel;
 import com.galaxy.project.model.AFlux;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
-import com.galaxy.project.model.SpectralLine;
 	
 public class ValuesSpectralLineFrame extends JFrame {
 	
@@ -64,6 +62,8 @@ public class ValuesSpectralLineFrame extends JFrame {
 		List<Galaxy> galaxies = controller.getListaGalassie();
 
 		cbGalaxies = new JComboBox<Galaxy>(); //new JComboBox(lista Galassie)
+		cbGalaxies.setRenderer(new GalaxyCellRenderer());
+
 		for (Galaxy g : galaxies) {
 				cbGalaxies.addItem(g);
 		}
