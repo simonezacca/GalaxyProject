@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
+import com.galaxy.project.frames.tablemodel.GalaxyDistancePair;
 import com.galaxy.project.frames.tablemodel.RadiusGalaxyTableModel;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
@@ -205,7 +206,7 @@ public class RadiusGalaxySearchFrame extends JFrame {
 				updateFields();
 				convertFields();
 				p = new Position(positionRAh, positionRAm, positionRAs, positionRDsign, positionRDd, positionRDm, positionRDs);
-				List<Galaxy> galaxyOnRadius = controller.doRicercaGalassieDentroRaggio(p, limitRadius);
+				List<GalaxyDistancePair> galaxyOnRadius = controller.doRicercaGalassieDentroRaggio(p, limitRadius);
 				RadiusGalaxyTableModel jmodel = new RadiusGalaxyTableModel(galaxyOnRadius);
 				tableGalassiaDistanza.setModel(jmodel);
 			}

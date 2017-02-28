@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RedshiftGalaxySearchFrameController;
+import com.galaxy.project.frames.tablemodel.GalaxyRedshiftPair;
 import com.galaxy.project.frames.tablemodel.RedshiftGalaxyTableModel;
 import com.galaxy.project.model.Galaxy;
 	
@@ -122,7 +123,7 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				updateFields();
 				convertGRedshiftFields();
-				List<Galaxy> galaxyGreaterRedshift = controller.doRicercaGalassiePerRedshiftMaggiore(gRedshift);
+				List<GalaxyRedshiftPair> galaxyGreaterRedshift = controller.doRicercaGalassiePerRedshiftMaggiore(gRedshift);
 				RedshiftGalaxyTableModel jmodel = new RedshiftGalaxyTableModel(galaxyGreaterRedshift);
 				tableGalassiaRedshift.setModel(jmodel);
 			}
@@ -130,11 +131,11 @@ public class RedshiftGalaxySearchFrame extends JFrame {
 		
 		btnSearchGalaxyForLowerRedshift.addActionListener(new ActionListener() {
 			
-//			@Override
+//		@Override
 				public void actionPerformed(ActionEvent e) {
 					updateFields();
 					convertLRedshiftFields();
-					List<Galaxy> galaxyLowerRedshift = controller.doRicercaGalassiePerRedshiftMinore(lRedshift);
+					List<GalaxyRedshiftPair> galaxyLowerRedshift = controller.doRicercaGalassiePerRedshiftMinore(lRedshift);
 					RedshiftGalaxyTableModel jmodel = new RedshiftGalaxyTableModel(galaxyLowerRedshift);
 					tableGalassiaRedshift.setModel(jmodel);
 				}

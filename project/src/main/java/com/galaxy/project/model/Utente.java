@@ -13,7 +13,7 @@ import com.galaxy.project.persistence.IPersistente;
 
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 @NamedQueries({
 	   @NamedQuery(
 	        name = "cercaUtentePerUserID", 

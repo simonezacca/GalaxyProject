@@ -3,6 +3,7 @@ package com.galaxy.project.controller;
 import java.util.List;
 
 import com.galaxy.project.frames.RadiusGalaxySearchFrame;
+import com.galaxy.project.frames.tablemodel.GalaxyDistancePair;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
 import com.galaxy.project.tools.GalaxiesFinder;
@@ -16,10 +17,9 @@ public class RadiusGalaxySearchFrameController {
 		this.radiusGalaxySearchFrame = parent; 							//gli passo il GalaxySearchFrame
 		}
 
-	public List<Galaxy> doRicercaGalassieDentroRaggio(Position p, float radius) {
+	public List<GalaxyDistancePair> doRicercaGalassieDentroRaggio(Position p, float radius) {
 		
-		List<Galaxy> galaxies = galaxyFinder.ricercaGalassieDentroRaggio(p, radius);
-		//TODO galaxies.sort(c); //implementare un COMPARATOR
+		List<GalaxyDistancePair> galaxies = galaxyFinder.ricercaGalassieDentroRaggio(p, radius);
 		return galaxies;
 		
 	}

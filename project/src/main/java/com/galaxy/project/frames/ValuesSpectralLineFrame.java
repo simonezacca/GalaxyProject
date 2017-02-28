@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -14,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableRowSorter;
 
 import com.galaxy.project.controller.ValuesSpectralLineFrameController;
 import com.galaxy.project.frames.tablemodel.RadiusGalaxyTableModel;
@@ -107,6 +111,13 @@ public class ValuesSpectralLineFrame extends JFrame {
 				List<AFlux> fluxes = g.getFluxes();
 				ValuesSpectralLineTableModel jmodel = new ValuesSpectralLineTableModel(fluxes);
 				tableFlussi.setModel(jmodel);
+				TableRowSorter<ValuesSpectralLineTableModel> sorter = new TableRowSorter<ValuesSpectralLineTableModel>(jmodel);
+				tableFlussi.setRowSorter(sorter);
+
+				List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+				sortKeys.add(new RowSorter.SortKey(4, SortOrder.ASCENDING));
+				sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+				sorter.setSortKeys(sortKeys);
 			}
 		} );
 

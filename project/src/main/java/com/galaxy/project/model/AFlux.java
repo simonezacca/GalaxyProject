@@ -12,6 +12,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import com.galaxy.project.persistence.IPersistente;
@@ -20,7 +22,6 @@ import com.galaxy.project.persistence.IPersistente;
 @Table(name="flux")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type")
-
 public abstract class AFlux implements IPersistente{
 	
 	@Override

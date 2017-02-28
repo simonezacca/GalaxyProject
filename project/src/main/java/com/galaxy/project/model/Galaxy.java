@@ -16,9 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.galaxy.project.persistence.IPersistente;
 
@@ -79,6 +82,8 @@ public class Galaxy implements IPersistente {
 	protected SpectralClassification spectralClassification;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "galaxy", cascade=CascadeType.ALL)
+	@Fetch(FetchMode.SELECT)
+	@OrderBy("id ASC")
 	protected List<AFlux> fluxes;
 	
 	public Galaxy(String name, Float redshift2, Float distance2,

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,9 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
+import com.galaxy.project.frames.tablemodel.ValuesSpectralLineTableModel;
 import com.galaxy.project.controller.DivisionRowContinuousFluxController;
 import com.galaxy.project.controller.DivisionRowController;
 import com.galaxy.project.controller.DivisionRowForSpectralLineController;
+import com.galaxy.project.model.AFlux;
+import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -35,8 +39,9 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		private JLabel lblRigaSpettrale;
 		private JLabel lblValoreDelRapporto;
 		private JLabel lblValoreFlussoContinuo;
-		private JButton btnValueDivision;
-		private JComboBox cbGalassia;
+		private JButton btnValueDivision = new JButton("Calcola");
+		private JButton btnSelezionaGalassia = new JButton("Seleziona");
+		private JComboBox cbGalaxies;
 		private JComboBox cbRigaSpettrale;
 		private JComboBox cbFlussoContinuo;
 		private JLabel lblValoreFlussoRiga;
@@ -51,12 +56,12 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		getContentPane().add(panel);
 		placeComponents(panel);
 		
-		cbGalassia = new JComboBox();
-		cbGalassia.setBounds(10, 35, 154, 20);
-		panel.add(cbGalassia);
+		cbGalaxies = new JComboBox();
+		cbGalaxies.setBounds(10, 35, 154, 20);
+		panel.add(cbGalaxies);
 		
 		cbRigaSpettrale = new JComboBox();
-		cbRigaSpettrale.setBounds(191, 35, 150, 20);
+		cbRigaSpettrale.setBounds(318, 35, 150, 20);
 		panel.add(cbRigaSpettrale);
 		
 		cbFlussoContinuo = new JComboBox();
@@ -74,6 +79,10 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		JLabel lblDivisionvalue = new JLabel("DivisionValue");
 		lblDivisionvalue.setBounds(373, 133, 95, 14);
 		panel.add(lblDivisionvalue);
+		
+		JButton btnSelezionaGalassia = new JButton("Seleziona");
+		btnSelezionaGalassia.setBounds(174, 34, 89, 23);
+		panel.add(btnSelezionaGalassia);
 		
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
@@ -105,7 +114,7 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		
 		// Etichetta Inserisci RAs
 		lblRigaSpettrale = new JLabel("Seleziona Riga Spettrale");
-		lblRigaSpettrale.setBounds(191, 11, 150, 25);
+		lblRigaSpettrale.setBounds(318, 11, 150, 25);
 		panel.add(lblRigaSpettrale);
 		
 		// Etichetta Inserisci RDsign
@@ -118,7 +127,6 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		panel.add(lblValoreFlussoContinuo);
 		
 		// Bottone Per Ricercare
-		btnValueDivision = new JButton("Calcola");
 		btnValueDivision.setBounds(373, 95, 95, 25);
 		panel.add(btnValueDivision);
 		
@@ -134,6 +142,16 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 
 	// Inizializzazione Listener Bottoni
 	private void addActionListener() {
+		
+		btnSelezionaGalassia.addActionListener(new ActionListener() {
+			
+//			@Override
+				public void actionPerformed(ActionEvent e) {
+					Galaxy g = (Galaxy) cbGalaxies.getSelectedItem();
+					List<AFlux> fluxes = g.getFluxes();
+					
+				}
+			});
 		
 		btnValueDivision.addActionListener(new ActionListener() {
 			

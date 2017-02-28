@@ -8,8 +8,9 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
 import com.galaxy.project.model.AFlux;
+import com.galaxy.project.model.Galaxy;
 
-public class FluxCellRenderer implements ListCellRenderer<AFlux> {
+public class GalaxyCellRenderer implements ListCellRenderer<Galaxy> {
 
 	/**
 	 * 
@@ -18,21 +19,21 @@ public class FluxCellRenderer implements ListCellRenderer<AFlux> {
 	
 	private static final long serialVersionUID = 1L;
 
-	public FluxCellRenderer() {
+	public GalaxyCellRenderer() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Component getListCellRendererComponent(JList<? extends AFlux> list, AFlux value, int index,
+	public Component getListCellRendererComponent(JList<? extends Galaxy> list, Galaxy value, int index,
 			boolean isSelected, boolean cellHasFocus) {
 		JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 		Object item = value;
 
-	        // if the item to be rendered is Proveedores then display it's Name
-	        if( item instanceof AFlux ) {
-	            item = ( ( AFlux ) item ).getFluxValue() + "-" + ( ( AFlux ) item ).getSpectralLine();
+	        if( item instanceof Galaxy ) {
+	            item = ( ( Galaxy ) item ).getName();
 	            renderer.setText((String) item);
 	            return renderer;
 	        }
 	        return renderer;
 	    }
+
 }

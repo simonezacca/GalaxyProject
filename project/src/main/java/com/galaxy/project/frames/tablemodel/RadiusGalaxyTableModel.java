@@ -1,6 +1,7 @@
 package com.galaxy.project.frames.tablemodel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -14,13 +15,13 @@ public class RadiusGalaxyTableModel extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	List<Galaxy> galaxies = new ArrayList<Galaxy>();
+	List<GalaxyDistancePair> galaxyDistancePair = new ArrayList<GalaxyDistancePair>();
 	String[] headerTable = {"Galassia", "Distanza"};
 
-	public RadiusGalaxyTableModel(List<Galaxy> newGalaxiesList) {
+	public RadiusGalaxyTableModel(List<GalaxyDistancePair> newGalaxyDistancePair) {
 		// Richiama il costruttore della superclasse
 		super();
-		galaxies = newGalaxiesList;
+		this.galaxyDistancePair = newGalaxyDistancePair;
 	}
 
 	public int getColumnCount() {
@@ -28,7 +29,7 @@ public class RadiusGalaxyTableModel extends AbstractTableModel {
 	}
 
 	public int getRowCount() {
-		return galaxies.size();
+		return galaxyDistancePair.size();
 	}
 
 //	public void setValueAt(Object value, int row, int col) {
@@ -48,10 +49,13 @@ public class RadiusGalaxyTableModel extends AbstractTableModel {
 
 	public Object getValueAt(int row, int col) {
 		if (row>=0) {
+			GalaxyDistancePair gdp = galaxyDistancePair.get(row);
 			if (col==0) {
-				return ((Galaxy) (galaxies.get(row))).getName();
+				Galaxy g = gdp.getGalaxy();		
+				return g.getName();
 			} else if (col==1) {
-				return 0;
+				float distance = gdp.getDistance();
+				return distance;
 			}
 		}
 		return "";
@@ -62,8 +66,8 @@ public class RadiusGalaxyTableModel extends AbstractTableModel {
 		return headerTable[index];
 	}
 	
-	public void setDataModel(List<Galaxy> newGalaxiesList) {
-		galaxies = newGalaxiesList;
+	public void setDataModel(List<GalaxyDistancePair> newGalaxiesList) {
+		galaxyDistancePair = newGalaxiesList;
 		this.fireTableDataChanged();
 	}
 

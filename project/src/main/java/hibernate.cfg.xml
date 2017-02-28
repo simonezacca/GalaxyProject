@@ -8,7 +8,7 @@
   <property name="hibernate.connection.url">jdbc:postgresql:postgres</property>
   <property name="hibernate.connection.username">postgres</property>
   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-  <property name="hbm2ddl.auto">update</property>
+  <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.default_schema">public</property>
   <mapping class="com.galaxy.project.model.Utente"/>

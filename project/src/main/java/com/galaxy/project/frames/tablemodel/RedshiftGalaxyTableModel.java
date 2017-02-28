@@ -14,12 +14,12 @@ public class RedshiftGalaxyTableModel extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	List<Galaxy> galaxies = new ArrayList<Galaxy>();
+	List<GalaxyRedshiftPair> galaxyRedshiftPair = new ArrayList<GalaxyRedshiftPair>();
 	String[] headerTable = {"Galassia", "Redshift"};
 
-	public RedshiftGalaxyTableModel(List<Galaxy> newGalaxiesList) {
+	public RedshiftGalaxyTableModel(List<GalaxyRedshiftPair> newGalaxiesList) {
 		super();
-		galaxies = newGalaxiesList;
+		this.galaxyRedshiftPair = newGalaxiesList;
 	}
 
 	public int getColumnCount() {
@@ -27,7 +27,7 @@ public class RedshiftGalaxyTableModel extends AbstractTableModel {
 	}
 
 	public int getRowCount() {
-		return galaxies.size();
+		return galaxyRedshiftPair.size();
 	}
 
 //	public void setValueAt(Object value, int row, int col) {
@@ -47,10 +47,13 @@ public class RedshiftGalaxyTableModel extends AbstractTableModel {
 
 	public Object getValueAt(int row, int col) {
 		if (row>=0) {
+			GalaxyRedshiftPair grp = galaxyRedshiftPair.get(row);
 			if (col==0) {
-				return ((Galaxy) (galaxies.get(row))).getName();
+				Galaxy g = grp.getGalaxy();		
+				return g.getName();
 			} else if (col==1) {
-				return ((Galaxy) (galaxies.get(row))).getRedshift(); //TODO Ordinarle rispetto al valore di redshift
+				float redshift = grp.getRedshift();
+				return redshift;
 			}
 		}
 		return "";
@@ -61,8 +64,8 @@ public class RedshiftGalaxyTableModel extends AbstractTableModel {
 		return headerTable[index];
 	}
 	
-	public void setDataModel(List<Galaxy> newGalaxiesList) {
-		galaxies = newGalaxiesList;
+	public void setDataModel(List<GalaxyRedshiftPair> newGalaxiesList) {
+		galaxyRedshiftPair = newGalaxiesList;
 		this.fireTableDataChanged();
 	}
 

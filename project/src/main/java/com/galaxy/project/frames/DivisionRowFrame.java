@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import com.galaxy.project.controller.DivisionRowController;
 import com.galaxy.project.frames.cellrenderer.FluxCellRenderer;
+import com.galaxy.project.frames.cellrenderer.GalaxyCellRenderer;
 import com.galaxy.project.model.AFlux;
 import com.galaxy.project.model.Galaxy;
 	
@@ -55,35 +56,37 @@ public class DivisionRowFrame extends JFrame {
 		List<Galaxy> galaxies = controller.getListaGalassie();
 
 		cbGalassia1 = new JComboBox<Galaxy>(); 
+		cbGalassia1.setRenderer(new GalaxyCellRenderer());
 		for (Galaxy g : galaxies) {
 				cbGalassia1.addItem(g);;
 		}
-		cbGalassia1.setBounds(10, 71, 180, 20);
+		cbGalassia1.setBounds(10, 71, 226, 20);
 		panel.add(cbGalassia1);
 		
-		cbGalassia2 = new JComboBox<Galaxy>(); 
+		cbGalassia2 = new JComboBox<Galaxy>();
+		cbGalassia2.setRenderer(new GalaxyCellRenderer());
 		for (Galaxy g : galaxies) {
 				cbGalassia2.addItem(g);
 		}
-		cbGalassia2.setBounds(10, 142, 180, 20);
+		cbGalassia2.setBounds(10, 142, 226, 20);
 		panel.add(cbGalassia2);
 		
 		cbFlussoNumeratore = new JComboBox<AFlux>();
 		cbFlussoNumeratore.setRenderer(new FluxCellRenderer());
-		cbFlussoNumeratore.setBounds(324, 71, 180, 20);
+		cbFlussoNumeratore.setBounds(370, 71, 226, 20);
 		panel.add(cbFlussoNumeratore);
 		
 		cbFlussoDenominatore = new JComboBox<AFlux>();
 		cbFlussoDenominatore.setRenderer(new FluxCellRenderer());
-		cbFlussoDenominatore.setBounds(324, 142, 180, 20);
+		cbFlussoDenominatore.setBounds(370, 142, 226, 20);
 		panel.add(cbFlussoDenominatore);
 		
 		btnGalassiaNumeratore = new JButton("Seleziona");
-		btnGalassiaNumeratore.setBounds(200, 70, 89, 23);
+		btnGalassiaNumeratore.setBounds(246, 70, 89, 23);
 		panel.add(btnGalassiaNumeratore);
 		
 		btnGalassiaDenominatore = new JButton("Seleziona");
-		btnGalassiaDenominatore.setBounds(200, 141, 89, 23);
+		btnGalassiaDenominatore.setBounds(246, 141, 89, 23);
 		panel.add(btnGalassiaDenominatore);
 		
 		centerFrame();
@@ -97,15 +100,6 @@ public class DivisionRowFrame extends JFrame {
 	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
-
-//			Coordinate Spaziali:
-//			2MASS Right Ascension 2000 hours
-//			2MASS Right Ascension 2000 minutes
-//			2MASS Right Ascension 2000 seconds
-//			2MASS Right Declination 2000 sign
-//			2MASS Right Declination 2000 degrees
-//			2MASS Right Declination 2000 minutes
-//			2MASS Right Declination 2000 seconds
 		
 		lblInserisciDati.setBounds(10, 12, 352, 15);
 		panel.add(lblInserisciDati);
@@ -115,11 +109,11 @@ public class DivisionRowFrame extends JFrame {
 		panel.add(lblSelezionaGalassia1);
 		
 		lblFlusso1 = new JLabel("Flusso:");
-		lblFlusso1.setBounds(324, 47, 70, 25);
+		lblFlusso1.setBounds(370, 47, 70, 25);
 		panel.add(lblFlusso1);
 		
 		lblLimitValue = new JLabel("");
-		lblLimitValue.setBounds(214, 205, 94, 25);
+		lblLimitValue.setBounds(214, 205, 382, 25);
 		panel.add(lblLimitValue);
 		
 		lblSelezionaGalassia2 = new JLabel("Seleziona Galassia 2 (Denominatore)");
@@ -127,7 +121,7 @@ public class DivisionRowFrame extends JFrame {
 		panel.add(lblSelezionaGalassia2);
 
 		lblFlusso2 = new JLabel("Flusso:");
-		lblFlusso2.setBounds(324, 112, 70, 25);
+		lblFlusso2.setBounds(370, 112, 70, 25);
 		panel.add(lblFlusso2);
 		
 		btnValueDivision = new JButton("Valore Rapporto");
@@ -151,6 +145,7 @@ public class DivisionRowFrame extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					Galaxy g1 = (Galaxy) cbGalassia1.getSelectedItem();
 					System.out.println(cbGalassia1.getSelectedItem());
+					cbFlussoNumeratore.removeAllItems();
 					for (AFlux f : g1.getFluxes()) {
 							System.out.println(f);
 							cbFlussoNumeratore.addItem(f);
@@ -164,6 +159,7 @@ public class DivisionRowFrame extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					Galaxy g2 = (Galaxy) cbGalassia2.getSelectedItem();
 					System.out.println(cbGalassia2.getSelectedItem());
+					cbFlussoDenominatore.removeAllItems();
 					for (AFlux f : g2.getFluxes()) {
 							System.out.println(f);
 							cbFlussoDenominatore.addItem(f);
@@ -182,6 +178,9 @@ public class DivisionRowFrame extends JFrame {
 				}
 				if (flussoDenominatore.isLimitFlag() == true) {
 					lblLimitValue.setText("Lower Limit");
+				}
+				if (flussoNumeratore.isLimitFlag() == false || flussoDenominatore.isLimitFlag() == false) {
+					lblLimitValue.setText("Entrambi non hanno limite");
 				}
 			}
 		});

@@ -2,11 +2,16 @@ package com.galaxy.project.tools;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.galaxy.project.frames.tablemodel.GalaxyDistanceComparator;
+import com.galaxy.project.frames.tablemodel.GalaxyDistancePair;
+import com.galaxy.project.frames.tablemodel.GalaxyRedshiftComparator;
+import com.galaxy.project.frames.tablemodel.GalaxyRedshiftPair;
 import com.galaxy.project.manager.GalaxiesManager;
 import com.galaxy.project.model.Galaxy;
 import com.galaxy.project.model.Position;
@@ -31,34 +36,46 @@ public class GalaxiesFinder {
 				
 	}
 	
-	public List<Galaxy> ricercaGalassieDentroRaggio(Position p, float radius) {
-		List<Galaxy> resultSetGalaxies = new ArrayList<Galaxy>();
+	public List<GalaxyDistancePair> ricercaGalassieDentroRaggio(Position p, float radius) {
+		List<GalaxyDistancePair> resultSetGalaxies = new ArrayList<GalaxyDistancePair>();
 		List<Galaxy> galaxies = gdao.getAll();
 		for (Galaxy g : galaxies) {
-			if(PositionHelper.computeDistance(p, g.getPos()) <= radius)
-				resultSetGalaxies.add(g);
-		}
+			float distance = PositionHelper.computeDistance(p, g.getPos()); 
+			if(distance <= radius){
+				GalaxyDistancePair gdp = new GalaxyDistancePair(g, distance);
+				resultSetGalaxies.add(gdp);
+			}
+		}	
+		Collections.sort(resultSetGalaxies, new GalaxyDistanceComparator());
+
 		return resultSetGalaxies;
-		
 	}
 	
-	public List<Galaxy> ricercaGalassiePerRedshiftMaggiore(Float redshift) {
-		List<Galaxy> resultSetGalaxies = new ArrayList<Galaxy>();
+	public List<GalaxyRedshiftPair> ricercaGalassiePerRedshiftMaggiore(Float redshift) {
+		List<GalaxyRedshiftPair> resultSetGalaxies = new ArrayList<GalaxyRedshiftPair>();
 		List<Galaxy> galaxies = gdao.getAll();
 		for (Galaxy g : galaxies) {
-			if(g.getRedshift() >= redshift)
-				resultSetGalaxies.add(g);
+			float redshiftGalaxy = g.getRedshift(); 
+			if(redshiftGalaxy >= redshift){
+				GalaxyRedshiftPair grp = new GalaxyRedshiftPair(g, redshiftGalaxy);
+				resultSetGalaxies.add(grp);
+			}
 		}
+		Collections.sort(resultSetGalaxies, new GalaxyRedshiftComparator());
 		return resultSetGalaxies;	
 	}
 	
-	public List<Galaxy> ricercaGalassiePerRedshiftMinore(Float redshift) {
-		List<Galaxy> resultSetGalaxies2 = new ArrayList<Galaxy>();
+	public List<GalaxyRedshiftPair> ricercaGalassiePerRedshiftMinore(Float redshift) {
+		List<GalaxyRedshiftPair> resultSetGalaxies2 = new ArrayList<GalaxyRedshiftPair>();
 		List<Galaxy> galaxies2 = gdao.getAll();
 		for (Galaxy g : galaxies2) {
-			if(g.getRedshift() <= redshift)
-				resultSetGalaxies2.add(g);
+			float redshiftGalaxy = g.getRedshift(); 
+			if(redshiftGalaxy <= redshift){
+				GalaxyRedshiftPair grp = new GalaxyRedshiftPair(g, redshiftGalaxy);
+				resultSetGalaxies2.add(grp);
+			}
 		}
+		Collections.sort(resultSetGalaxies2, new GalaxyRedshiftComparator());
 		return resultSetGalaxies2;	
 	}
 
@@ -69,22 +86,22 @@ public class GalaxiesFinder {
 		float radiusthree = 0.01F;
 		float redshift = 0.1F;
 		GalaxiesFinder gFinder = new GalaxiesFinder();
-		List<Galaxy> provaGalassie = gFinder.ricercaGalassieDentroRaggio(p,radius);
-		List<Galaxy> provaGalassietwo = gFinder.ricercaGalassieDentroRaggio(p,radiustwo);
-		List<Galaxy> provaGalassiethree = gFinder.ricercaGalassieDentroRaggio(p,radiusthree);
+		List<GalaxyDistancePair> provaGalassie = gFinder.ricercaGalassieDentroRaggio(p,radius);
+		List<GalaxyDistancePair> provaGalassietwo = gFinder.ricercaGalassieDentroRaggio(p,radiustwo);
+		List<GalaxyDistancePair> provaGalassiethree = gFinder.ricercaGalassieDentroRaggio(p, radiusthree);
 		
-		System.out.println(provaGalassie.size());
-		for (Galaxy g : provaGalassie) {
-			System.out.println(g);
-		}
-		
-		System.out.println(provaGalassietwo.size());
-		for (Galaxy g : provaGalassietwo) {
-			System.out.println(g);
-		}
-		System.out.println(provaGalassiethree.size());
-		for (Galaxy g : provaGalassiethree) {
-			System.out.println(g);
-		}
+//		System.out.println(provaGalassie.size());
+//		for (Galaxy g : provaGalassie) {
+//			System.out.println(g);
+//		}
+//		
+//		System.out.println(provaGalassietwo.size());
+//		for (Galaxy g : provaGalassietwo) {
+//			System.out.println(g);
+//		}
+//		System.out.println(provaGalassiethree.size());
+//		for (Galaxy g : provaGalassiethree) {
+//			System.out.println(g);
+//		}
 	}
 }
