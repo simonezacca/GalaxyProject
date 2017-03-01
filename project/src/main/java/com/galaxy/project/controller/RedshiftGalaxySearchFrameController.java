@@ -23,7 +23,6 @@ public class RedshiftGalaxySearchFrameController {
 	
 	public List<GalaxyRedshiftPair> doRicercaGalassiePerRedshiftMinore(Float redshift) {
 		List<GalaxyRedshiftPair> galaxies = galaxyFinder.ricercaGalassiePerRedshiftMinore(redshift);
-		//TODO galaxies.sort(c); //implementare un COMPARATOR
 		return galaxies;	
 	}
 }

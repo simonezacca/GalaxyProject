@@ -8,15 +8,16 @@ import org.hibernate.Session;
 import com.galaxy.project.frames.DivisionRowForSpectralLineApertureFrame;
 import com.galaxy.project.frames.DivisionRowForSpectralLineFrame;
 import com.galaxy.project.model.AFlux;
-import com.galaxy.project.model.Galaxy;
-import com.galaxy.project.model.SpectralClassification;
-import com.galaxy.project.model.SpectralLine;
 import com.galaxy.project.persistence.GalaxyDAO;
 
 public class DivisionRowForSpectralLineController {
 
 	DivisionRowForSpectralLineFrame valuesDivisionRowForSpectralLineFrame = null;
 	DivisionRowForSpectralLineApertureFrame valuesDivisionRowForSpectralLineApertureFrame = null;
+
+	public DivisionRowForSpectralLineController(){
+		
+	}
 
 	public DivisionRowForSpectralLineController(DivisionRowForSpectralLineFrame parent){
 		this.valuesDivisionRowForSpectralLineFrame = parent; 	

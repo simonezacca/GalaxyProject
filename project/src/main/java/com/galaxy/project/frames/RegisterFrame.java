@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -158,6 +159,16 @@ public class RegisterFrame extends JFrame {
 			
 //		@Override
 			public void actionPerformed(ActionEvent e) {
+				userIDString = userText.getText();
+				passwordString = passwordText.getText();
+				if(userIDString.length()<6){
+					JOptionPane.showMessageDialog(null, "Inserire almeno 6 caratteri nel campo USERID", "Inserire almeno 6 caratteri nel campo USERID",
+                            JOptionPane.ERROR_MESSAGE);
+				}
+				else if(passwordString.length()<6){
+					JOptionPane.showMessageDialog(null, "Inserire almeno 6 caratteri nel campo PASSWORD", "Inserire almeno 6 caratteri nel campo PASSWORD",
+                            JOptionPane.ERROR_MESSAGE);
+				} else
 				updateFields();
 				controller.doRegistrazione(userIDString, passwordString, nameString, surnameString, mailString, roleInt);
 			}

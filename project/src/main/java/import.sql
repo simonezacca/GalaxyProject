@@ -20,5 +20,5 @@ VALUES
 
 INSERT INTO users (cognome, email, nome, password, ruolo, userid)
 VALUES
-('admin','admin@admin.com', 'admin', 'admin',0,'admin'),
-('user', 'user@user.com', 'user', 'user', 1, 'user');
+('admin','admin@admin.com', 'admin', 'amministratore',0,'amministratore'),
+('user', 'user@user.com', 'user', 'utente', 1, 'utente');

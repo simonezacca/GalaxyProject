@@ -90,16 +90,16 @@ public class GalaxiesFinder {
 		List<GalaxyDistancePair> provaGalassietwo = gFinder.ricercaGalassieDentroRaggio(p,radiustwo);
 		List<GalaxyDistancePair> provaGalassiethree = gFinder.ricercaGalassieDentroRaggio(p, radiusthree);
 		
-//		System.out.println(provaGalassie.size());
+		System.out.println("ProvaGalassia con 1" + " - " + provaGalassie.size());
 //		for (Galaxy g : provaGalassie) {
 //			System.out.println(g);
 //		}
 //		
-//		System.out.println(provaGalassietwo.size());
+		System.out.println("ProvaGalassia con 0.1" + " - " + provaGalassietwo.size());
 //		for (Galaxy g : provaGalassietwo) {
 //			System.out.println(g);
 //		}
-//		System.out.println(provaGalassiethree.size());
+		System.out.println("ProvaGalassia con 0.01" + " - " + provaGalassiethree.size());
 //		for (Galaxy g : provaGalassiethree) {
 //			System.out.println(g);
 //		}
