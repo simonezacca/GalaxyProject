@@ -1,29 +1,31 @@
 package com.galaxy.project.frames;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
-import com.galaxy.project.frames.tablemodel.ValuesSpectralLineTableModel;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import com.galaxy.project.controller.DivisionRowContinuousFluxController;
-import com.galaxy.project.controller.DivisionRowController;
-import com.galaxy.project.controller.DivisionRowForSpectralLineController;
+import com.galaxy.project.frames.cellrenderer.FluxCellRenderer;
+import com.galaxy.project.frames.cellrenderer.GalaxyCellRenderer;
 import com.galaxy.project.model.AFlux;
+import com.galaxy.project.model.ContinuousFlux;
 import com.galaxy.project.model.Galaxy;
-import com.galaxy.project.model.Position;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
+import com.galaxy.project.model.RowFlux;
+import com.galaxy.project.model.SpectralLine;
+import com.galaxy.project.persistence.GalaxyDAO;
 	
 public class DivisionRowContinuousFluxFrame extends JFrame {
 	
@@ -40,12 +42,17 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		private JLabel lblValoreDelRapporto;
 		private JLabel lblValoreFlussoContinuo;
 		private JButton btnValueDivision = new JButton("Calcola");
-		private JButton btnSelezionaGalassia = new JButton("Seleziona");
-		private JComboBox cbGalaxies;
-		private JComboBox cbRigaSpettrale;
-		private JComboBox cbFlussoContinuo;
+		private JButton btnSelezionaGalassia;
+		private JButton btnSelezionaRigaSpettrale;
+		private JComboBox<Galaxy> cbGalaxies;
+		private JComboBox<SpectralLine> cbRigaSpettrale;
+		private JComboBox<ContinuousFlux> cbFlussoContinuo;
+		private JComboBox<RowFlux> cbFlussoRiga;
 		private JLabel lblValoreFlussoRiga;
-		private JComboBox cbFlussoRiga;
+		private JLabel lblDivisionvalue = new JLabel("DivisionValue");
+		private Galaxy selectedGalaxy = null;
+		private SpectralLine selectedSpectralLine = null;
+		
 		
 		
 		public DivisionRowContinuousFluxFrame() {
@@ -56,15 +63,25 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		getContentPane().add(panel);
 		placeComponents(panel);
 		
-		cbGalaxies = new JComboBox();
+		List<Galaxy> galaxies = controller.getListaGalassie();
+
+		cbGalaxies = new JComboBox<Galaxy>(); //new JComboBox(lista Galassie)
+		cbGalaxies.setRenderer(new GalaxyCellRenderer());
+		for (Galaxy g : galaxies) {
+				cbGalaxies.addItem(g);
+		}
+				
+		cbGalaxies.setForeground(new Color(0, 0, 0));
 		cbGalaxies.setBounds(10, 35, 154, 20);
+		cbGalaxies.setToolTipText("");
 		panel.add(cbGalaxies);
 		
-		cbRigaSpettrale = new JComboBox();
+		cbRigaSpettrale = new JComboBox<SpectralLine>();
 		cbRigaSpettrale.setBounds(318, 35, 150, 20);
 		panel.add(cbRigaSpettrale);
 		
 		cbFlussoContinuo = new JComboBox();
+		cbFlussoContinuo.setRenderer(new FluxCellRenderer());
 		cbFlussoContinuo.setBounds(191, 97, 150, 20);
 		panel.add(cbFlussoContinuo);
 		
@@ -73,16 +90,21 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		panel.add(lblValoreFlussoRiga);
 		
 		cbFlussoRiga = new JComboBox();
+		cbFlussoRiga.setRenderer(new FluxCellRenderer());
 		cbFlussoRiga.setBounds(10, 97, 154, 20);
 		panel.add(cbFlussoRiga);
 		
-		JLabel lblDivisionvalue = new JLabel("DivisionValue");
+		
 		lblDivisionvalue.setBounds(373, 133, 95, 14);
 		panel.add(lblDivisionvalue);
 		
-		JButton btnSelezionaGalassia = new JButton("Seleziona");
-		btnSelezionaGalassia.setBounds(174, 34, 89, 23);
+		btnSelezionaGalassia = new JButton("Seleziona");
+		btnSelezionaGalassia.setBounds(174, 34, 134, 23);
 		panel.add(btnSelezionaGalassia);
+		
+		btnSelezionaRigaSpettrale = new JButton("Seleziona");
+		btnSelezionaRigaSpettrale.setBounds(478, 34, 134, 23);
+		panel.add(btnSelezionaRigaSpettrale);
 		
 		centerFrame();
 		addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
@@ -109,7 +131,7 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 		
 		// Etichetta Inserisci RAh
 		lblSelezionaGalassia = new JLabel("Seleziona Galassia:");
-		lblSelezionaGalassia.setBounds(10, 11, 154, 25);
+		lblSelezionaGalassia.setBounds(10, 11, 298, 25);
 		panel.add(lblSelezionaGalassia);
 		
 		// Etichetta Inserisci RAs
@@ -148,8 +170,32 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 //			@Override
 				public void actionPerformed(ActionEvent e) {
 					Galaxy g = (Galaxy) cbGalaxies.getSelectedItem();
-					List<AFlux> fluxes = g.getFluxes();
+					selectedGalaxy = g;
+					List<SpectralLine> slList = controller.getSpectralLineFromGalaxy(g);
+					cbRigaSpettrale.removeAllItems();
+					for (SpectralLine sl : slList) {
+						cbRigaSpettrale.addItem(sl);
+					}					
+				}
+			});
+		
+			btnSelezionaRigaSpettrale.addActionListener(new ActionListener() {
+			
+//			@Override
+				public void actionPerformed(ActionEvent e) {
+					SpectralLine sl = (SpectralLine) cbRigaSpettrale.getSelectedItem();
+					selectedSpectralLine = sl;
+					List<RowFlux> fList = controller.getRowFluxFromSpectralLine(selectedGalaxy, selectedSpectralLine);
+					cbFlussoRiga.removeAllItems();
+					for (RowFlux f : fList) {
+						cbFlussoRiga.addItem(f);
+					}
 					
+					List<ContinuousFlux> fcList = controller.getContinuousFluxFromSpectralLine(selectedGalaxy, selectedSpectralLine);
+					cbFlussoContinuo.removeAllItems();
+					for (ContinuousFlux fc : fcList) {
+						cbFlussoContinuo.addItem(fc);
+					}
 				}
 			});
 		
@@ -157,7 +203,10 @@ public class DivisionRowContinuousFluxFrame extends JFrame {
 			
 //		@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				RowFlux rf = (RowFlux) cbFlussoRiga.getSelectedItem();
+				ContinuousFlux cf = (ContinuousFlux) cbFlussoContinuo.getSelectedItem();
+				float result = controller.getValueFromDivision(rf, cf);
+				lblDivisionvalue.setText(result + ""); 
 			}
 		});
 	}

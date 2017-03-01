@@ -4,21 +4,18 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import com.galaxy.project.controller.RadiusGalaxySearchFrameController;
-import com.galaxy.project.controller.DivisionRowController;
 import com.galaxy.project.controller.DivisionRowForSpectralLineController;
-import com.galaxy.project.model.Position;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
+import com.galaxy.project.frames.cellrenderer.FluxCellRenderer;
+import com.galaxy.project.model.AFlux;
+import com.galaxy.project.tools.StatisticsHelper;
 	
 public class DivisionRowForSpectralLineFrame extends JFrame {
 	
@@ -34,7 +31,8 @@ public class DivisionRowForSpectralLineFrame extends JFrame {
 	private JLabel lblFlusso1;
 	private JLabel lblValoreMedio;
 	private JLabel lblFlusso2;
-	private JButton btnValueDivision;
+	private JButton btnCalcola;
+	private JButton btnGruppoSpettrale = new JButton("Seleziona");
 	
 	private JLabel lblDeviazioneStandard;
 	private JLabel lblMediana;
@@ -43,10 +41,9 @@ public class DivisionRowForSpectralLineFrame extends JFrame {
 	private JLabel lblValdev;
 	private JLabel lblValmediana;
 	private JLabel lblValdevabs;
-	private JComboBox comboBox;
-	private JComboBox cbRigaSpettrale;
-	private JComboBox cbFlusso1;
-	private JComboBox cbFlusso2;
+	private JComboBox<String> cbClassificazioneSpettrale;
+	private JComboBox<AFlux> cbFlusso1;
+	private JComboBox<AFlux> cbFlusso2;
 	
 	
 	public DivisionRowForSpectralLineFrame() {
@@ -69,33 +66,43 @@ public class DivisionRowForSpectralLineFrame extends JFrame {
 	lblDeviazioneMediaAssoluta.setBounds(10, 298, 166, 25);
 	panel.add(lblDeviazioneMediaAssoluta);
 	
-	lblValmedio = new JLabel("ValMedio");
-	lblValmedio.setBounds(227, 193, 70, 25);
+	lblValmedio = new JLabel("");
+	lblValmedio.setBounds(227, 193, 307, 25);
 	panel.add(lblValmedio);
 	
-	lblValdev = new JLabel("ValDev");
-	lblValdev.setBounds(227, 229, 70, 25);
+	lblValdev = new JLabel("");
+	lblValdev.setBounds(227, 229, 307, 25);
 	panel.add(lblValdev);
 	
-	lblValmediana = new JLabel("ValMediana");
-	lblValmediana.setBounds(227, 262, 70, 25);
+	lblValmediana = new JLabel("");
+	lblValmediana.setBounds(227, 262, 307, 25);
 	panel.add(lblValmediana);
 	
-	lblValdevabs = new JLabel("ValDevAbs");
-	lblValdevabs.setBounds(227, 298, 70, 25);
+	lblValdevabs = new JLabel("");
+	lblValdevabs.setBounds(227, 298, 307, 25);
 	panel.add(lblValdevabs);
 	
-	cbRigaSpettrale = new JComboBox();
-	cbRigaSpettrale.setBounds(10, 35, 136, 20);
-	panel.add(cbRigaSpettrale);
+	cbClassificazioneSpettrale = new JComboBox();
+	cbClassificazioneSpettrale.setBounds(10, 35, 182, 20);
+	panel.add(cbClassificazioneSpettrale);
+	List<String> csList = controller.getSpectralClassificationFromGalaxy();
+	for (String cs : csList) {
+		cbClassificazioneSpettrale.addItem(cs);
+	}
 	
 	cbFlusso1 = new JComboBox();
-	cbFlusso1.setBounds(227, 35, 116, 20);
+	cbFlusso1.setRenderer(new FluxCellRenderer());
+	cbFlusso1.setBounds(10, 90, 116, 20);
 	panel.add(cbFlusso1);
 	
 	cbFlusso2 = new JComboBox();
-	cbFlusso2.setBounds(227, 97, 116, 20);
+	cbFlusso2.setRenderer(new FluxCellRenderer());
+	cbFlusso2.setBounds(136, 90, 116, 20);
 	panel.add(cbFlusso2);
+	
+	
+	btnGruppoSpettrale.setBounds(211, 34, 182, 23);
+	panel.add(btnGruppoSpettrale);
 	
 	addActionListener(); // Inizializza i Listener dei Bottoni (vedi sotto)
 	
@@ -120,13 +127,13 @@ private void placeComponents(JPanel panel) {
 
 	
 	// Etichetta Inserisci RAh
-	lblSelezionaRigaSpettrale = new JLabel("Seleziona Riga Spettrale");
-	lblSelezionaRigaSpettrale.setBounds(10, 11, 180, 25);
+	lblSelezionaRigaSpettrale = new JLabel("Seleziona Gruppo Spettrale:");
+	lblSelezionaRigaSpettrale.setBounds(10, 11, 182, 25);
 	panel.add(lblSelezionaRigaSpettrale);
 	
 	// Etichetta Inserisci RAs
 	lblFlusso1 = new JLabel("Flusso 1:");
-	lblFlusso1.setBounds(227, 11, 116, 25);
+	lblFlusso1.setBounds(10, 66, 116, 25);
 	panel.add(lblFlusso1);
 	
 	// Etichetta Inserisci RDsign
@@ -135,13 +142,13 @@ private void placeComponents(JPanel panel) {
 	panel.add(lblValoreMedio);
 	// Etichetta Inserisci RDs
 	lblFlusso2 = new JLabel("Flusso 2:");
-	lblFlusso2.setBounds(227, 66, 116, 25);
+	lblFlusso2.setBounds(136, 66, 116, 25);
 	panel.add(lblFlusso2);
 	
 	// Bottone Per Ricercare
-	btnValueDivision = new JButton("Calcola");
-	btnValueDivision.setBounds(227, 146, 116, 25);
-	panel.add(btnValueDivision);
+	btnCalcola = new JButton("Calcola");
+	btnCalcola.setBounds(277, 88, 116, 25);
+	panel.add(btnCalcola);
 	
 	// TODO Tabella Nome Galassia | Distanza
 	
@@ -156,11 +163,33 @@ private void centerFrame() {
 // Inizializzazione Listener Bottoni
 private void addActionListener() {
 	
-	btnValueDivision.addActionListener(new ActionListener() {
+	btnGruppoSpettrale.addActionListener(new ActionListener() {
+		
+//		@Override
+			public void actionPerformed(ActionEvent e) {
+				String sc = (String) cbClassificazioneSpettrale.getSelectedItem();
+				List<AFlux> fluxList = controller.getFluxFromSpectralClassification(sc);
+				cbFlusso1.removeAllItems();
+				cbFlusso2.removeAllItems();
+				for (AFlux flux : fluxList) {
+					cbFlusso1.addItem(flux);
+					cbFlusso2.addItem(flux);			
+				}
+			}
+		});
+	
+	btnCalcola.addActionListener(new ActionListener() {
 		
 //	@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			AFlux fl1 = (AFlux) cbFlusso1.getSelectedItem();
+			AFlux fl2 = (AFlux) cbFlusso2.getSelectedItem();
+			double[] data = {fl1.getFluxValue(),fl2.getFluxValue()};
+			StatisticsHelper sh = new StatisticsHelper(data);
+			lblValmedio.setText(sh.getMean() +"");
+			lblValdev.setText(sh.getStdDev() +"");
+			lblValdevabs.setText(sh.getVariance() +"");
+			lblValmediana.setText(sh.median() +"");
 		}
 	});
 }
